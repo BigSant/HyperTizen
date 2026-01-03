@@ -1,0 +1,15 @@
+{
+  "name": "@foxreis/hypertizen",
+  "appName": "HyperTizen",
+  "version": "1.0.0",
+  "description": "HyperTizen is a Hyperion / HyperHDR capturer for Tizen TVs.",
+  "packageType": "app",
+  "appPath": "index.html",
+  "author": "Reis Can",
+  "serviceFile": "js/service.js",
+  "keys": [],
+  "repository": {
+    "url": "https://github.com/reisxd/HyperTizen"
+  },
+  "license": "GPL-3.0-only"
+}

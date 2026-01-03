@@ -1,0 +1,9 @@
+# csproj file path
+csproj_file: HyperTizen.csproj
+
+# files monitored for dirty/modified status
+files:
+  - HyperTizen.csproj
+  - HyperTizen_App.cs
+  - tizen-manifest.xml
+  - shared/res/HyperTizen.png
