@@ -52,7 +52,7 @@ function onOpen() {
 function updateStatus(message) {
     const now = new Date();
     const timestamp = now.toLocaleTimeString();
-    document.getElementById('status').innerHTML = `[${timestamp}] ${message}`;
+    document.getElementById('console').innerHTML += `[${timestamp}] ${message}<br>`;
     console.log(`HyperTizen Debug [${timestamp}]: ${message}`);
 }
 
