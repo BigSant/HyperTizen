@@ -6,6 +6,8 @@ The target is a complete, spatially coherent TV frame at approximately 24 FPS
 for Hyperion.  Sampling a small set of pixels is explicitly not an acceptable
 capture method.  Firmware decoding is documented separately in
 `FIRMWARE_DECODE_QE77S95F_1296.md`.
+Indirect frame sources, zone-color services, HDMI/tuner paths and global
+statistics are inventoried in `INDIRECT_HYPERION_PATHS_QE77S95F_1296.md`.
 
 Two facts are now proven on the physical `QE77S95FATXXH`:
 
@@ -234,10 +236,16 @@ Only verified methods enter the production chain.  The expected order is:
 ```text
 DisplayEncode H.264
   -> CAPI encoder / lower RM encoder
+  -> authorized Remote Management JPEG stream
+  -> HDMI DMA-BUF source (HDMI content only)
+  -> tuner/live source (broadcast only)
+  -> cooperating software-decoder frame
   -> raw scaler capture
   -> direct TZ capture
   -> Wayland/EFL screen mirror (UI)
   -> EFL screenshot (UI)
+  -> color-pick zone RGB (about 0.5 FPS)
+  -> histogram/frame-lux (global brightness only)
   -> existing pixel sampler (legacy last resort)
 ```
 
