@@ -25,58 +25,20 @@ function send(json) {
 }
 
 function onOpen() {
-    updateStatus('Connected to TV WebSocket');
+    document.getElementById('status').innerHTML = 'Connected';
     document.getElementById('enabled').onchange = (e) => {
         if (!canEnable) {
-            updateStatus('Error: Please select a Hyperion server first');
+            alert('Please select a device first');
             return e.target.checked = false;
         }
-        updateStatus('Enabling/Disabling capture...');
         send({ event: events.SetConfig, key: 'enabled', value: e.target.checked.toString() });
     }
-    updateStatus('Adding manual Hyperion server...');
-    addManualHyperionServer();
-
-    updateStatus('Reading configuration...');
     send({ event: events.ReadConfig, key: 'rpcServer' });
     send({ event: events.ReadConfig, key: 'enabled' });
-
-    updateStatus('Scanning for SSDP devices...');
     send({ event: events.ScanSSDP });
     setInterval(() => {
-        updateStatus('Rescanning SSDP devices...');
         send({ event: events.ScanSSDP });
     }, 10000);
-}
-
-function updateStatus(message) {
-    const now = new Date();
-    const timestamp = now.toLocaleTimeString();
-    document.getElementById('console').innerHTML += `[${timestamp}] ${message}<br>`;
-    console.log(`HyperTizen Debug [${timestamp}]: ${message}`);
-}
-
-function addManualHyperionServer() {
-    const hyperionIP = '192.168.10.10';
-    const hyperionPort = '19444';
-    const serverName = 'Min Hyperion Server';
-
-    const url = `ws://${hyperionIP}:${hyperionPort}`;
-    updateStatus(`Adding server: ${url}`);
-    
-    if (ssdpDevices.some(d => d.url === url)) {
-        updateStatus('Server already exists in list');
-        return;
-    }
-
-    document.getElementById('ssdpItems').innerHTML += `
-    <div class="ssdpItem" data-uri="${url}" data-friendlyName="${serverName}" tabindex="0" onclick="setRPC('${url}')">
-        <a>${serverName} (Manuell)</a>
-    </div>
-    `;
-
-    ssdpDevices.push({ url, friendlyName: serverName });
-    updateStatus(`Successfully added: ${serverName}`);
 }
 
 function onMessage(data) {
@@ -93,6 +55,7 @@ function onMessage(data) {
         case events.SSDPScanResult: {
             for (const device of msg.devices) {
                 const url = device.UrlBase.indexOf('https') === 0 ? device.UrlBase.replace('https', 'wss') : device.UrlBase.replace('http', 'ws');
+
                 if (ssdpDevices.some(d => d.url === url)) {
                     continue;
                 }
