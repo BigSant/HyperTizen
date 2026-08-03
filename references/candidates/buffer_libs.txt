@@ -1,0 +1,27 @@
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/gstreamer-1.0/libgstaudiobuffersplit.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/gstreamer-1.0/libgstvideoframe_audiolevel.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libboost_unit_test_framework.so.1.83.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-hdmi-infoframe.so.0.1
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-hdmi-infoframe.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-hdmi-infoframe.so.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-mde-framework-tv.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-multi-llm-framework.so.1.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-multi-llm-framework.so.1.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-multi-llm-framework.so.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-selfdiagframework-tv.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libecore_buffer.so.1.25.1
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libecore_buffer.so.1.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libflatbuffers.so.23.5.26
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libframe-broker.so.1.9.14
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libframe-broker.so.1.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libframe-provider.so.1.9.14
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libframe-provider.so.1.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-client.so.0.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-client.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-server.so.0.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-server.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libslive-framework.so.0.1.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libslive-framework.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libslive-framework.so.symlink
+Searching for: *buffer*.so*
+Searching for: *frame*.so*

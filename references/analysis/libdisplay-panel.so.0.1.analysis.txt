@@ -1,0 +1,261 @@
+==================================================================
+Library: libdisplay-panel.so.0.1
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libdisplay-panel.so.0.1
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libdisplay-panel.so.0.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=b794136b587d840cbd5ebc9359dfe473f7826fa8, stripped
+
+--- Size ---
+39K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U dlerror@GLIBC_2.4
+         U __dlog_print
+         U dlopen@GLIBC_2.4
+         w __gmon_start__
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+00000000 A libdisplay-panel.so.0
+         U malloc@GLIBC_2.4
+         U memset@GLIBC_2.4
+460e5ac5 T ppi_displaypanel_diagnostic_test_api@@libdisplay-panel.so.0
+460e4125 T ppi_displaypanel_do_fpga_multilink_hdr_test@@libdisplay-panel.so.0
+460e2541 T ppi_displaypanel_do_tcon_cad_update@@libdisplay-panel.so.0
+460e4c15 T ppi_displaypanel_erase_tcon_demura_data@@libdisplay-panel.so.0
+460e3225 T ppi_displaypanel_get_8k_res_info@@libdisplay-panel.so.0
+460e2f5d T ppi_displaypanel_get_active_version@@libdisplay-panel.so.0
+460e2431 T ppi_displaypanel_get_backend@@libdisplay-panel.so.0
+460e2381 T ppi_displaypanel_get_backend_data@@libdisplay-panel.so.0
+460e238d T ppi_displaypanel_get_backend_data_address@@libdisplay-panel.so.0
+460e1ae5 T ppi_displaypanel_get_backend_data_address_fb@@libdisplay-panel.so.0
+460e1ad9 T ppi_displaypanel_get_backend_data_fb@@libdisplay-panel.so.0
+460e1b89 T ppi_displaypanel_get_backend_fb@@libdisplay-panel.so.0
+460e5d81 T ppi_displaypanel_get_backend_info@@libdisplay-panel.so.0
+460e6035 T ppi_displaypanel_get_config_type@@libdisplay-panel.so.0
+460e304d T ppi_displaypanel_get_dimming_info@@libdisplay-panel.so.0
+460e3a89 T ppi_displaypanel_get_eeprom_version@@libdisplay-panel.so.0
+460e543d T ppi_displaypanel_get_elsensing_info@@libdisplay-panel.so.0
+460e56f5 T ppi_displaypanel_get_elsensing_status@@libdisplay-panel.so.0
+460e4039 T ppi_displaypanel_get_ffc_cable_desc_status@@libdisplay-panel.so.0
+460e3b7d T ppi_displaypanel_get_fpga_control@@libdisplay-panel.so.0
+460e2e6d T ppi_displaypanel_get_fpga_curr_temp@@libdisplay-panel.so.0
+460e36d1 T ppi_displaypanel_get_fpga_vx1_lock_status@@libdisplay-panel.so.0
+460e28ed T ppi_displaypanel_get_frc_status@@libdisplay-panel.so.0
+460e526d T ppi_displaypanel_get_offsensing_available@@libdisplay-panel.so.0
+460e4a45 T ppi_displaypanel_get_offsensing_info@@libdisplay-panel.so.0
+460e37bd T ppi_displaypanel_get_oled_model_type@@libdisplay-panel.so.0
+460e2801 T ppi_displaypanel_get_oled_s_index1@@libdisplay-panel.so.0
+460e2715 T ppi_displaypanel_get_oled_s_index2@@libdisplay-panel.so.0
+460e3139 T ppi_displaypanel_get_panel_output_info@@libdisplay-panel.so.0
+460e2ac5 T ppi_displaypanel_get_pixel_ic_power@@libdisplay-panel.so.0
+460e42f9 T ppi_displaypanel_get_pmic_fault_type@@libdisplay-panel.so.0
+460e29d9 T ppi_displaypanel_get_pmic_init_info@@libdisplay-panel.so.0
+460e2bb1 T ppi_displaypanel_get_sw_inverter_status@@libdisplay-panel.so.0
+460e5bb1 T ppi_displaypanel_get_tcon_data_version@@libdisplay-panel.so.0
+460e495d T ppi_displaypanel_get_tcon_demura_status@@libdisplay-panel.so.0
+460e5c99 T ppi_displaypanel_get_tcon_info@@libdisplay-panel.so.0
+460e5525 T ppi_displaypanel_get_tcon_still@@libdisplay-panel.so.0
+460e2629 T ppi_displaypanel_get_temp_sensor_error_status@@libdisplay-panel.so.0
+460e38a9 T ppi_displaypanel_reload_eeprom@@libdisplay-panel.so.0
+460e4cfd T ppi_displaypanel_reload_tcon_demura_data@@libdisplay-panel.so.0
+460e4875 T ppi_displaypanel_set_3d_enable@@libdisplay-panel.so.0
+460e478d T ppi_displaypanel_set_3d_invert@@libdisplay-panel.so.0
+460e420d T ppi_displaypanel_set_3d_mode_onoff@@libdisplay-panel.so.0
+460e46a5 T ppi_displaypanel_set_3d_phase_offset@@libdisplay-panel.so.0
+460e5f51 T ppi_displaypanel_set_aging_pattern@@libdisplay-panel.so.0
+460e5355 T ppi_displaypanel_set_cooling_time@@libdisplay-panel.so.0
+460e57dd T ppi_displaypanel_set_elsensing@@libdisplay-panel.so.0
+460e3d75 T ppi_displaypanel_set_factory_item_ssc@@libdisplay-panel.so.0
+460e3c79 T ppi_displaypanel_set_fpga_control@@libdisplay-panel.so.0
+460e5e69 T ppi_displaypanel_set_frc_pattern@@libdisplay-panel.so.0
+460e1c95 T ppi_displaypanel_set_geometry_changed@@libdisplay-panel.so.0
+460e2c99 T ppi_displaypanel_set_heavy_load_pattern_for_production@@libdisplay-panel.so.0
+460e45b9 T ppi_displaypanel_set_input_size@@libdisplay-panel.so.0
+460e1ff1 T ppi_displaypanel_set_input_size_fb@@libdisplay-panel.so.0
+460e58c5 T ppi_displaypanel_set_offsensing@@libdisplay-panel.so.0
+460e4b2d T ppi_displaypanel_set_offsensingShortTerm@@libdisplay-panel.so.0
+460e59ad T ppi_displaypanel_set_panel_mute@@libdisplay-panel.so.0
+460e210d T ppi_displaypanel_set_panel_mute_fb@@libdisplay-panel.so.0
+460e611d T ppi_displaypanel_set_panel_power_up_outdoor_mode@@libdisplay-panel.so.0
+460e62e5 T ppi_displaypanel_set_power@@libdisplay-panel.so.0
+460e2225 T ppi_displaypanel_set_power_fb@@libdisplay-panel.so.0
+460e6201 T ppi_displaypanel_set_projector_power@@libdisplay-panel.so.0
+460e44d1 T ppi_displaypanel_set_spread_spectrum@@libdisplay-panel.so.0
+460e1ed9 T ppi_displaypanel_set_spread_spectrum_fb@@libdisplay-panel.so.0
+460e3e65 T ppi_displaypanel_set_spread_spectrum_to_soc@@libdisplay-panel.so.0
+460e1dc1 T ppi_displaypanel_set_spread_spectrum_to_soc_fb@@libdisplay-panel.so.0
+460e4ec9 T ppi_displaypanel_set_tcon_demura_bypass@@libdisplay-panel.so.0
+460e43e5 T ppi_displaypanel_set_tcon_power@@libdisplay-panel.so.0
+460e560d T ppi_displaypanel_set_tcon_still@@libdisplay-panel.so.0
+460e3f4d T ppi_displaypanel_set_tsi_pattern_onoff@@libdisplay-panel.so.0
+460e2d85 T ppi_displaypanel_set_vx1_output_toggle@@libdisplay-panel.so.0
+460e5181 T ppi_displaypanel_show_tcon_color_pattern@@libdisplay-panel.so.0
+460e5099 T ppi_displaypanel_show_tcon_dot_pattern@@libdisplay-panel.so.0
+460e4fb1 T ppi_displaypanel_show_tcon_dot_pattern_2@@libdisplay-panel.so.0
+460e3995 T ppi_displaypanel_upgrade_eeprom_data@@libdisplay-panel.so.0
+460e35e1 T ppi_displaypanel_wall_get_serdes_err_cnt@@libdisplay-panel.so.0
+460e34f1 T ppi_displaypanel_wall_get_serdes_fail_cnt@@libdisplay-panel.so.0
+460e3401 T ppi_displaypanel_wall_get_vx1_err_cnt@@libdisplay-panel.so.0
+460e3311 T ppi_displaypanel_wall_get_vx1_fail_cnt@@libdisplay-panel.so.0
+460e4de1 T ppi_displaypanel_write_tcon_demura_data@@libdisplay-panel.so.0
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 94 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 460e196c     0 SECTION LOCAL  DEFAULT   10 .init
+     2: 460f9048     0 SECTION LOCAL  DEFAULT   21 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (3)
+     4: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (4)
+     5: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlerror@GLIBC_2.4 (5)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlopen@GLIBC_2.4 (5)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.4 (4)
+     9: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.4 (4)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    12: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    13: 460e2541   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    14: 460e6201   228 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    15: 460e5181   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    16: 460e2e6d   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    17: 460e5c99   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    18: 460e1c95   300 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    19: 460e420d   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    20: 460e5525   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    21: 460e62e5   220 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    22: 460e304d   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    23: 460e1ff1   284 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    24: 460e36d1   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    25: 460e6035   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    26: 460e59ad   280 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    27: 460e5355   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    28: 460e4cfd   228 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    29: 460e5d81   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    30: 460e1dc1   280 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    31: 460e4de1   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    32: 460e3b7d   252 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    33: 460e4875   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    34: 460e560d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    35: 460e56f5   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    36: 460e526d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    37: 460e238d   164 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    38: 460e611d   228 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    39: 460e2629   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    40: 460e478d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    41: 460e1ae5   164 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    42: 460e34f1   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    43: 460e29d9   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    44: 460e5e69   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    45: 460e2f5d   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    46: 460e28ed   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    47: 460e3a89   244 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    48: 460e3e65   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    49: 460e2c99   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    50: 460e43e5   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    51: 460e2431   272 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    52: 460e2381    12 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    53: 460e2ac5   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    54: 460e2225   348 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    55: 460e44d1   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    56: 460e4fb1   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    57: 460e3d75   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    58: 460e3995   244 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    59: 460e3c79   252 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    60: 460e57dd   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    61: 460e4c15   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    62: 460e35e1   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    63: 460e4b2d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    64: 460e3311   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    65: 460e4039   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    66: 460e1b89   268 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    67: 460e1ed9   280 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    68: 460e42f9   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    69: 460e2bb1   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    70: 460e46a5   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    71: 460e4ec9   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    72: 460e3139   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    73: 460e5099   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    74: 460e495d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    75: 460e2d85   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    76: 460e543d   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    77: 460e5ac5   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    78: 460e3225   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    79: 460e210d   280 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    80: 460e58c5   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    81: 460e5f51   228 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    82: 460e5bb1   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    83: 460e3f4d   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    84: 460e4125   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    85: 460e2801   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    86: 460e2715   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    87: 460e4a45   232 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    88: 00000000     0 OBJECT  GLOBAL DEFAULT  ABS libdisplay-panel.so.0
+    89: 460e38a9   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    90: 460e37bd   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    91: 460e45b9   236 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    92: 460e1ad9    12 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+    93: 460e3401   240 FUNC    GLOBAL DEFAULT   12 [...]@@libdisplay-panel.so.0
+
+--- Relevant Function Names ---
+CAPTURE functions:
+  None found
+
+SCREEN functions:
+  None found
+
+PIXEL/SAMPLE functions:
+460e2ac5 T ppi_displaypanel_get_pixel_ic_power@@libdisplay-panel.so.0
+
+VIDEO functions:
+  None found
+
+GET/INSTANCE functions:
+460e3225 T ppi_displaypanel_get_8k_res_info@@libdisplay-panel.so.0
+460e2f5d T ppi_displaypanel_get_active_version@@libdisplay-panel.so.0
+460e2431 T ppi_displaypanel_get_backend@@libdisplay-panel.so.0
+460e2381 T ppi_displaypanel_get_backend_data@@libdisplay-panel.so.0
+460e238d T ppi_displaypanel_get_backend_data_address@@libdisplay-panel.so.0
+460e1ae5 T ppi_displaypanel_get_backend_data_address_fb@@libdisplay-panel.so.0
+460e1ad9 T ppi_displaypanel_get_backend_data_fb@@libdisplay-panel.so.0
+460e1b89 T ppi_displaypanel_get_backend_fb@@libdisplay-panel.so.0
+460e5d81 T ppi_displaypanel_get_backend_info@@libdisplay-panel.so.0
+460e6035 T ppi_displaypanel_get_config_type@@libdisplay-panel.so.0
+460e304d T ppi_displaypanel_get_dimming_info@@libdisplay-panel.so.0
+460e3a89 T ppi_displaypanel_get_eeprom_version@@libdisplay-panel.so.0
+460e543d T ppi_displaypanel_get_elsensing_info@@libdisplay-panel.so.0
+460e56f5 T ppi_displaypanel_get_elsensing_status@@libdisplay-panel.so.0
+460e4039 T ppi_displaypanel_get_ffc_cable_desc_status@@libdisplay-panel.so.0
+460e3b7d T ppi_displaypanel_get_fpga_control@@libdisplay-panel.so.0
+460e2e6d T ppi_displaypanel_get_fpga_curr_temp@@libdisplay-panel.so.0
+460e36d1 T ppi_displaypanel_get_fpga_vx1_lock_status@@libdisplay-panel.so.0
+460e28ed T ppi_displaypanel_get_frc_status@@libdisplay-panel.so.0
+460e526d T ppi_displaypanel_get_offsensing_available@@libdisplay-panel.so.0
+460e4a45 T ppi_displaypanel_get_offsensing_info@@libdisplay-panel.so.0
+460e37bd T ppi_displaypanel_get_oled_model_type@@libdisplay-panel.so.0
+460e2801 T ppi_displaypanel_get_oled_s_index1@@libdisplay-panel.so.0
+460e2715 T ppi_displaypanel_get_oled_s_index2@@libdisplay-panel.so.0
+460e3139 T ppi_displaypanel_get_panel_output_info@@libdisplay-panel.so.0
+460e2ac5 T ppi_displaypanel_get_pixel_ic_power@@libdisplay-panel.so.0
+460e42f9 T ppi_displaypanel_get_pmic_fault_type@@libdisplay-panel.so.0
+460e29d9 T ppi_displaypanel_get_pmic_init_info@@libdisplay-panel.so.0
+460e2bb1 T ppi_displaypanel_get_sw_inverter_status@@libdisplay-panel.so.0
+460e5bb1 T ppi_displaypanel_get_tcon_data_version@@libdisplay-panel.so.0
+460e495d T ppi_displaypanel_get_tcon_demura_status@@libdisplay-panel.so.0
+460e5c99 T ppi_displaypanel_get_tcon_info@@libdisplay-panel.so.0
+460e5525 T ppi_displaypanel_get_tcon_still@@libdisplay-panel.so.0
+460e2629 T ppi_displaypanel_get_temp_sensor_error_status@@libdisplay-panel.so.0
+460e35e1 T ppi_displaypanel_wall_get_serdes_err_cnt@@libdisplay-panel.so.0
+460e34f1 T ppi_displaypanel_wall_get_serdes_fail_cnt@@libdisplay-panel.so.0
+460e3401 T ppi_displaypanel_wall_get_vx1_err_cnt@@libdisplay-panel.so.0
+460e3311 T ppi_displaypanel_wall_get_vx1_fail_cnt@@libdisplay-panel.so.0
+
+LOCK/UNLOCK functions:
+460e36d1 T ppi_displaypanel_get_fpga_vx1_lock_status@@libdisplay-panel.so.0
+
+YUV/RGB/FRAME/BUFFER functions:
+  None found

@@ -1,0 +1,243 @@
+==================================================================
+Library: libcapi-video-capture.so.0.1.0
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-video-capture.so.0.1.0
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-video-capture.so.0.1.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=ff228b968994dd231937bf56812ab908d8361b8f, stripped
+
+--- Size ---
+14K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_atexit@CXXABI_ARM_1.3.3
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U __gcc_personality_v0@GCC_3.3.1
+         w __gmon_start__
+         U __gxx_personality_v0@CXXABI_1.3
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+00000000 A libcapi-video-capture.so.0
+         U memset@GLIBC_2.4
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U _Unwind_Resume@GCC_3.0
+00001b41 T _Z12callFunctionRKN12VideoCapture11InputParamsERNS_12OutputParamsESt8functionIFiRKN13IVideoCapture11InputParamsERNS6_12OutputParamsEEE@@libcapi-video-capture.so.0
+00001a81 T _Z13setParametersRKN12VideoCapture11InputParamsERN13IVideoCapture11InputParamsERNS_12OutputParamsERNS3_12OutputParamsE@@libcapi-video-capture.so.0
+00001a29 T _Z16updateParametersRN13IVideoCapture12OutputParamsERN12VideoCapture12OutputParamsE@@libcapi-video-capture.so.0
+         U _ZdlPvj@CXXABI_1.3.9
+         U _ZdlPvRKSt9nothrow_t@GLIBCXX_3.4
+000019d1 T _ZN12VideoCapture10lockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019f1 T _ZN12VideoCapture10lockGlobalEv@@libcapi-video-capture.so.0
+00002345 T _ZN12VideoCapture11getInstanceEv@@libcapi-video-capture.so.0
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+000019c1 T _ZN12VideoCapture12unlockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019e1 T _ZN12VideoCapture12unlockGlobalEv@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001a01 T _ZN12VideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi@@libcapi-video-capture.so.0
+00001a19 T _ZN12VideoCapture16isProtectCaptureERi@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC1Ev@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC2Ev@@libcapi-video-capture.so.0
+00001959 T _ZN12VideoCaptureD0Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD1Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD2Ev@@libcapi-video-capture.so.0
+         U _ZN13IVideoCapture11getInstanceEv
+0000196d T _ZNSt14_Function_base13_Base_managerISt5_BindIFM13IVideoCaptureFiRKNS2_11InputParamsERNS2_12OutputParamsEEPS2_St12_PlaceholderILi1EESB_ILi2EEEEE10_M_managerERSt9_Any_dataRKSH_St18_Manager_operation@@libcapi-video-capture.so.0
+00001939 T _ZNSt17_Function_handlerIFiRKN13IVideoCapture11InputParamsERNS0_12OutputParamsEESt5_BindIFMS0_FiS3_S5_EPS0_St12_PlaceholderILi1EESB_ILi2EEEEE9_M_invokeERKSt9_Any_dataS3_S5_@@libcapi-video-capture.so.0
+         U _ZNSt8ios_base4InitC1Ev@GLIBCXX_3.4
+         U _ZNSt8ios_base4InitD1Ev@GLIBCXX_3.4
+         U _Znwj@GLIBCXX_3.4
+         U _ZnwjRKSt9nothrow_t@GLIBCXX_3.4
+         U _ZSt25__throw_bad_function_callv@GLIBCXX_3.4.14
+         U _ZSt7nothrow@GLIBCXX_3.4
+00012ea0 D _ZTI12VideoCapture@@libcapi-video-capture.so.0
+00012eb0 D _ZTISt17_Weak_result_typeIM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEEE@@libcapi-video-capture.so.0
+00012ea8 D _ZTISt24_Weak_result_type_memfunIM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEELb1EE@@libcapi-video-capture.so.0
+00012ecc D _ZTISt5_BindIFM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEEPS0_St12_PlaceholderILi1EES9_ILi2EEEE@@libcapi-video-capture.so.0
+000023b4 R _ZTS12VideoCapture@@libcapi-video-capture.so.0
+00002424 R _ZTSSt17_Weak_result_typeIM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEEE@@libcapi-video-capture.so.0
+000023c4 R _ZTSSt24_Weak_result_type_memfunIM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEELb1EE@@libcapi-video-capture.so.0
+00002478 R _ZTSSt5_BindIFM13IVideoCaptureFiRKNS0_11InputParamsERNS0_12OutputParamsEEPS0_St12_PlaceholderILi1EES9_ILi2EEEE@@libcapi-video-capture.so.0
+00012ebc D _ZTV12VideoCapture@@libcapi-video-capture.so.0
+         U _ZTVN10__cxxabiv117__class_type_infoE@CXXABI_1.3
+         U _ZTVN10__cxxabiv120__si_class_type_infoE@CXXABI_1.3
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 64 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00001720     0 SECTION LOCAL  DEFAULT   10 .init
+     2: 00013088     0 SECTION LOCAL  DEFAULT   23 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Znwj@GLIBCXX_3.4 (3)
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND @CXXABI_ARM_1.3.3 (4)
+     5: 00000000     0 OBJECT  GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (3)
+     6: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (5)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GCC_3.3.1 (6)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.14 (7)
+     9: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN13IVideoCaptu[...]
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (3)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.4 (8)
+    12: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@CXXABI_1.3.9 (9)
+    13: 00000000     0 OBJECT  GLOBAL DEFAULT  UND [...]@CXXABI_1.3 (10)
+    14: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (8)
+    15: 00000000     0 OBJECT  GLOBAL DEFAULT  UND [...]@CXXABI_1.3 (10)
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (3)
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (3)
+    18: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@CXXABI_1.3 (10)
+    19: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Un[...]@GCC_3.0 (11)
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND __a[...]@GCC_3.5 (12)
+    22: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    23: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    24: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (8)
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (3)
+    26: 000019c1    16 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    27: 00001e09   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    28: 00001bd5   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    29: 00001a81    42 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    30: 000023c4    94 OBJECT  GLOBAL DEFAULT   14 _Z[...]@@libcapi-video-capture.so.0
+    31: 000019f1    16 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    32: 000019d1    16 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    33: 00001aad   148 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    34: 00002478   107 OBJECT  GLOBAL DEFAULT   14 _Z[...]@@libcapi-video-capture.so.0
+    35: 00001a01    24 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    36: 000023b4    15 OBJECT  GLOBAL DEFAULT   14 _Z[...]@@libcapi-video-capture.so.0
+    37: 0000232d    24 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    38: 00001955     2 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    39: 000020f9   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    40: 00001f81   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    41: 00002271   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    42: 00012ea0     8 OBJECT  GLOBAL DEFAULT   20 _Z[...]@@libcapi-video-capture.so.0
+    43: 00001ec5   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    44: 00001c91   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    45: 00012ecc    12 OBJECT  GLOBAL DEFAULT   20 _Z[...]@@libcapi-video-capture.so.0
+    46: 00012ea8     8 OBJECT  GLOBAL DEFAULT   20 _Z[...]@@libcapi-video-capture.so.0
+    47: 00012eb0    12 OBJECT  GLOBAL DEFAULT   20 _Z[...]@@libcapi-video-capture.so.0
+    48: 000019e1    16 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    49: 00002424    83 OBJECT  GLOBAL DEFAULT   14 _Z[...]@@libcapi-video-capture.so.0
+    50: 00000000     0 OBJECT  GLOBAL DEFAULT  ABS libcapi-video-ca[...]
+    51: 0000232d    24 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    52: 00012ebc    16 OBJECT  GLOBAL DEFAULT   20 _Z[...]@@libcapi-video-capture.so.0
+    53: 000021b5   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    54: 00001d4d   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    55: 0000203d   188 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    56: 00001959    20 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    57: 00001a29    88 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    58: 0000196d    84 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    59: 00001939    28 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    60: 00001a19    16 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    61: 00001955     2 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    62: 00002345   104 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+    63: 00001b41   148 FUNC    GLOBAL DEFAULT   12 _Z[...]@@libcapi-video-capture.so.0
+
+--- Relevant Function Names ---
+CAPTURE functions:
+00001b41 T _Z12callFunctionRKN12VideoCapture11InputParamsERNS_12OutputParamsESt8functionIFiRKN13IVideoCapture11InputParamsERNS6_12OutputParamsEEE@@libcapi-video-capture.so.0
+00001a81 T _Z13setParametersRKN12VideoCapture11InputParamsERN13IVideoCapture11InputParamsERNS_12OutputParamsERNS3_12OutputParamsE@@libcapi-video-capture.so.0
+00001a29 T _Z16updateParametersRN13IVideoCapture12OutputParamsERN12VideoCapture12OutputParamsE@@libcapi-video-capture.so.0
+000019d1 T _ZN12VideoCapture10lockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019f1 T _ZN12VideoCapture10lockGlobalEv@@libcapi-video-capture.so.0
+00002345 T _ZN12VideoCapture11getInstanceEv@@libcapi-video-capture.so.0
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+000019c1 T _ZN12VideoCapture12unlockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019e1 T _ZN12VideoCapture12unlockGlobalEv@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001a01 T _ZN12VideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi@@libcapi-video-capture.so.0
+00001a19 T _ZN12VideoCapture16isProtectCaptureERi@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC1Ev@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC2Ev@@libcapi-video-capture.so.0
+00001959 T _ZN12VideoCaptureD0Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD1Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD2Ev@@libcapi-video-capture.so.0
+0000196d T _ZNSt14_Function_base13_Base_managerISt5_BindIFM13IVideoCaptureFiRKNS2_11InputParamsERNS2_12OutputParamsEEPS2_St12_PlaceholderILi1EESB_ILi2EEEEE10_M_managerERSt9_Any_dataRKSH_St18_Manager_operation@@libcapi-video-capture.so.0
+00001939 T _ZNSt17_Function_handlerIFiRKN13IVideoCapture11InputParamsERNS0_12OutputParamsEESt5_BindIFMS0_FiS3_S5_EPS0_St12_PlaceholderILi1EESB_ILi2EEEEE9_M_invokeERKSt9_Any_dataS3_S5_@@libcapi-video-capture.so.0
+
+SCREEN functions:
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+00001b41 T _Z12callFunctionRKN12VideoCapture11InputParamsERNS_12OutputParamsESt8functionIFiRKN13IVideoCapture11InputParamsERNS6_12OutputParamsEEE@@libcapi-video-capture.so.0
+00001a81 T _Z13setParametersRKN12VideoCapture11InputParamsERN13IVideoCapture11InputParamsERNS_12OutputParamsERNS3_12OutputParamsE@@libcapi-video-capture.so.0
+00001a29 T _Z16updateParametersRN13IVideoCapture12OutputParamsERN12VideoCapture12OutputParamsE@@libcapi-video-capture.so.0
+000019d1 T _ZN12VideoCapture10lockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019f1 T _ZN12VideoCapture10lockGlobalEv@@libcapi-video-capture.so.0
+00002345 T _ZN12VideoCapture11getInstanceEv@@libcapi-video-capture.so.0
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+000019c1 T _ZN12VideoCapture12unlockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019e1 T _ZN12VideoCapture12unlockGlobalEv@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001a01 T _ZN12VideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi@@libcapi-video-capture.so.0
+00001a19 T _ZN12VideoCapture16isProtectCaptureERi@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC1Ev@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC2Ev@@libcapi-video-capture.so.0
+00001959 T _ZN12VideoCaptureD0Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD1Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD2Ev@@libcapi-video-capture.so.0
+0000196d T _ZNSt14_Function_base13_Base_managerISt5_BindIFM13IVideoCaptureFiRKNS2_11InputParamsERNS2_12OutputParamsEEPS2_St12_PlaceholderILi1EESB_ILi2EEEEE10_M_managerERSt9_Any_dataRKSH_St18_Manager_operation@@libcapi-video-capture.so.0
+00001939 T _ZNSt17_Function_handlerIFiRKN13IVideoCapture11InputParamsERNS0_12OutputParamsEESt5_BindIFMS0_FiS3_S5_EPS0_St12_PlaceholderILi1EESB_ILi2EEEEE9_M_invokeERKSt9_Any_dataS3_S5_@@libcapi-video-capture.so.0
+
+GET/INSTANCE functions:
+00002345 T _ZN12VideoCapture11getInstanceEv@@libcapi-video-capture.so.0
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+
+LOCK/UNLOCK functions:
+000019d1 T _ZN12VideoCapture10lockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019f1 T _ZN12VideoCapture10lockGlobalEv@@libcapi-video-capture.so.0
+000019c1 T _ZN12VideoCapture12unlockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019e1 T _ZN12VideoCapture12unlockGlobalEv@@libcapi-video-capture.so.0
+00001a01 T _ZN12VideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi@@libcapi-video-capture.so.0
+
+YUV/RGB/FRAME/BUFFER functions:
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0

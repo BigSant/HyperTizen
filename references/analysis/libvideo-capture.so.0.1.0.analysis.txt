@@ -1,0 +1,464 @@
+==================================================================
+Library: libvideo-capture.so.0.1.0
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideo-capture.so.0.1.0
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideo-capture.so.0.1.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=0061140f3037324fc6e380cd57d3e67e9193027f, stripped
+
+--- Size ---
+32K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_atexit@CXXABI_ARM_1.3.3
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         U __cxa_begin_catch@CXXABI_1.3
+         U __cxa_end_catch@CXXABI_1.3
+         w __cxa_finalize@GLIBC_2.4
+         U __cxa_pure_virtual@CXXABI_1.3
+         U dlerror@GLIBC_2.4
+         U __dlog_print
+         U dlopen@GLIBC_2.4
+         U __errno_location@GLIBC_2.4
+         U __gcc_personality_v0@GCC_3.3.1
+         U getpid@GLIBC_2.4
+         w __gmon_start__
+         U __gxx_personality_v0@CXXABI_1.3
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U malloc@GLIBC_2.4
+         U memcpy@GLIBC_2.4
+         U memset@GLIBC_2.4
+49133135 T ppi_video_capture_get_backend
+49133089 T ppi_video_capture_get_backend_data
+49133095 T ppi_video_capture_get_backend_data_address
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49133441 T ppi_video_capture_is_protect_capture
+49133259 T ppi_video_capture_is_protect_capture_all
+491335b1 T ppi_video_capture_lock_global
+491333a1 T ppi_video_capture_lock_global_all
+49133501 T ppi_video_capture_unlock_global
+49133301 T ppi_video_capture_unlock_global_all
+         U __progname@GLIBC_2.4
+         U program_invocation_short_name@GLIBC_2.4
+49134b3d T secvideo_api_capture
+49135065 T secvideo_api_capture_encoder_input
+49134ccd T secvideo_api_capture_is_protect
+49134d55 T secvideo_api_capture_lock
+49134c7d T secvideo_api_capture_plane_is_protect
+49135755 T secvideo_api_capture_screen
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+4913562d T secvideo_api_capture_screen_video_only
+49134f35 T secvideo_api_capture_screen_video_only_crop
+49134d09 T secvideo_api_capture_unlock
+4913518d T secvideo_api_capture_video_bg
+49135505 T secvideo_api_capture_video_main
+49134a0d T secvideo_api_capture_video_main_crop
+491353dd T secvideo_api_capture_video_sub
+491352b5 T secvideo_api_capture_video_sub2
+49134e05 T secvideo_api_capture_video_sub_crop
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U TZCAPTURE_Capture_screen
+         U TZCAPTURE_Finalize
+         U TZCAPTURE_Initialize
+         U _Unwind_Resume@GCC_3.0
+49133ed5 T _Z13setParametersRN13IVideoCapture11InputParamsERNS_12OutputParamsEP22secvideo_capture_paramiiiiii
+49134255 T _Z16setTZCParametersP24ppi_capture_input_paramsP15TZCaptureParams21ppi_capture_lock_type19TZCaptureBufferType15CapturePositioni
+49133e85 T _Z16updateParametersRKN13IVideoCapture12OutputParamsEP22secvideo_capture_param
+49133fbd T _Z19updateTZCParametersP25ppi_capture_output_paramsP15TZCaptureParamsi
+         U _ZdlPvj@CXXABI_1.3.9
+49133659 T _ZN13IVideoCapture10lockGlobalENS_15CaptureLockTypeEi
+4913343d T _ZN13IVideoCapture10lockGlobalEv
+49134999 T _ZN13IVideoCapture11getInstanceEv
+491343bd T _ZN13IVideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi
+491335a9 T _ZN13IVideoCapture12unlockGlobalENS_15CaptureLockTypeEi
+4913339d T _ZN13IVideoCapture12unlockGlobalEv
+49134455 T _ZN13IVideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE
+4913587d T _ZN13IVideoCapture13injectBuilderEP20IVideoCaptureBuilder
+49134619 T _ZN13IVideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134745 T _ZN13IVideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134871 T _ZN13IVideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491344ed T _ZN13IVideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491334f5 T _ZN13IVideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi
+491332f9 T _ZN13IVideoCapture16isProtectCaptureERi
+4913390d T _ZN13IVideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE
+49134585 T _ZN13IVideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+491346ad T _ZN13IVideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+491347dd T _ZN13IVideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+49147230 B _ZN13IVideoCapture7builderE
+491358c5 T _ZN20IVideoCaptureBuilder14setThisBuilderEPS_
+49133f89 T _ZN20IVideoCaptureBuilder21buildNewCaptureHandleEv
+49133fa5 T _ZN20IVideoCaptureBuilderC1Ev
+49133fa5 T _ZN20IVideoCaptureBuilderC2Ev
+49133f91 T _ZN20IVideoCaptureBuilderD0Ev
+49133f8d T _ZN20IVideoCaptureBuilderD1Ev
+49133f8d T _ZN20IVideoCaptureBuilderD2Ev
+         U _ZN2cv3MatC1Eiii
+         U _ZN2cv3MatC1EiiiPvj
+         U _ZN2cv3MatD1Ev
+         U _ZN2cv4flipERKNS_11_InputArrayERKNS_12_OutputArrayEi
+         U _ZNSt8ios_base4InitC1Ev@GLIBCXX_3.4
+         U _ZNSt8ios_base4InitD1Ev@GLIBCXX_3.4
+         U _ZnwjRKSt9nothrow_t@GLIBCXX_3.4
+         U _ZSt25__throw_bad_function_callv@GLIBCXX_3.4.14
+         U _ZSt7nothrow@GLIBCXX_3.4
+49146f64 D _ZTI13IVideoCapture
+49146f5c D _ZTI20IVideoCaptureBuilder
+         U _ZTISt9exception@GLIBCXX_3.4
+49136a08 R _ZTS13IVideoCapture
+49136638 R _ZTS20IVideoCaptureBuilder
+49146f6c D _ZTV13IVideoCapture
+49146fc0 D _ZTV20IVideoCaptureBuilder
+         U _ZTVN10__cxxabiv117__class_type_infoE@CXXABI_1.3
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 116 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 491323a8     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 49147214     0 SECTION LOCAL  DEFAULT   22 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN2cv3MatC1Eiii
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND getpid@GLIBC_2.4 (2)
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND @CXXABI_ARM_1.3.3 (3)
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlerror@GLIBC_2.4 (4)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN2cv3MatD1Ev
+     8: 00000000     0 OBJECT  GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (5)
+     9: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (6)
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GCC_3.3.1 (7)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.14 (8)
+    12: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (9)
+    13: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (2)
+    14: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN2cv4flipERKNS[...]
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.4 (2)
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@CXXABI_1.3.9 (10)
+    17: 00000000     0 OBJECT  GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (9)
+    18: 00000000     0 FUNC    GLOBAL DEFAULT  UND TZCAPTURE_Finalize
+    19: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlopen@GLIBC_2.4 (4)
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND TZCAPTURE_Initialize
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (2)
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (5)
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND TZCAPTURE_Captur[...]
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.4 (2)
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.4 (2)
+    27: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (5)
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN2cv3MatC1EiiiPvj
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (9)
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (9)
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@GLIBC_2.4 (11)
+    32: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    33: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Un[...]@GCC_3.0 (12)
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND __a[...]@GCC_3.5 (13)
+    35: 00000000     0 OBJECT  GLOBAL DEFAULT  UND pr[...]@GLIBC_2.4 (2)
+    36: 00000000     0 OBJECT  GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (5)
+    37: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    38: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (9)
+    39: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    40: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (2)
+    41: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (5)
+    42: 49133661   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    43: 49133ed5   180 FUNC    GLOBAL DEFAULT   11 _Z13setParameter[...]
+    44: 49133089    12 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    45: 49133659     8 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    46: 49133be5   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    47: 491352b5   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    48: 49133b3d   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    49: 49134d09    76 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    50: 49134455   152 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    51: 49134e05   304 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    52: 491343bd   152 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    53: 49133501   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    54: 49133d35   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    55: 49134c7d    80 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    56: 49133c8d   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    57: 49133e85    78 FUNC    GLOBAL DEFAULT   11 _Z16updateParame[...]
+    58: 49134745   152 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    59: 49133a95   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    60: 49146f64     8 OBJECT  GLOBAL DEFAULT   19 _ZTI13IVideoCapture
+    61: 49134585   148 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    62: 49134619   148 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    63: 4913587d    72 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    64: 491344ed   152 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    65: 49135065   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    66: 49134871   148 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    67: 49135505   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    68: 49133f91    20 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+    69: 49133f89     4 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+    70: 49133709   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    71: 491335b1   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    72: 49136a08    16 OBJECT  GLOBAL DEFAULT   13 _ZTS13IVideoCapture
+    73: 491335a9     8 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    74: 491332f9     6 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    75: 49133259   160 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    76: 491346ad   152 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    77: 491347dd   148 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    78: 491337b1   180 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    79: 49134d9d    52 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    80: 4913518d   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    81: 49134ccd    60 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    82: 4913339d     4 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    83: 49134a0d   304 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    84: 49133ddd   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    85: 49135755   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    86: 49133fa5    24 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+    87: 49147230     4 OBJECT  GLOBAL DEFAULT   23 _ZN13IVideoCaptu[...]
+    88: 49136638    23 OBJECT  GLOBAL DEFAULT   13 _ZTS20IVideoCapt[...]
+    89: 491339ed   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    90: 49134b3d   320 FUNC    GLOBAL DEFAULT   11 secvideo_api_capture
+    91: 49133f8d     2 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+    92: 4913390d    96 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    93: 49134dd1    52 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    94: 49133095   160 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    95: 49133441   180 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+    96: 491353dd   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+    97: 49134905   148 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+    98: 49133fbd   664 FUNC    GLOBAL DEFAULT   11 _Z19updateTZCPar[...]
+    99: 49134d55    72 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+   100: 49146f6c    84 OBJECT  GLOBAL DEFAULT   19 _ZTV13IVideoCapture
+   101: 491333a1   156 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+   102: 49133301   156 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+   103: 4913562d   296 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+   104: 491358c5     6 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+   105: 49133fa5    24 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+   106: 49133135   292 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+   107: 49133865   168 FUNC    GLOBAL DEFAULT   11 ppi_video_captur[...]
+   108: 49146f5c     8 OBJECT  GLOBAL DEFAULT   19 _ZTI20IVideoCapt[...]
+   109: 491334f5    10 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+   110: 49134255   360 FUNC    GLOBAL DEFAULT   11 _Z16setTZCParame[...]
+   111: 49134999   116 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+   112: 4913343d     4 FUNC    GLOBAL DEFAULT   11 _ZN13IVideoCaptu[...]
+   113: 49133f8d     2 FUNC    GLOBAL DEFAULT   11 _ZN20IVideoCaptu[...]
+   114: 49134f35   304 FUNC    GLOBAL DEFAULT   11 secvideo_api_cap[...]
+   115: 49146fc0    24 OBJECT  GLOBAL DEFAULT   19 _ZTV20IVideoCapt[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+49133135 T ppi_video_capture_get_backend
+49133089 T ppi_video_capture_get_backend_data
+49133095 T ppi_video_capture_get_backend_data_address
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49133441 T ppi_video_capture_is_protect_capture
+49133259 T ppi_video_capture_is_protect_capture_all
+491335b1 T ppi_video_capture_lock_global
+491333a1 T ppi_video_capture_lock_global_all
+49133501 T ppi_video_capture_unlock_global
+49133301 T ppi_video_capture_unlock_global_all
+49134b3d T secvideo_api_capture
+49135065 T secvideo_api_capture_encoder_input
+49134ccd T secvideo_api_capture_is_protect
+49134d55 T secvideo_api_capture_lock
+49134c7d T secvideo_api_capture_plane_is_protect
+49135755 T secvideo_api_capture_screen
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+4913562d T secvideo_api_capture_screen_video_only
+49134f35 T secvideo_api_capture_screen_video_only_crop
+49134d09 T secvideo_api_capture_unlock
+4913518d T secvideo_api_capture_video_bg
+49135505 T secvideo_api_capture_video_main
+49134a0d T secvideo_api_capture_video_main_crop
+491353dd T secvideo_api_capture_video_sub
+491352b5 T secvideo_api_capture_video_sub2
+49134e05 T secvideo_api_capture_video_sub_crop
+49133ed5 T _Z13setParametersRN13IVideoCapture11InputParamsERNS_12OutputParamsEP22secvideo_capture_paramiiiiii
+49134255 T _Z16setTZCParametersP24ppi_capture_input_paramsP15TZCaptureParams21ppi_capture_lock_type19TZCaptureBufferType15CapturePositioni
+49133e85 T _Z16updateParametersRKN13IVideoCapture12OutputParamsEP22secvideo_capture_param
+49133fbd T _Z19updateTZCParametersP25ppi_capture_output_paramsP15TZCaptureParamsi
+49133659 T _ZN13IVideoCapture10lockGlobalENS_15CaptureLockTypeEi
+4913343d T _ZN13IVideoCapture10lockGlobalEv
+49134999 T _ZN13IVideoCapture11getInstanceEv
+491343bd T _ZN13IVideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi
+491335a9 T _ZN13IVideoCapture12unlockGlobalENS_15CaptureLockTypeEi
+4913339d T _ZN13IVideoCapture12unlockGlobalEv
+49134455 T _ZN13IVideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE
+4913587d T _ZN13IVideoCapture13injectBuilderEP20IVideoCaptureBuilder
+49134619 T _ZN13IVideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134745 T _ZN13IVideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134871 T _ZN13IVideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491344ed T _ZN13IVideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491334f5 T _ZN13IVideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi
+491332f9 T _ZN13IVideoCapture16isProtectCaptureERi
+4913390d T _ZN13IVideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE
+49134585 T _ZN13IVideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+491346ad T _ZN13IVideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+491347dd T _ZN13IVideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491358c5 T _ZN20IVideoCaptureBuilder14setThisBuilderEPS_
+49133f89 T _ZN20IVideoCaptureBuilder21buildNewCaptureHandleEv
+49133fa5 T _ZN20IVideoCaptureBuilderC1Ev
+49133fa5 T _ZN20IVideoCaptureBuilderC2Ev
+49133f91 T _ZN20IVideoCaptureBuilderD0Ev
+49133f8d T _ZN20IVideoCaptureBuilderD1Ev
+49133f8d T _ZN20IVideoCaptureBuilderD2Ev
+
+SCREEN functions:
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49135755 T secvideo_api_capture_screen
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+4913562d T secvideo_api_capture_screen_video_only
+49134f35 T secvideo_api_capture_screen_video_only_crop
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+49133135 T ppi_video_capture_get_backend
+49133089 T ppi_video_capture_get_backend_data
+49133095 T ppi_video_capture_get_backend_data_address
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49133441 T ppi_video_capture_is_protect_capture
+49133259 T ppi_video_capture_is_protect_capture_all
+491335b1 T ppi_video_capture_lock_global
+491333a1 T ppi_video_capture_lock_global_all
+49133501 T ppi_video_capture_unlock_global
+49133301 T ppi_video_capture_unlock_global_all
+49134b3d T secvideo_api_capture
+49135065 T secvideo_api_capture_encoder_input
+49134ccd T secvideo_api_capture_is_protect
+49134d55 T secvideo_api_capture_lock
+49134c7d T secvideo_api_capture_plane_is_protect
+49135755 T secvideo_api_capture_screen
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+4913562d T secvideo_api_capture_screen_video_only
+49134f35 T secvideo_api_capture_screen_video_only_crop
+49134d09 T secvideo_api_capture_unlock
+4913518d T secvideo_api_capture_video_bg
+49135505 T secvideo_api_capture_video_main
+49134a0d T secvideo_api_capture_video_main_crop
+491353dd T secvideo_api_capture_video_sub
+491352b5 T secvideo_api_capture_video_sub2
+49134e05 T secvideo_api_capture_video_sub_crop
+49133ed5 T _Z13setParametersRN13IVideoCapture11InputParamsERNS_12OutputParamsEP22secvideo_capture_paramiiiiii
+49133e85 T _Z16updateParametersRKN13IVideoCapture12OutputParamsEP22secvideo_capture_param
+49133659 T _ZN13IVideoCapture10lockGlobalENS_15CaptureLockTypeEi
+4913343d T _ZN13IVideoCapture10lockGlobalEv
+49134999 T _ZN13IVideoCapture11getInstanceEv
+491343bd T _ZN13IVideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi
+491335a9 T _ZN13IVideoCapture12unlockGlobalENS_15CaptureLockTypeEi
+4913339d T _ZN13IVideoCapture12unlockGlobalEv
+49134455 T _ZN13IVideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE
+4913587d T _ZN13IVideoCapture13injectBuilderEP20IVideoCaptureBuilder
+49134619 T _ZN13IVideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134745 T _ZN13IVideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134871 T _ZN13IVideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491344ed T _ZN13IVideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491334f5 T _ZN13IVideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi
+491332f9 T _ZN13IVideoCapture16isProtectCaptureERi
+4913390d T _ZN13IVideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE
+49134585 T _ZN13IVideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+491346ad T _ZN13IVideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+491347dd T _ZN13IVideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491358c5 T _ZN20IVideoCaptureBuilder14setThisBuilderEPS_
+49133f89 T _ZN20IVideoCaptureBuilder21buildNewCaptureHandleEv
+49133fa5 T _ZN20IVideoCaptureBuilderC1Ev
+49133fa5 T _ZN20IVideoCaptureBuilderC2Ev
+49133f91 T _ZN20IVideoCaptureBuilderD0Ev
+49133f8d T _ZN20IVideoCaptureBuilderD1Ev
+49133f8d T _ZN20IVideoCaptureBuilderD2Ev
+
+GET/INSTANCE functions:
+49133135 T ppi_video_capture_get_backend
+49133089 T ppi_video_capture_get_backend_data
+49133095 T ppi_video_capture_get_backend_data_address
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49134999 T _ZN13IVideoCapture11getInstanceEv
+491343bd T _ZN13IVideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi
+49134455 T _ZN13IVideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134619 T _ZN13IVideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134745 T _ZN13IVideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134871 T _ZN13IVideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491344ed T _ZN13IVideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+4913390d T _ZN13IVideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE
+49134585 T _ZN13IVideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+491346ad T _ZN13IVideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+491347dd T _ZN13IVideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+
+LOCK/UNLOCK functions:
+491335b1 T ppi_video_capture_lock_global
+491333a1 T ppi_video_capture_lock_global_all
+49133501 T ppi_video_capture_unlock_global
+49133301 T ppi_video_capture_unlock_global_all
+49134d55 T secvideo_api_capture_lock
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+49134d09 T secvideo_api_capture_unlock
+49134255 T _Z16setTZCParametersP24ppi_capture_input_paramsP15TZCaptureParams21ppi_capture_lock_type19TZCaptureBufferType15CapturePositioni
+49133659 T _ZN13IVideoCapture10lockGlobalENS_15CaptureLockTypeEi
+4913343d T _ZN13IVideoCapture10lockGlobalEv
+491335a9 T _ZN13IVideoCapture12unlockGlobalENS_15CaptureLockTypeEi
+4913339d T _ZN13IVideoCapture12unlockGlobalEv
+491334f5 T _ZN13IVideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi
+
+YUV/RGB/FRAME/BUFFER functions:
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49134255 T _Z16setTZCParametersP24ppi_capture_input_paramsP15TZCaptureParams21ppi_capture_lock_type19TZCaptureBufferType15CapturePositioni
+491343bd T _ZN13IVideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi
+49134455 T _ZN13IVideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134619 T _ZN13IVideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134745 T _ZN13IVideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+49134871 T _ZN13IVideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+491344ed T _ZN13IVideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE
+49134905 T _ZN13IVideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE
+4913390d T _ZN13IVideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE
+49134585 T _ZN13IVideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE
+491346ad T _ZN13IVideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE
+491347dd T _ZN13IVideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE

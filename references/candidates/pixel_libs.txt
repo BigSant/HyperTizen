@@ -1,0 +1,18 @@
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/gstreamer-1.0/libgstaudioresample.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libabsl_cordz_sample_token.so.2308.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libabsl_hashtablez_sampler.so.2308.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libabsl_periodic_sampler.so.2308.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libaifw_api_vision_picture_enhancer.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libaifw_core_vision_image_enhancement.so
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-client.so.0.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-client.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-server.so.0.0.0
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libsingle-pixel-buffer-v1-server.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libswresample.so.4.12.100
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libswresample.so.4.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.0.1
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.0.symlink
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.symlink
+Searching for: *enhance*.so*
+Searching for: *pixel*.so*
+Searching for: *sample*.so*

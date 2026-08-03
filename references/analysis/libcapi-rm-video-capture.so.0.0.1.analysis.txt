@@ -1,0 +1,192 @@
+==================================================================
+Library: libcapi-rm-video-capture.so.0.0.1
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-rm-video-capture.so.0.0.1
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-rm-video-capture.so.0.0.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=26fdff52b68bd3b93ab22a42f4afc4f9002b7fb0, stripped
+
+--- Size ---
+14K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_atexit@CXXABI_ARM_1.3.3
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         U __aeabi_unwind_cpp_pr1@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U __cxa_guard_abort@CXXABI_1.3
+         U __cxa_guard_acquire@CXXABI_1.3
+         U __cxa_guard_release@CXXABI_1.3
+         U __dlog_print
+         U __gcc_personality_v0@GCC_3.3.1
+         w __gmon_start__
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U ppi_encoder_get_caps
+         U ppi_rm_video_capture_deqevent
+         U ppi_rm_video_capture_drm_close
+         U ppi_rm_video_capture_drm_create_framebuffer
+         U ppi_rm_video_capture_drm_destroy_framebuffer
+         U ppi_rm_video_capture_drm_open
+         U ppi_rm_video_capture_drm_set_func
+         U ppi_rm_video_capture_drm_set_plane
+         U ppi_rm_video_capture_drm_set_property
+         U ppi_rm_video_capture_drm_set_source
+         U ppi_rm_video_capture_encoder_open
+         U ppi_rm_video_capture_get_resolution
+         U ppi_rm_video_capture_set_bitrate
+         U ppi_rm_video_capture_set_framerate
+         U ppi_rm_video_capture_set_resolution
+         U ppi_rm_video_capture_set_stream_off
+         U ppi_rm_video_capture_set_stream_on
+         U ppi_rm_video_capture_subscribe_stream
+         U ppi_rm_video_capture_unsubscribe_stream
+         U ppi_video_dp_control_get_frame_buffer_size
+0000134d T rm_video_capture_deqevent
+00001825 T rm_video_capture_drm_release_drm_encoding
+000019e1 T rm_video_capture_drm_set_drm_to_encode
+0000179d T rm_video_capture_open_sdp_hen
+0000173d T rm_video_capture_set_bitrate
+00001679 T rm_video_capture_set_encode_size
+000016dd T rm_video_capture_set_framerate
+0000142d T rm_video_capture_set_stream_off
+00001489 T rm_video_capture_set_stream_on
+00001541 T rm_video_capture_subscribe_stream
+000014e5 T rm_video_capture_unsubscribe_stream
+0000159d T rm_video_capture_verify_encode_size
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U system_info_get_custom_bool
+         U _Unwind_Resume@GCC_3.0
+00001d7d T _Z29rm_video_capture_is_supportedv
+000012dd T _ZN16rm_video_capture12get_instanceEv
+000012d9 T _ZN16rm_video_capture12is_supportedEv
+00001225 T _ZN16rm_video_capture16is_fms_supportedEv
+000012c5 T _ZN16rm_video_captureC1Ev
+000012c5 T _ZN16rm_video_captureC2Ev
+000011a5 T _ZN16rm_video_captureD1Ev
+000011a5 T _ZN16rm_video_captureD2Ev
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 59 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000f14     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 000130b0     0 SECTION LOCAL  DEFAULT   21 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND @CXXABI_ARM_1.3.3 (2)
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+     6: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (3)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GCC_3.3.1 (4)
+     9: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND system_info_get_[...]
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    12: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    13: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (5)
+    14: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (5)
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    18: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    19: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_encoder_get_caps
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_video_dp_con[...]
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (6)
+    27: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (7)
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_rm_video_cap[...]
+    32: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    33: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Unw[...]@GCC_3.0 (8)
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (7)
+    35: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (5)
+    36: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    37: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    38: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (6)
+    39: 00001d7d    18 FUNC    GLOBAL DEFAULT   11 _Z29rm_video_cap[...]
+    40: 0000179d   136 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    41: 0000142d    92 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    42: 000019e1   924 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    43: 0000134d   224 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    44: 000012c5    20 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    45: 000014e5    92 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    46: 00001541    92 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    47: 000012c5    20 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    48: 0000173d    96 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    49: 0000159d   220 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    50: 00001225   160 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    51: 00001679   100 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    52: 000011a5     2 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    53: 000012dd   112 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    54: 000016dd    96 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    55: 000011a5     2 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    56: 000012d9     4 FUNC    GLOBAL DEFAULT   11 _ZN16rm_video_ca[...]
+    57: 00001825   444 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+    58: 00001489    92 FUNC    GLOBAL DEFAULT   11 rm_video_capture[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+0000134d T rm_video_capture_deqevent
+00001825 T rm_video_capture_drm_release_drm_encoding
+000019e1 T rm_video_capture_drm_set_drm_to_encode
+0000179d T rm_video_capture_open_sdp_hen
+0000173d T rm_video_capture_set_bitrate
+00001679 T rm_video_capture_set_encode_size
+000016dd T rm_video_capture_set_framerate
+0000142d T rm_video_capture_set_stream_off
+00001489 T rm_video_capture_set_stream_on
+00001541 T rm_video_capture_subscribe_stream
+000014e5 T rm_video_capture_unsubscribe_stream
+0000159d T rm_video_capture_verify_encode_size
+00001d7d T _Z29rm_video_capture_is_supportedv
+000012dd T _ZN16rm_video_capture12get_instanceEv
+000012d9 T _ZN16rm_video_capture12is_supportedEv
+00001225 T _ZN16rm_video_capture16is_fms_supportedEv
+000012c5 T _ZN16rm_video_captureC1Ev
+000012c5 T _ZN16rm_video_captureC2Ev
+000011a5 T _ZN16rm_video_captureD1Ev
+000011a5 T _ZN16rm_video_captureD2Ev
+
+SCREEN functions:
+  None found
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+0000134d T rm_video_capture_deqevent
+00001825 T rm_video_capture_drm_release_drm_encoding
+000019e1 T rm_video_capture_drm_set_drm_to_encode
+0000179d T rm_video_capture_open_sdp_hen
+0000173d T rm_video_capture_set_bitrate
+00001679 T rm_video_capture_set_encode_size
+000016dd T rm_video_capture_set_framerate
+0000142d T rm_video_capture_set_stream_off
+00001489 T rm_video_capture_set_stream_on
+00001541 T rm_video_capture_subscribe_stream
+000014e5 T rm_video_capture_unsubscribe_stream
+0000159d T rm_video_capture_verify_encode_size
+00001d7d T _Z29rm_video_capture_is_supportedv
+000012dd T _ZN16rm_video_capture12get_instanceEv
+000012d9 T _ZN16rm_video_capture12is_supportedEv
+00001225 T _ZN16rm_video_capture16is_fms_supportedEv
+000012c5 T _ZN16rm_video_captureC1Ev
+000012c5 T _ZN16rm_video_captureC2Ev
+000011a5 T _ZN16rm_video_captureD1Ev
+000011a5 T _ZN16rm_video_captureD2Ev
+
+GET/INSTANCE functions:
+000012dd T _ZN16rm_video_capture12get_instanceEv
+
+LOCK/UNLOCK functions:
+  None found
+
+YUV/RGB/FRAME/BUFFER functions:
+000016dd T rm_video_capture_set_framerate

@@ -1,0 +1,394 @@
+==================================================================
+Library: libgfx-video-output.so.0.2.6
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libgfx-video-output.so.0.2.6
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libgfx-video-output.so.0.2.6: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=a8b5245f39d2369e1f6f947293c993b58cea4837, stripped
+
+--- Size ---
+34K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         U __aeabi_unwind_cpp_pr1@GCC_3.5
+         U calloc@GLIBC_2.4
+         w __cxa_finalize@GLIBC_2.4
+         U __dlog_print
+         U eglChooseConfig
+         U eglCreateContext
+         U eglCreateWindowSurface
+         U eglDestroyContext
+         U eglDestroySurface
+         U eglGetConfigs
+         U eglGetDisplay
+         U eglGetError
+         U eglInitialize
+         U eglMakeCurrent
+         U eglTerminate
+         U free@GLIBC_2.4
+00005135 T _get_hw_info
+00005b09 T _get_index_from_surface
+00004c2d T get_videooutput_global_data
+00005f85 T Gfx_Videooutput_Display
+00004eed T Gfx_Videooutput_Egl_Current_Number_of_Buffers
+00004f41 T Gfx_Videooutput_Egl_Finalize
+00005bc9 T Gfx_Videooutput_Egl_Get_Index
+00005aed T Gfx_Videooutput_Egl_Initialize
+00005361 T Gfx_Videooutput_Egl_Plane_Initialize
+00004e85 T Gfx_Videooutput_Egl_Release_Surface
+00004ddd T Gfx_Videooutput_Egl_Release_Surface_with_Index
+00005fad T Gfx_Videooutput_Finalize
+00005f75 T Gfx_Videooutput_Finish_Display
+00005dc5 T Gfx_Videooutput_Flush_Box
+00005e3d T Gfx_Videooutput_Get_Controllable_BoxNum
+00004c39 T Gfx_Videooutput_Get_EGLContext
+00005f25 T Gfx_Videooutput_Get_EGLData
+00004cc5 T Gfx_Videooutput_Get_EGLDisplay
+00004d51 T Gfx_Videooutput_Get_EGLSurface
+00005e91 T Gfx_Videooutput_Get_Mute_Status
+00006255 T Gfx_Videooutput_Initialize
+00006121 T Gfx_Videooutput_Initialize_With_Format
+00005f61 T Gfx_Videooutput_Release_Cb
+00005e4d T Gfx_Videooutput_Set_Alpha
+00005df5 T Gfx_Videooutput_Set_Box_Alpha
+00005e0d T Gfx_Videooutput_Set_Box_Geometry
+00005edd T Gfx_Videooutput_Set_Crop_Size
+00005f01 T Gfx_Videooutput_Set_Geometry
+00005e75 T Gfx_Videooutput_Set_Mute
+00005ea5 T Gfx_Videooutput_Set_Mute_Without_Sync
+00005d8d T Gfx_Videooutput_Set_Still
+00005ec1 T Gfx_Videooutput_Set_Sync
+00005da9 T Gfx_Videooutput_Set_Zorder
+00005dd5 T Gfx_Videooutput_Unset_Box
+00003135 T Gfx_Videooutput_VideoControl_Finalize
+00003189 T Gfx_Videooutput_VideoControl_Flush_Box
+000034d5 T Gfx_Videooutput_VideoControl_Get_Controllable_BoxNum
+00003065 T Gfx_Videooutput_VideoControl_Get_Mute_status
+00003525 T Gfx_Videooutput_VideoControl_Initialize
+00003219 T Gfx_Videooutput_VideoControl_Set_Box_Alpha
+000032f9 T Gfx_Videooutput_Videocontrol_Set_Box_Geometry
+00003451 T Gfx_Videooutput_VideoControl_Set_Global_Alpha
+00003ac1 T Gfx_Videooutput_Wayland_Finalize
+0000378d T Gfx_Videooutput_Wayland_Finish_Output_Buffer
+00003de1 T Gfx_Videooutput_Wayland_Initialize
+000038ed T Gfx_Videooutput_Wayland_Output_Buffer
+00003d91 T Gfx_Videooutput_Wayland_Register_Release_Cb
+000035ed T Gfx_Videooutput_Wayland_Set_Attribute
+00003695 T Gfx_Videooutput_Wayland_Set_Crop_Size
+00003711 T Gfx_Videooutput_Wayland_Set_Geometry
+         w __gmon_start__
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U malloc@GLIBC_2.4
+         U memcpy@GLIBC_2.4
+         U memset@GLIBC_2.4
+         U ppi_graphics_control_get_video_output_info
+         U ppi_video_dp_control_get_controllable_box_num
+         U ppi_video_dp_control_get_mute
+         U ppi_video_dp_control_set_box_alpha
+         U ppi_video_image_get_image_data
+         U setenv@GLIBC_2.4
+00004ae5 T set_gpu_mode
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U strcmp@GLIBC_2.4
+         U tbm_bo_alloc
+         U tbm_bo_map
+         U tbm_bo_size
+         U tbm_bo_unmap
+         U tbm_bo_unref
+         U tbm_bufmgr_deinit
+         U tbm_bufmgr_init
+         U tbm_surface_destroy
+         U tbm_surface_internal_add_user_data
+         U tbm_surface_internal_create_with_bos
+         U tbm_surface_internal_create_with_flags
+         U tbm_surface_internal_get_bpp
+         U tbm_surface_internal_get_num_planes
+         U tbm_surface_internal_get_user_data
+         U tbm_surface_internal_set_user_data
+         U tbm_surface_internal_unref
+         U tbm_surface_queue_acquire
+         U tbm_surface_queue_can_acquire
+         U tbm_surface_queue_destroy
+         U tbm_surface_queue_release
+         U tbm_surface_queue_sequence_create
+         U tbm_surface_queue_set_alloc_cb2
+         U TEEC_AllocateSharedMemory@TRUSTWARE3.0
+         U TEEC_CloseSession@TRUSTWARE3.0
+         U TEEC_FinalizeContext@TRUSTWARE3.0
+         U TEEC_InitializeContext@TRUSTWARE3.0
+         U TEEC_InvokeCommand@TRUSTWARE3.0
+         U TEEC_OpenSession@TRUSTWARE3.0
+         U TEEC_ReleaseSharedMemory@TRUSTWARE3.0
+         U tizen_hwc_commit_feedback_interface
+         U tizen_hwc_interface
+         U tizen_policy_interface
+         U tizen_surface_interface
+         U tizen_video_interface
+         U tizen_video_object_interface
+         U tizen_viewport_interface
+000047fd T _tz_finalize
+00004945 T _tz_initialize
+00004869 T _tz_set_gpu_mode
+         U usleep@GLIBC_2.4
+         U wayland_tbm_client_create_buffer
+         U wayland_tbm_client_deinit
+         U wayland_tbm_client_get_bufmgr
+         U wayland_tbm_client_init
+         U wl_callback_interface
+         U wl_compositor_interface
+         U wl_display_connect
+         U wl_display_disconnect
+         U wl_display_dispatch
+         U wl_display_flush
+         U wl_display_roundtrip
+         U wl_proxy_add_listener
+         U wl_proxy_destroy
+         U wl_proxy_get_version
+         U wl_proxy_marshal_flags
+         U wl_registry_interface
+         U wl_scaler_interface
+         U wl_subcompositor_interface
+         U wl_subsurface_interface
+         U wl_surface_interface
+         U zxdg_shell_v6_interface
+         U zxdg_surface_v6_interface
+         U zxdg_toplevel_v6_interface
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 149 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00002300     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 00018200     0 SECTION LOCAL  DEFAULT   22 .data
+     3: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_surface_interface
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglTerminate
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (2)
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND calloc@GLIBC_2.4 (3)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+     9: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND zxdg_toplevel_v6[...]
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND strcmp@GLIBC_2.4 (3)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    12: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (3)
+    13: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    14: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_scaler_interface
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglGetConfigs
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bo_map
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND free@GLIBC_2.4 (3)
+    18: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_subcompositor[...]
+    19: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_callback_interface
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    21: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (5)
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglGetError
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_connect
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.4 (3)
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_get_version
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_video_dp_con[...]
+    27: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_hwc_interface
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_graphics_con[...]
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    32: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (3)
+    33: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND zxdg_surface_v6_[...]
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_add_listener
+    35: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_subsurface_in[...]
+    36: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bo_unref
+    37: 00000000     0 FUNC    GLOBAL DEFAULT  UND usleep@GLIBC_2.4 (3)
+    38: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglCreateWindowS[...]
+    39: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_compositor_in[...]
+    40: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_viewport_i[...]
+    41: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_marshal[...]
+    42: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+    43: 00000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.4 (3)
+    44: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+    45: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_policy_int[...]
+    46: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_video_interface
+    47: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    48: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    49: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_destroy
+    50: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    51: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglChooseConfig
+    52: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bufmgr_init
+    53: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    54: 00000000     0 FUNC    GLOBAL DEFAULT  UND setenv@GLIBC_2.4 (3)
+    55: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+    56: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_hwc_commit[...]
+    57: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    58: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_video_obje[...]
+    59: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (2)
+    60: 00000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.4 (3)
+    61: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglInitialize
+    62: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    63: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bufmgr_deinit
+    64: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglDestroyContext
+    65: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglMakeCurrent
+    66: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+    67: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bo_unmap
+    68: 00000000     0 OBJECT  GLOBAL DEFAULT  UND wl_registry_interface
+    69: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_dispatch
+    70: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND zxdg_shell_v6_in[...]
+    71: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    72: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglGetDisplay
+    73: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    74: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    75: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_roundtrip
+    76: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    77: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_surface_in[...]
+    78: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    79: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bo_size
+    80: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_disconnect
+    81: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglDestroySurface
+    82: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    83: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    84: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_video_dp_con[...]
+    85: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_bo_alloc
+    86: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_video_dp_con[...]
+    87: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    88: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_destroy
+    89: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_queu[...]
+    90: 00000000     0 FUNC    GLOBAL DEFAULT  UND ppi_video_image_[...]
+    91: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_display_flush
+    92: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    93: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@TRUSTWARE3.0 (4)
+    94: 00000000     0 FUNC    GLOBAL DEFAULT  UND eglCreateContext
+    95: 00003d91    80 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+    96: 00004869   220 FUNC    GLOBAL DEFAULT   11 _tz_set_gpu_mode
+    97: 00003065   208 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+    98: 00004ae5   328 FUNC    GLOBAL DEFAULT   11 set_gpu_mode
+    99: 00005d8d    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   100: 000038ed   468 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   101: 00003451   132 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   102: 00004f41   500 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   103: 000035ed   168 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   104: 00004c2d    12 FUNC    GLOBAL DEFAULT   11 get_videooutput_[...]
+   105: 00005e91    20 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   106: 000034d5    80 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   107: 00006255    22 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   108: 00005da9    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   109: 00005aed    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   110: 00005ea5    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   111: 00005b09   192 FUNC    GLOBAL DEFAULT   11 _get_index_from_[...]
+   112: 00005f85    40 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   113: 00005361  1932 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   114: 00005f01    34 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   115: 00006121   308 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   116: 00005e75    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   117: 00005fad   372 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   118: 00005f25    58 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   119: 000032f9   344 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   120: 00005e0d    48 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   121: 00004cc5   140 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   122: 00005135   556 FUNC    GLOBAL DEFAULT   11 _get_hw_info
+   123: 00005ec1    28 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   124: 00003695   124 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   125: 00003135    84 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   126: 000047fd   108 FUNC    GLOBAL DEFAULT   11 _tz_finalize
+   127: 00005bc9   452 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   128: 00005dc5    16 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   129: 00005f61    20 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   130: 00003525   200 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   131: 00004ddd   168 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   132: 00004c39   140 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   133: 00004945   416 FUNC    GLOBAL DEFAULT   11 _tz_initialize
+   134: 00005e3d    16 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   135: 00005f75    16 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   136: 00005dd5    32 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   137: 0000378d   352 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   138: 00003711   124 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   139: 00004e85   104 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   140: 00004eed    84 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   141: 00005df5    24 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   142: 00003189   144 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   143: 00003de1  2588 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   144: 00004d51   140 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   145: 00003ac1   720 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   146: 00003219   224 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   147: 00005e4d    40 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+   148: 00005edd    34 FUNC    GLOBAL DEFAULT   11 Gfx_Videooutput_[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+  None found
+
+SCREEN functions:
+  None found
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+00004c2d T get_videooutput_global_data
+00005f85 T Gfx_Videooutput_Display
+00004eed T Gfx_Videooutput_Egl_Current_Number_of_Buffers
+00004f41 T Gfx_Videooutput_Egl_Finalize
+00005bc9 T Gfx_Videooutput_Egl_Get_Index
+00005aed T Gfx_Videooutput_Egl_Initialize
+00005361 T Gfx_Videooutput_Egl_Plane_Initialize
+00004e85 T Gfx_Videooutput_Egl_Release_Surface
+00004ddd T Gfx_Videooutput_Egl_Release_Surface_with_Index
+00005fad T Gfx_Videooutput_Finalize
+00005f75 T Gfx_Videooutput_Finish_Display
+00005dc5 T Gfx_Videooutput_Flush_Box
+00005e3d T Gfx_Videooutput_Get_Controllable_BoxNum
+00004c39 T Gfx_Videooutput_Get_EGLContext
+00005f25 T Gfx_Videooutput_Get_EGLData
+00004cc5 T Gfx_Videooutput_Get_EGLDisplay
+00004d51 T Gfx_Videooutput_Get_EGLSurface
+00005e91 T Gfx_Videooutput_Get_Mute_Status
+00006255 T Gfx_Videooutput_Initialize
+00006121 T Gfx_Videooutput_Initialize_With_Format
+00005f61 T Gfx_Videooutput_Release_Cb
+00005e4d T Gfx_Videooutput_Set_Alpha
+00005df5 T Gfx_Videooutput_Set_Box_Alpha
+00005e0d T Gfx_Videooutput_Set_Box_Geometry
+00005edd T Gfx_Videooutput_Set_Crop_Size
+00005f01 T Gfx_Videooutput_Set_Geometry
+00005e75 T Gfx_Videooutput_Set_Mute
+00005ea5 T Gfx_Videooutput_Set_Mute_Without_Sync
+00005d8d T Gfx_Videooutput_Set_Still
+00005ec1 T Gfx_Videooutput_Set_Sync
+00005da9 T Gfx_Videooutput_Set_Zorder
+00005dd5 T Gfx_Videooutput_Unset_Box
+00003135 T Gfx_Videooutput_VideoControl_Finalize
+00003189 T Gfx_Videooutput_VideoControl_Flush_Box
+000034d5 T Gfx_Videooutput_VideoControl_Get_Controllable_BoxNum
+00003065 T Gfx_Videooutput_VideoControl_Get_Mute_status
+00003525 T Gfx_Videooutput_VideoControl_Initialize
+00003219 T Gfx_Videooutput_VideoControl_Set_Box_Alpha
+000032f9 T Gfx_Videooutput_Videocontrol_Set_Box_Geometry
+00003451 T Gfx_Videooutput_VideoControl_Set_Global_Alpha
+00003ac1 T Gfx_Videooutput_Wayland_Finalize
+0000378d T Gfx_Videooutput_Wayland_Finish_Output_Buffer
+00003de1 T Gfx_Videooutput_Wayland_Initialize
+000038ed T Gfx_Videooutput_Wayland_Output_Buffer
+00003d91 T Gfx_Videooutput_Wayland_Register_Release_Cb
+000035ed T Gfx_Videooutput_Wayland_Set_Attribute
+00003695 T Gfx_Videooutput_Wayland_Set_Crop_Size
+00003711 T Gfx_Videooutput_Wayland_Set_Geometry
+
+GET/INSTANCE functions:
+00005135 T _get_hw_info
+00005b09 T _get_index_from_surface
+00004c2d T get_videooutput_global_data
+00005bc9 T Gfx_Videooutput_Egl_Get_Index
+00005e3d T Gfx_Videooutput_Get_Controllable_BoxNum
+00004c39 T Gfx_Videooutput_Get_EGLContext
+00005f25 T Gfx_Videooutput_Get_EGLData
+00004cc5 T Gfx_Videooutput_Get_EGLDisplay
+00004d51 T Gfx_Videooutput_Get_EGLSurface
+00005e91 T Gfx_Videooutput_Get_Mute_Status
+000034d5 T Gfx_Videooutput_VideoControl_Get_Controllable_BoxNum
+00003065 T Gfx_Videooutput_VideoControl_Get_Mute_status
+
+LOCK/UNLOCK functions:
+  None found
+
+YUV/RGB/FRAME/BUFFER functions:
+00004eed T Gfx_Videooutput_Egl_Current_Number_of_Buffers
+0000378d T Gfx_Videooutput_Wayland_Finish_Output_Buffer
+000038ed T Gfx_Videooutput_Wayland_Output_Buffer

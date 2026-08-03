@@ -1,0 +1,12 @@
+.buildResult
+release
+.vs
+obj
+bin
+*.csproj.user
+.sign
+*.wgt
+references/tizen9_os_files
+Probe/libhypertizenprobe.so
+__pycache__/
+*.pyc

@@ -1,0 +1,249 @@
+==================================================================
+Library: libep-common-screencapture.so
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libep-common-screencapture.so
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libep-common-screencapture.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=afce5ebbc28c173d87c7c546bfdb94f5471fe8b4, stripped
+
+--- Size ---
+18K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_atexit@CXXABI_ARM_1.3.3
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U __dlog_print
+         U execl@GLIBC_2.4
+         U _exit@GLIBC_2.4
+         U fclose@GLIBC_2.4
+         U fileno@GLIBC_2.4
+         U fopen64@GLIBC_2.4
+         U fork@GLIBC_2.4
+         U free@GLIBC_2.4
+         U __fxstat64@GLIBC_2.4
+         U __gcc_personality_v0@GCC_3.3.1
+         w __gmon_start__
+         U __gxx_personality_v0@CXXABI_1.3
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U jpeg_CreateCompress@LIBJPEG_8.0
+         U jpeg_destroy_compress@LIBJPEG_8.0
+         U jpeg_finish_compress@LIBJPEG_8.0
+         U jpeg_mem_dest@LIBJPEG_8.0
+         U jpeg_set_defaults@LIBJPEG_8.0
+         U jpeg_set_quality@LIBJPEG_8.0
+         U jpeg_start_compress@LIBJPEG_8.0
+         U jpeg_std_error@LIBJPEG_8.0
+         U jpeg_stdio_dest@LIBJPEG_8.0
+         U jpeg_write_scanlines@LIBJPEG_8.0
+         U malloc@GLIBC_2.4
+         U memcmp@GLIBC_2.4
+         U memcpy@GLIBC_2.4
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U strlen@GLIBC_2.4
+         U tcgetattr@GLIBC_2.4
+         U tcsetattr@GLIBC_2.4
+         U _Unwind_Resume@GCC_3.0
+         U waitpid@GLIBC_2.4
+         U _ZdlPv@GLIBCXX_3.4
+         U _ZN11ep_fileutil10DeleteFileEPKc
+         U _ZN11ep_fileutil11IsFileExistERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+         U _ZN11ep_fileutil15CreateDirectoryEPKc
+         U _ZN11ep_fileutil15RemoveDirectoryEPKcb
+         U _ZN11ep_fileutil5isDirEPKc
+         U _ZN13IVideoCapture11getInstanceEv
+000022f5 T _ZN15EPScreenCapture13CaptureScreenEP15ImagePropertiesb
+00001dd1 T _ZN15EPScreenCapture13ScreenCapture10initOutputEv
+00001ffd T _ZN15EPScreenCapture13ScreenCapture14compressToJpegEv
+00002275 T _ZN15EPScreenCapture13ScreenCapture6saveToERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00002129 T _ZN15EPScreenCapture13ScreenCapture6saveToERNS_6BufferE
+00001e5d T _ZN15EPScreenCapture13ScreenCapture7captureEv
+00001d8d T _ZN15EPScreenCapture13ScreenCapture8initJpegEv
+00001df5 T _ZN15EPScreenCapture13ScreenCapture9initInputEjj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC1Ejj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC2Ejj
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD1Ev
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD2Ev
+00002181 T _ZN15EPScreenCapture6BufferD1Ev
+00002181 T _ZN15EPScreenCapture6BufferD2Ev
+00002191 T _ZN15EPScreenCapture8fileOpenERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+00001f21 T _ZN15EPScreenCapture9YUVBufferD1Ev
+00001f21 T _ZN15EPScreenCapture9YUVBufferD2Ev
+00002389 T _ZN17ns_graphiccapture19GraphicLayerCaptureENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b
+         U _ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12find_last_ofEPKcjj@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEjjPKcj@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_eraseEjj@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcj@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERjj@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@GLIBCXX_3.4.21
+         U _ZSt19__throw_logic_errorPKc@GLIBCXX_3.4
+         U _ZSt20__throw_length_errorPKc@GLIBCXX_3.4
+         U _ZSt24__throw_out_of_range_fmtPKcz@GLIBCXX_3.4.20
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 79 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 000015dc     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 0001411c     0 SECTION LOCAL  DEFAULT   21 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+     4: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND _ZN11ep_fileutil[...]
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND @CXXABI_ARM_1.3.3 (3)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND free@GLIBC_2.4 (4)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+     9: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (5)
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GCC_3.3.1 (6)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN13IVideoCaptu[...]
+    12: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    13: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND _ZN11ep_fileutil[...]
+    14: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (8)
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND execl@GLIBC_2.4 (4)
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (4)
+    18: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND _ZN11ep_fileutil[...]
+    19: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (8)
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (8)
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND waitpid@GLIBC_2.4 (4)
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    27: 00000000     0 FUNC    GLOBAL DEFAULT  UND tc[...]@GLIBC_2.4 (4)
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND fileno@GLIBC_2.4 (4)
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (4)
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND fork@GLIBC_2.4 (4)
+    32: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND _ZN11ep_fileutil[...]
+    33: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.4 (4)
+    35: 00000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.4 (4)
+    36: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.20 (9)
+    37: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    38: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    39: 00000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.4 (4)
+    40: 00000000     0 FUNC    GLOBAL DEFAULT  UND fclose@GLIBC_2.4 (4)
+    41: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@CXXABI_1.3 (10)
+    42: 00000000     0 FUNC    GLOBAL DEFAULT  UND _exit@GLIBC_2.4 (4)
+    43: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND _ZN11ep_fileutil[...]
+    44: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@LIBJPEG_8.0 (2)
+    45: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    46: 00000000     0 FUNC    GLOBAL DEFAULT  UND tc[...]@GLIBC_2.4 (4)
+    47: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    48: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Un[...]@GCC_3.0 (11)
+    49: 00000000     0 FUNC    GLOBAL DEFAULT  UND fopen64@GLIBC_2.4 (4)
+    50: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcmp@GLIBC_2.4 (4)
+    51: 00000000     0 FUNC    GLOBAL DEFAULT  UND __a[...]@GCC_3.5 (12)
+    52: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    53: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    54: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (7)
+    55: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (4)
+    56: 00001eb9    24 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    57: 00001e5d    92 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    58: 00002181    16 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    59: 00002129    88 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    60: 00001f21    16 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    61: 00002389  2364 FUNC    GLOBAL DEFAULT   11 _ZN17ns_graphicc[...]
+    62: 00001dd1    36 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    63: 00001ed1    80 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    64: 00001a9d   106 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    65: 00002191   228 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    66: 00001df5   104 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    67: 000022f5   148 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    68: 00001b09   102 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    69: 00001ffd   300 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    70: 00002181    16 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    71: 00001f31   204 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    72: 00001f21    16 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    73: 00001eb9    24 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    74: 00001b71    68 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    75: 00001d8d    68 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    76: 00001f31   204 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    77: 00001ed1    80 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+    78: 00002275   128 FUNC    GLOBAL DEFAULT   11 _ZN15EPScreenCap[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+000022f5 T _ZN15EPScreenCapture13CaptureScreenEP15ImagePropertiesb
+00001dd1 T _ZN15EPScreenCapture13ScreenCapture10initOutputEv
+00001ffd T _ZN15EPScreenCapture13ScreenCapture14compressToJpegEv
+00002275 T _ZN15EPScreenCapture13ScreenCapture6saveToERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00002129 T _ZN15EPScreenCapture13ScreenCapture6saveToERNS_6BufferE
+00001e5d T _ZN15EPScreenCapture13ScreenCapture7captureEv
+00001d8d T _ZN15EPScreenCapture13ScreenCapture8initJpegEv
+00001df5 T _ZN15EPScreenCapture13ScreenCapture9initInputEjj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC1Ejj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC2Ejj
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD1Ev
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD2Ev
+00002181 T _ZN15EPScreenCapture6BufferD1Ev
+00002181 T _ZN15EPScreenCapture6BufferD2Ev
+00002191 T _ZN15EPScreenCapture8fileOpenERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+00001f21 T _ZN15EPScreenCapture9YUVBufferD1Ev
+00001f21 T _ZN15EPScreenCapture9YUVBufferD2Ev
+00002389 T _ZN17ns_graphiccapture19GraphicLayerCaptureENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b
+
+SCREEN functions:
+000022f5 T _ZN15EPScreenCapture13CaptureScreenEP15ImagePropertiesb
+00001dd1 T _ZN15EPScreenCapture13ScreenCapture10initOutputEv
+00001ffd T _ZN15EPScreenCapture13ScreenCapture14compressToJpegEv
+00002275 T _ZN15EPScreenCapture13ScreenCapture6saveToERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00002129 T _ZN15EPScreenCapture13ScreenCapture6saveToERNS_6BufferE
+00001e5d T _ZN15EPScreenCapture13ScreenCapture7captureEv
+00001d8d T _ZN15EPScreenCapture13ScreenCapture8initJpegEv
+00001df5 T _ZN15EPScreenCapture13ScreenCapture9initInputEjj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC1Ejj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC2Ejj
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD1Ev
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD2Ev
+00002181 T _ZN15EPScreenCapture6BufferD1Ev
+00002181 T _ZN15EPScreenCapture6BufferD2Ev
+00002191 T _ZN15EPScreenCapture8fileOpenERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+00001f21 T _ZN15EPScreenCapture9YUVBufferD1Ev
+00001f21 T _ZN15EPScreenCapture9YUVBufferD2Ev
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+
+GET/INSTANCE functions:
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+
+LOCK/UNLOCK functions:
+  None found
+
+YUV/RGB/FRAME/BUFFER functions:
+00002129 T _ZN15EPScreenCapture13ScreenCapture6saveToERNS_6BufferE
+00002181 T _ZN15EPScreenCapture6BufferD1Ev
+00002181 T _ZN15EPScreenCapture6BufferD2Ev
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+00001f21 T _ZN15EPScreenCapture9YUVBufferD1Ev
+00001f21 T _ZN15EPScreenCapture9YUVBufferD2Ev

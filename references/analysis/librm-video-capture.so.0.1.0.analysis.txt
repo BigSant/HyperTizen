@@ -1,0 +1,157 @@
+==================================================================
+Library: librm-video-capture.so.0.1.0
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/librm-video-capture.so.0.1.0
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/librm-video-capture.so.0.1.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=4444f994423fcf2760c44ac1992a054f4014bfa3, stripped
+
+--- Size ---
+18K
+
+--- All Exported Symbols (nm -D) ---
+         U access@GLIBC_2.4
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U dlclose
+         U dlerror
+         U __dlog_print
+         U dlopen
+         U __errno_location@GLIBC_2.4
+         U g_free
+         U g_malloc0
+         w __gmon_start__
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+00000ce5 T ppi_rm_video_capture_check_init
+00000d35 T ppi_rm_video_capture_deqevent
+00002365 T ppi_rm_video_capture_drm_close
+000021cd T ppi_rm_video_capture_drm_create_framebuffer
+00001a05 T ppi_rm_video_capture_drm_destroy_framebuffer
+000024d1 T ppi_rm_video_capture_drm_open
+00001b79 T ppi_rm_video_capture_drm_set_func
+00001d05 T ppi_rm_video_capture_drm_set_plane
+00001ec5 T ppi_rm_video_capture_drm_set_property
+00002041 T ppi_rm_video_capture_drm_set_source
+000025f5 T ppi_rm_video_capture_encoder_close
+0000275d T ppi_rm_video_capture_encoder_open
+00000b8d T ppi_rm_video_capture_get_backend
+0000140d T ppi_rm_video_capture_get_resolution
+00000b99 T ppi_rm_video_capture_init
+00001889 T ppi_rm_video_capture_set_bitrate
+00001709 T ppi_rm_video_capture_set_framerate
+00001589 T ppi_rm_video_capture_set_resolution
+00000e5d T ppi_rm_video_capture_set_stream_off
+00000fc9 T ppi_rm_video_capture_set_stream_on
+000012a1 T ppi_rm_video_capture_subscribe_stream
+00001135 T ppi_rm_video_capture_unsubscribe_stream
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 38 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000a04     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 00014050     0 SECTION LOCAL  DEFAULT   20 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND g_free
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (2)
+     5: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+     7: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND access@GLIBC_2.4 (3)
+     9: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    10: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND dlerror
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND g_malloc0
+    12: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND dlopen
+    13: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (3)
+    14: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (3)
+    15: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND dlclose
+    16: 00001709   384 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    17: 00001ec5   380 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    18: 00000ce5    80 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    19: 000024d1   292 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    20: 0000140d   380 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    21: 00002041   396 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    22: 00000e5d   364 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    23: 0000275d   220 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    24: 00000b8d    12 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    25: 00001135   364 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    26: 00001889   380 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    27: 000021cd   408 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    28: 00001589   384 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    29: 00001a05   372 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    30: 000012a1   364 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    31: 000025f5   360 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    32: 00000fc9   364 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    33: 00001d05   448 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    34: 00000d35   296 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    35: 00002365   364 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    36: 00001b79   396 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+    37: 00000b99   332 FUNC    GLOBAL DEFAULT   11 ppi_rm_video_cap[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+00000ce5 T ppi_rm_video_capture_check_init
+00000d35 T ppi_rm_video_capture_deqevent
+00002365 T ppi_rm_video_capture_drm_close
+000021cd T ppi_rm_video_capture_drm_create_framebuffer
+00001a05 T ppi_rm_video_capture_drm_destroy_framebuffer
+000024d1 T ppi_rm_video_capture_drm_open
+00001b79 T ppi_rm_video_capture_drm_set_func
+00001d05 T ppi_rm_video_capture_drm_set_plane
+00001ec5 T ppi_rm_video_capture_drm_set_property
+00002041 T ppi_rm_video_capture_drm_set_source
+000025f5 T ppi_rm_video_capture_encoder_close
+0000275d T ppi_rm_video_capture_encoder_open
+00000b8d T ppi_rm_video_capture_get_backend
+0000140d T ppi_rm_video_capture_get_resolution
+00000b99 T ppi_rm_video_capture_init
+00001889 T ppi_rm_video_capture_set_bitrate
+00001709 T ppi_rm_video_capture_set_framerate
+00001589 T ppi_rm_video_capture_set_resolution
+00000e5d T ppi_rm_video_capture_set_stream_off
+00000fc9 T ppi_rm_video_capture_set_stream_on
+000012a1 T ppi_rm_video_capture_subscribe_stream
+00001135 T ppi_rm_video_capture_unsubscribe_stream
+
+SCREEN functions:
+  None found
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+00000ce5 T ppi_rm_video_capture_check_init
+00000d35 T ppi_rm_video_capture_deqevent
+00002365 T ppi_rm_video_capture_drm_close
+000021cd T ppi_rm_video_capture_drm_create_framebuffer
+00001a05 T ppi_rm_video_capture_drm_destroy_framebuffer
+000024d1 T ppi_rm_video_capture_drm_open
+00001b79 T ppi_rm_video_capture_drm_set_func
+00001d05 T ppi_rm_video_capture_drm_set_plane
+00001ec5 T ppi_rm_video_capture_drm_set_property
+00002041 T ppi_rm_video_capture_drm_set_source
+000025f5 T ppi_rm_video_capture_encoder_close
+0000275d T ppi_rm_video_capture_encoder_open
+00000b8d T ppi_rm_video_capture_get_backend
+0000140d T ppi_rm_video_capture_get_resolution
+00000b99 T ppi_rm_video_capture_init
+00001889 T ppi_rm_video_capture_set_bitrate
+00001709 T ppi_rm_video_capture_set_framerate
+00001589 T ppi_rm_video_capture_set_resolution
+00000e5d T ppi_rm_video_capture_set_stream_off
+00000fc9 T ppi_rm_video_capture_set_stream_on
+000012a1 T ppi_rm_video_capture_subscribe_stream
+00001135 T ppi_rm_video_capture_unsubscribe_stream
+
+GET/INSTANCE functions:
+00000b8d T ppi_rm_video_capture_get_backend
+0000140d T ppi_rm_video_capture_get_resolution
+
+LOCK/UNLOCK functions:
+  None found
+
+YUV/RGB/FRAME/BUFFER functions:
+000021cd T ppi_rm_video_capture_drm_create_framebuffer
+00001a05 T ppi_rm_video_capture_drm_destroy_framebuffer
+00001709 T ppi_rm_video_capture_set_framerate

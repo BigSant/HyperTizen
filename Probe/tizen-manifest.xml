@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="io.github.bigsant.HyperTizenProbe" version="1.0.0"
+          api-version="9" xmlns="http://tizen.org/ns/packages">
+  <author>BigSant</author>
+  <profile name="tv" />
+  <service-application appid="io.github.bigsant.HyperTizenProbe"
+      exec="HyperTizenProbe.dll" multiple="false" nodisplay="true"
+      taskmanage="false" api-version="9" type="dotnet">
+    <label>HyperTizen Probe</label>
+  </service-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/internet</privilege>
+    <privilege>http://tizen.org/privilege/network.get</privilege>
+  </privileges>
+</manifest>

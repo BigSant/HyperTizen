@@ -1,0 +1,10 @@
+<Project Sdk="Tizen.NET.Sdk/1.1.9">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>tizen90</TargetFramework>
+    <AssemblyName>HyperTizenProbe</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="libhypertizenprobe.so" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+type: dotnet
+ui-type: service
+root: .
+profile: tv
+build-type: Debug
+framework: tizen90
+manifest: tizen-manifest.xml

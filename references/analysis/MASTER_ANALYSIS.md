@@ -1,0 +1,347 @@
+# Tizen 9 Screen Capture Library Analysis
+
+This file contains detailed analysis of candidate libraries for screen capture and pixel sampling.
+
+## Analysis Date
+Sun 16 Nov 2025 14:30:53 SAST
+
+## Libraries Analyzed
+
+
+### libvideoenhance.so.0.1
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.0.1`
+
+**Key Functions Found:**
+
+```
+4612d1f9 T ppi_ve_analog_video_do_calibration
+461270d1 T ppi_ve_check_vx1_lock_status
+46134b85 T ppi_ve_get_framebacklight
+46134ad9 T ppi_ve_get_framebacklight_range
+4612f4b1 T ppi_ve_get_frame_lock
+46134985 T ppi_ve_get_framelux_level
+4612d2a9 T ppi_ve_get_framerate_multiplier
+46134161 T ppi_ve_get_rgb_measure_condition
+46133ffd T ppi_ve_get_rgb_measure_pixel
+4613462d T ppi_ve_get_size_of_VE_PPI_Frame_User_Backlight_Param
+46127d2d T ppi_ve_qd_pixel_shift_test
+46134ed5 T ppi_ve_set_8k_streaming_enhance
+46135025 T ppi_ve_set_aodmode_enhance
+46134e29 T ppi_ve_set_cameramode_enhance
+46135aa9 T ppi_ve_set_current_main_video_genre_desc
+46134c2d T ppi_ve_set_framebacklight
+461348dd T ppi_ve_set_framebacklight_init
+46134cd9 T ppi_ve_set_framecurveinfo
+46134a31 T ppi_ve_set_framelux_cb
+4612ed45 T ppi_ve_set_irregular_video_wall
+46134d81 T ppi_ve_set_lifestyle_enhance
+4612edf5 T ppi_ve_set_network_video_wall_frame_sync
+4612ec99 T ppi_ve_set_picture_enhancement
+461320b1 T ppi_ve_set_pixelShift
+4612ded1 T ppi_ve_set_pixel_shift_onoff
+461350cd T ppi_ve_set_portlandmirroring_enhance
+461340ad T ppi_ve_set_rgb_measure_position
+461335a9 T ppi_ve_set_rgb_only_mode
+46134429 T ppi_ve_set_screen_protected_app_launched
+46135175 T ppi_ve_set_sideblack_enhance
+```
+
+---
+
+### libvideo-capture.so.0.1.0
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideo-capture.so.0.1.0`
+
+**Key Functions Found:**
+
+```
+49133135 T ppi_video_capture_get_backend
+49133089 T ppi_video_capture_get_backend_data
+49133095 T ppi_video_capture_get_backend_data_address
+49133b3d T ppi_video_capture_get_cropped_video_main_yuv
+49133c8d T ppi_video_capture_get_cropped_video_post_yuv
+491339ed T ppi_video_capture_get_cropped_video_sub_yuv
+49133ddd T ppi_video_capture_get_screen_post_yuv
+49133661 T ppi_video_capture_get_video_bg_yuv
+49133be5 T ppi_video_capture_get_video_main_yuv
+49133d35 T ppi_video_capture_get_video_post_yuv
+49133709 T ppi_video_capture_get_video_sub2_yuv
+49133a95 T ppi_video_capture_get_video_sub_yuv
+491337b1 T ppi_video_capture_get_video_yuv
+49133865 T ppi_video_capture_get_video_yuv_to_encoder
+49133441 T ppi_video_capture_is_protect_capture
+49133259 T ppi_video_capture_is_protect_capture_all
+491335b1 T ppi_video_capture_lock_global
+491333a1 T ppi_video_capture_lock_global_all
+49133501 T ppi_video_capture_unlock_global
+49133301 T ppi_video_capture_unlock_global_all
+49134b3d T secvideo_api_capture
+49135065 T secvideo_api_capture_encoder_input
+49134ccd T secvideo_api_capture_is_protect
+49134d55 T secvideo_api_capture_lock
+49134c7d T secvideo_api_capture_plane_is_protect
+49135755 T secvideo_api_capture_screen
+49134dd1 T secvideo_api_capture_screen_lock
+49134d9d T secvideo_api_capture_screen_unlock
+4913562d T secvideo_api_capture_screen_video_only
+49134f35 T secvideo_api_capture_screen_video_only_crop
+```
+
+---
+
+### librm-video-capture.so.0.1.0
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/librm-video-capture.so.0.1.0`
+
+**Key Functions Found:**
+
+```
+00000ce5 T ppi_rm_video_capture_check_init
+00000d35 T ppi_rm_video_capture_deqevent
+00002365 T ppi_rm_video_capture_drm_close
+000021cd T ppi_rm_video_capture_drm_create_framebuffer
+00001a05 T ppi_rm_video_capture_drm_destroy_framebuffer
+000024d1 T ppi_rm_video_capture_drm_open
+00001b79 T ppi_rm_video_capture_drm_set_func
+00001d05 T ppi_rm_video_capture_drm_set_plane
+00001ec5 T ppi_rm_video_capture_drm_set_property
+00002041 T ppi_rm_video_capture_drm_set_source
+000025f5 T ppi_rm_video_capture_encoder_close
+0000275d T ppi_rm_video_capture_encoder_open
+00000b8d T ppi_rm_video_capture_get_backend
+0000140d T ppi_rm_video_capture_get_resolution
+00000b99 T ppi_rm_video_capture_init
+00001889 T ppi_rm_video_capture_set_bitrate
+00001709 T ppi_rm_video_capture_set_framerate
+00001589 T ppi_rm_video_capture_set_resolution
+00000e5d T ppi_rm_video_capture_set_stream_off
+00000fc9 T ppi_rm_video_capture_set_stream_on
+000012a1 T ppi_rm_video_capture_subscribe_stream
+00001135 T ppi_rm_video_capture_unsubscribe_stream
+```
+
+---
+
+### libdisplay-capture-api.so.0.0
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libdisplay-capture-api.so.0.0`
+
+**Key Functions Found:**
+
+```
+000048fd T dc_request_capture
+000048ad T dc_request_capture_sync
+00004561 T dc_request_capture_to_file_sync
+000039e9 T _Z10ppicaptureP13RequestedDataPhS1_i
+000035ad T _Z14convertYUV2RGBhhhPhS_S_
+00003771 T _Z19generate_rgb_bufferPhS_S_iiii
+000033d9 T _Z20_convertYUV420toBGRAPhS_S_iii
+0000362d T _Z20_convertYUV422toBGRAPhS_S_iii
+00003d25 T _Z22m_capture_to_file_syncP17_dc_capt_req_data
+00002461 T _Z28_Emit_CaptureComplete_SignalPKc
+00001f01 T _Z32crop_and_stretch_left_img_YUV420PhS_iii
+00002221 T _Z32crop_and_stretch_left_img_YUV422PhS_iii
+00004131 T _Z9m_capture13dc_app_type_e9dc_mode_eiiPKcS2_
+```
+
+---
+
+### libep-common-screencapture.so
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libep-common-screencapture.so`
+
+**Key Functions Found:**
+
+```
+000022f5 T _ZN15EPScreenCapture13CaptureScreenEP15ImagePropertiesb
+00001dd1 T _ZN15EPScreenCapture13ScreenCapture10initOutputEv
+00001ffd T _ZN15EPScreenCapture13ScreenCapture14compressToJpegEv
+00002275 T _ZN15EPScreenCapture13ScreenCapture6saveToERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00002129 T _ZN15EPScreenCapture13ScreenCapture6saveToERNS_6BufferE
+00001e5d T _ZN15EPScreenCapture13ScreenCapture7captureEv
+00001d8d T _ZN15EPScreenCapture13ScreenCapture8initJpegEv
+00001df5 T _ZN15EPScreenCapture13ScreenCapture9initInputEjj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC1Ejj
+00001ed1 T _ZN15EPScreenCapture13ScreenCaptureC2Ejj
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD1Ev
+00001eb9 T _ZN15EPScreenCapture13ScreenCaptureD2Ev
+00002181 T _ZN15EPScreenCapture6BufferD1Ev
+00002181 T _ZN15EPScreenCapture6BufferD2Ev
+00002191 T _ZN15EPScreenCapture8fileOpenERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+00001a9d T _ZN15EPScreenCapture9YUVBuffer9getYUV420Ej
+00001b09 T _ZN15EPScreenCapture9YUVBuffer9getYUV422Ej
+00001b71 T _ZN15EPScreenCapture9YUVBuffer9getYUV444Ej
+00001f31 T _ZN15EPScreenCapture9YUVBufferC1ERKN13IVideoCapture12OutputParamsE
+00001f31 T _ZN15EPScreenCapture9YUVBufferC2ERKN13IVideoCapture12OutputParamsE
+00001f21 T _ZN15EPScreenCapture9YUVBufferD1Ev
+00001f21 T _ZN15EPScreenCapture9YUVBufferD2Ev
+00002389 T _ZN17ns_graphiccapture19GraphicLayerCaptureENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_b
+```
+
+---
+
+### libcapi-video-capture.so.0.1.0
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-video-capture.so.0.1.0`
+
+**Key Functions Found:**
+
+```
+00001b41 T _Z12callFunctionRKN12VideoCapture11InputParamsERNS_12OutputParamsESt8functionIFiRKN13IVideoCapture11InputParamsERNS6_12OutputParamsEEE@@libcapi-video-capture.so.0
+00001a81 T _Z13setParametersRKN12VideoCapture11InputParamsERN13IVideoCapture11InputParamsERNS_12OutputParamsERNS3_12OutputParamsE@@libcapi-video-capture.so.0
+00001a29 T _Z16updateParametersRN13IVideoCapture12OutputParamsERN12VideoCapture12OutputParamsE@@libcapi-video-capture.so.0
+000019d1 T _ZN12VideoCapture10lockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019f1 T _ZN12VideoCapture10lockGlobalEv@@libcapi-video-capture.so.0
+00002345 T _ZN12VideoCapture11getInstanceEv@@libcapi-video-capture.so.0
+00001aad T _ZN12VideoCapture11getVideoYUVERKNS_11InputParamsERNS_12OutputParamsEi@@libcapi-video-capture.so.0
+000019c1 T _ZN12VideoCapture12unlockGlobalENS_15CaptureLockTypeEi@@libcapi-video-capture.so.0
+000019e1 T _ZN12VideoCapture12unlockGlobalEv@@libcapi-video-capture.so.0
+00001bd5 T _ZN12VideoCapture13getVideoBGYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001ec5 T _ZN12VideoCapture14getVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000203d T _ZN12VideoCapture15getVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000021b5 T _ZN12VideoCapture15getVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001c91 T _ZN12VideoCapture15getVideoSub2YUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00002271 T _ZN12VideoCapture16getScreenPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001a01 T _ZN12VideoCapture16isProtectCaptureENS_15CaptureLockTypeEiRi@@libcapi-video-capture.so.0
+00001a19 T _ZN12VideoCapture16isProtectCaptureERi@@libcapi-video-capture.so.0
+00001d4d T _ZN12VideoCapture20getVideoYUVToEncoderERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001e09 T _ZN12VideoCapture21getCroppedVideoSubYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+00001f81 T _ZN12VideoCapture22getCroppedVideoMainYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+000020f9 T _ZN12VideoCapture22getCroppedVideoPostYUVERKNS_11InputParamsERNS_12OutputParamsE@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC1Ev@@libcapi-video-capture.so.0
+0000232d T _ZN12VideoCaptureC2Ev@@libcapi-video-capture.so.0
+00001959 T _ZN12VideoCaptureD0Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD1Ev@@libcapi-video-capture.so.0
+00001955 T _ZN12VideoCaptureD2Ev@@libcapi-video-capture.so.0
+0000196d T _ZNSt14_Function_base13_Base_managerISt5_BindIFM13IVideoCaptureFiRKNS2_11InputParamsERNS2_12OutputParamsEEPS2_St12_PlaceholderILi1EESB_ILi2EEEEE10_M_managerERSt9_Any_dataRKSH_St18_Manager_operation@@libcapi-video-capture.so.0
+00001939 T _ZNSt17_Function_handlerIFiRKN13IVideoCapture11InputParamsERNS0_12OutputParamsEESt5_BindIFMS0_FiS3_S5_EPS0_St12_PlaceholderILi1EESB_ILi2EEEEE9_M_invokeERKSt9_Any_dataS3_S5_@@libcapi-video-capture.so.0
+```
+
+---
+
+### libcapi-rm-video-capture.so.0.0.1
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libcapi-rm-video-capture.so.0.0.1`
+
+**Key Functions Found:**
+
+```
+0000134d T rm_video_capture_deqevent
+00001825 T rm_video_capture_drm_release_drm_encoding
+000019e1 T rm_video_capture_drm_set_drm_to_encode
+0000179d T rm_video_capture_open_sdp_hen
+0000173d T rm_video_capture_set_bitrate
+00001679 T rm_video_capture_set_encode_size
+000016dd T rm_video_capture_set_framerate
+0000142d T rm_video_capture_set_stream_off
+00001489 T rm_video_capture_set_stream_on
+00001541 T rm_video_capture_subscribe_stream
+000014e5 T rm_video_capture_unsubscribe_stream
+0000159d T rm_video_capture_verify_encode_size
+00001d7d T _Z29rm_video_capture_is_supportedv
+000012dd T _ZN16rm_video_capture12get_instanceEv
+000012d9 T _ZN16rm_video_capture12is_supportedEv
+00001225 T _ZN16rm_video_capture16is_fms_supportedEv
+000012c5 T _ZN16rm_video_captureC1Ev
+000012c5 T _ZN16rm_video_captureC2Ev
+000011a5 T _ZN16rm_video_captureD1Ev
+000011a5 T _ZN16rm_video_captureD2Ev
+```
+
+---
+
+### libgfx-video-output.so.0.2.6
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libgfx-video-output.so.0.2.6`
+
+**Key Functions Found:**
+
+```
+00004c2d T get_videooutput_global_data
+00005f85 T Gfx_Videooutput_Display
+00004eed T Gfx_Videooutput_Egl_Current_Number_of_Buffers
+00004f41 T Gfx_Videooutput_Egl_Finalize
+00005bc9 T Gfx_Videooutput_Egl_Get_Index
+00005aed T Gfx_Videooutput_Egl_Initialize
+00005361 T Gfx_Videooutput_Egl_Plane_Initialize
+00004e85 T Gfx_Videooutput_Egl_Release_Surface
+00004ddd T Gfx_Videooutput_Egl_Release_Surface_with_Index
+00005fad T Gfx_Videooutput_Finalize
+00005f75 T Gfx_Videooutput_Finish_Display
+00005dc5 T Gfx_Videooutput_Flush_Box
+00005e3d T Gfx_Videooutput_Get_Controllable_BoxNum
+00004c39 T Gfx_Videooutput_Get_EGLContext
+00005f25 T Gfx_Videooutput_Get_EGLData
+00004cc5 T Gfx_Videooutput_Get_EGLDisplay
+00004d51 T Gfx_Videooutput_Get_EGLSurface
+00005e91 T Gfx_Videooutput_Get_Mute_Status
+00006255 T Gfx_Videooutput_Initialize
+00006121 T Gfx_Videooutput_Initialize_With_Format
+00005f61 T Gfx_Videooutput_Release_Cb
+00005e4d T Gfx_Videooutput_Set_Alpha
+00005df5 T Gfx_Videooutput_Set_Box_Alpha
+00005e0d T Gfx_Videooutput_Set_Box_Geometry
+00005edd T Gfx_Videooutput_Set_Crop_Size
+00005f01 T Gfx_Videooutput_Set_Geometry
+00005e75 T Gfx_Videooutput_Set_Mute
+00005ea5 T Gfx_Videooutput_Set_Mute_Without_Sync
+00005d8d T Gfx_Videooutput_Set_Still
+00005ec1 T Gfx_Videooutput_Set_Sync
+```
+
+---
+
+### libscreen_connector_remote_surface.so.1.9.5
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libscreen_connector_remote_surface.so.1.9.5`
+
+**Key Functions Found:**
+
+```
+00007765 T _ZN16screen_connector13RemoteSurface11FiniManagerEv
+0000775d T _ZN16screen_connector13RemoteSurface11InitManagerEv
+00007aa9 T _ZN16screen_connector13RemoteSurface11SendMouseUpEiij
+000088f1 T _ZN16screen_connector13RemoteSurface12SendKeyEventERKNS_5input12KeyEventArgsE
+000075c1 T _ZN16screen_connector13RemoteSurface13OnBufferAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007b81 T _ZN16screen_connector13RemoteSurface14SendVisibilityEb
+000075c5 T _ZN16screen_connector13RemoteSurface15OnBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+000075c1 T _ZN16screen_connector13RemoteSurface15OnBufferRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007985 T _ZN16screen_connector13RemoteSurface15SendTouchCancelEv
+00007cfd T _ZN16screen_connector13RemoteSurface15SetRemoteRenderEv
+00007ced T _ZN16screen_connector13RemoteSurface17ClearRemoteRenderEv
+000088f9 T _ZN16screen_connector13RemoteSurface21SetChangedEventFilterENS0_18ChangedEventFilterE
+00007775 T _ZN16screen_connector13RemoteSurface22SetDelayedResumingTimeEj
+00007991 T _ZN16screen_connector13RemoteSurface4BindESt10shared_ptrINS_9WlSurfaceEE
+00008729 T _ZN16screen_connector13RemoteSurface4Impl10OnAppAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007581 T _ZN16screen_connector13RemoteSurface4Impl12OnAppFocusedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007629 T _ZN16screen_connector13RemoteSurface4Impl12OnAppRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+000080bd T _ZN16screen_connector13RemoteSurface4Impl12OnAppUpdatedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00008825 T _ZN16screen_connector13RemoteSurface4Impl12SendKeyEventERKNS_5input12KeyEventArgsE
+00007955 T _ZN16screen_connector13RemoteSurface4Impl16SetResumingTimerEv
+000077c9 T _ZN16screen_connector13RemoteSurface4Impl18ClearResumingTimerEv
+00007d61 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b25 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+000075e1 T _ZN16screen_connector13RemoteSurface4Impl20OnInputFilterChangedEj
+00007f11 T _ZN16screen_connector13RemoteSurface4Impl8RedirectEv
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007941 T _ZN16screen_connector13RemoteSurface4ImplD0Ev
+```
+
+---
+
+### libdisplay-panel.so.0.1
+
+**Path:** `/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libdisplay-panel.so.0.1`
+
+**Key Functions Found:**
+
+```
+460e36d1 T ppi_displaypanel_get_fpga_vx1_lock_status@@libdisplay-panel.so.0
+460e2ac5 T ppi_displaypanel_get_pixel_ic_power@@libdisplay-panel.so.0
+```
+
+---

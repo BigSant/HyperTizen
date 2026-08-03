@@ -1,0 +1,739 @@
+==================================================================
+Library: libvideoenhance.so.0.1
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.0.1
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libvideoenhance.so.0.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=52c2c93f64d40d0bd69f93097451adfdc0e0ab3a, stripped
+
+--- Size ---
+124K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         w __cxa_finalize@GLIBC_2.4
+         U dlerror@GLIBC_2.4
+         U __dlog_print
+         U dlopen@GLIBC_2.4
+         U ecs_display_rotator_start@libecs-sec-tv.so.0
+         w __gmon_start__
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U malloc@GLIBC_2.4
+         U memset@GLIBC_2.4
+4612d1f9 T ppi_ve_analog_video_do_calibration
+46126685 T ppi_ve_ave_debug
+4612d14d T ppi_ve_backup_restore_emmc_data
+4612c58d T ppi_ve_backup_restore_fpga_data
+4612c4d9 T ppi_ve_backup_restore_fpga_data_flash
+4612626d T ppi_ve_backup_restore_fpga_data_flash_usb
+46126321 T ppi_ve_backup_restore_fpga_data_usb
+46127651 T ppi_ve_bm_bm_picture_init
+4612717d T ppi_ve_bm_execute_picture_fastboot
+46127581 T ppi_ve_bm_get_colorsensor_adc
+461274d5 T ppi_ve_bm_get_dimm_backlight
+46127425 T ppi_ve_bm_get_ecosensor_adc
+46127379 T ppi_ve_bm_set_dimm_backlight
+461272d1 T ppi_ve_bm_set_dimm_resumeinit
+46127225 T ppi_ve_bm_set_dimm_test_mode
+4612d09d T ppi_ve_check_calibration
+461322bd T ppi_ve_check_dim_auto_motion_plus_status
+4612ad0d T ppi_ve_check_dlg_mode_for_resolution
+4612c42d T ppi_ve_check_ffc_cable_mode
+46131bfd T ppi_ve_check_panel_mute_for_photo
+461326c1 T ppi_ve_check_panel_mute_for_resolution
+461270d1 T ppi_ve_check_vx1_lock_status
+4612cfed T ppi_ve_comp_do_calibration
+4612cf39 T ppi_ve_convert_factory_value_to_str
+4612c381 T ppi_ve_ddr_count_test
+4612c2d5 T ppi_ve_ddr_test
+4612ce89 T ppi_ve_do_calibration
+461268ad T ppi_ve_enable_multisbox_mqueue
+4612c229 T ppi_ve_erase_demura_data
+46128b09 T ppi_ve_ext_cmd_test
+4612ae69 T ppi_ve_fpga_get_common
+46128a61 T ppi_ve_fpga_pre_crc_test
+461289b1 T ppi_ve_fpga_set_common
+46128909 T ppi_ve_frc_ddr_test
+46128861 T ppi_ve_frc_i2c_test
+461287b9 T ppi_ve_frc_ld_test
+46128711 T ppi_ve_frc_pmic_hl_test
+46128669 T ppi_ve_frc_pmic_status_test
+461285c1 T ppi_ve_frc_pmic_test
+46128519 T ppi_ve_frc_spi_test
+46128471 T ppi_ve_frc_system_test
+461283c5 T ppi_ve_frc_usit_heavy_test
+4612831d T ppi_ve_frc_usit_test
+46128c69 T ppi_ve_get_ambient_protection
+4612f6b9 T ppi_ve_get_ambient_value
+4612cdd9 T ppi_ve_get_backend_info
+46126959 T ppi_ve_get_brightness
+4612d8b9 T ppi_ve_get_calibration_info
+46129771 T ppi_ve_get_calibration_target_info
+4612c175 T ppi_ve_get_cell_auto_detect
+46128d19 T ppi_ve_get_cell_temp_protection
+46135809 T ppi_ve_get_colorsensor_info
+46131eb1 T ppi_ve_get_color_space_info_status
+4612f765 T ppi_ve_get_convert_backlight_value
+4613063d T ppi_ve_get_dynamic_brightness_mode
+4612f2ad T ppi_ve_get_ecosensor_state
+4612f975 T ppi_ve_get_expert_gamma
+46127025 T ppi_ve_get_ext_ids_value
+4612c0c9 T ppi_ve_get_ext_temp
+4612c019 T ppi_ve_get_ext_temp_pcb
+4612bf6d T ppi_ve_get_ffc_cable_status
+4612cd29 T ppi_ve_get_flash_wp_status
+4612cc79 T ppi_ve_get_fpga_version
+46134b85 T ppi_ve_get_framebacklight
+46134ad9 T ppi_ve_get_framebacklight_range
+4612f4b1 T ppi_ve_get_frame_lock
+46134985 T ppi_ve_get_framelux_level
+4612d2a9 T ppi_ve_get_framerate_multiplier
+46126cc5 T ppi_ve_get_gamma_lut
+4612f359 T ppi_ve_get_histo_value
+46125db1 T ppi_ve_get_humidity_ext
+4612f55d T ppi_ve_get_internal_pattern_state
+46126ab1 T ppi_ve_get_light_detection
+46131e01 T ppi_ve_get_master_value
+4612bec1 T ppi_ve_get_mled_cal_data_write_check
+46126065 T ppi_ve_get_mled_current_sensor_support
+4612be11 T ppi_ve_get_mled_fpga_version_no_tag
+4612cbc9 T ppi_ve_get_multisensor_temperature
+46133655 T ppi_ve_get_noise_meter_index
+4612bd61 T ppi_ve_get_oled_power_level
+46135e89 T ppi_ve_get_panel_config_type
+4612f405 T ppi_ve_get_pc_mode
+46125f09 T ppi_ve_get_pmic_fault_register_status
+4612bcb1 T ppi_ve_get_pmic_fault_with_reason
+46126f79 T ppi_ve_get_pmic_result_mode
+46125d01 T ppi_ve_get_pqreg_access_status
+461277a9 T ppi_ve_get_qdoled_subotp_tcon_check
+46134161 T ppi_ve_get_rgb_measure_condition
+46133ffd T ppi_ve_get_rgb_measure_pixel
+461358b1 T ppi_ve_get_sensor_detected
+4613462d T ppi_ve_get_size_of_VE_PPI_Frame_User_Backlight_Param
+4612bc01 T ppi_ve_get_tcon_fw_version
+4612cb19 T ppi_ve_get_tcon_info
+461294ad T ppi_ve_get_tcon_ip_status
+46126ecd T ppi_ve_get_tcon_status
+4612ca6d T ppi_ve_get_temperature
+46125e5d T ppi_ve_get_temperature_ext
+46128bb5 T ppi_ve_get_temp_protection
+4612d4ad T ppi_ve_get_underfit_current_step
+4612d401 T ppi_ve_get_underfit_max_step
+46126e21 T ppi_ve_get_usit_version
+461292a9 T ppi_ve_get_woled_error_detect_status
+461291d9 T ppi_ve_get_woled_subotp_lut_check
+4612912d T ppi_ve_get_woled_sync_done_status
+46128275 T ppi_ve_init_module
+4612bb55 T ppi_ve_jackpack_data_sync
+46126731 T ppi_ve_mdc_control
+4612abb1 T ppi_ve_memory_get_pmic_fault
+4612ab05 T ppi_ve_memory_get_power_consumption
+4612aa59 T ppi_ve_memory_set_pmic_fault
+4612a9ad T ppi_ve_memory_set_power_consumption
+4612ebed T ppi_ve_notify_reset
+46132169 T ppi_ve_notify_smart_logo_done
+4612c9bd T ppi_ve_pc_do_calibration
+461281cd T ppi_ve_qd_check_el_sensing_done
+46128125 T ppi_ve_qd_check_off_sensing_done
+4612807d T ppi_ve_qd_dre_test
+46127fd1 T ppi_ve_qd_el_sensing
+46127f29 T ppi_ve_qd_logo_detect_test
+46127e81 T ppi_ve_qd_npc_test
+46127dd5 T ppi_ve_qd_off_sensing
+46127d2d T ppi_ve_qd_pixel_shift_test
+4612baa9 T ppi_ve_qd_tcon_error_status
+4612b9f9 T ppi_ve_read_demura_data
+4612b94d T ppi_ve_reload_demura_data
+46134ed5 T ppi_ve_set_8k_streaming_enhance
+461296c5 T ppi_ve_set_8K_upscaling_demo_mode
+46129a39 T ppi_ve_set_active_ambient
+46130a51 T ppi_ve_set_adaptive_picture_mode
+4612c909 T ppi_ve_set_adc_result
+46135de5 T ppi_ve_set_aging_pattern
+4612da19 T ppi_ve_set_ai_energy_mode
+4613194d T ppi_ve_set_ai_scaler_demo
+4612f60d T ppi_ve_set_ambient_control
+46131d55 T ppi_ve_set_ambient_mode
+461302dd T ppi_ve_set_amd_mode
+46135025 T ppi_ve_set_aodmode_enhance
+46130ba9 T ppi_ve_set_aov_mode
+46134781 T ppi_ve_set_app_info_hint
+4612d355 T ppi_ve_set_autobrightness_reduction
+46134581 T ppi_ve_set_auto_dim_OnOff
+46133bc9 T ppi_ve_set_auto_motion_plus
+46129619 T ppi_ve_set_ave_vconf_cb
+4612e939 T ppi_ve_set_backlight
+4612e735 T ppi_ve_set_basic_picture_data
+46135415 T ppi_ve_set_b_color
+46132411 T ppi_ve_set_bitrate
+461265d9 T ppi_ve_set_black_optimizer
+461334fd T ppi_ve_set_black_tone
+4613560d T ppi_ve_set_brightness
+46126c11 T ppi_ve_set_brightness_optimization
+46133b1d T ppi_ve_set_brightness_val
+461339bd T ppi_ve_set_brightness_with_contrast
+4612f155 T ppi_ve_set_calibratedvalue_apply
+46130afd T ppi_ve_set_calibration_mode
+46134e29 T ppi_ve_set_cameramode_enhance
+46132d81 T ppi_ve_set_cell_depth_control_demo
+461300d9 T ppi_ve_set_channel_change_onoff
+4612dcc9 T ppi_ve_set_clone_mode
+461306e9 T ppi_ve_set_cloud_game_info
+4612e7dd T ppi_ve_set_color
+461330dd T ppi_ve_set_color_gamut
+46133239 T ppi_ve_set_color_space
+46133189 T ppi_ve_set_color_space_custom_data
+4613132d T ppi_ve_set_color_space_info_with_path
+4612f0a5 T ppi_ve_set_color_temperature
+4612d761 T ppi_ve_set_color_temperature_osd
+461337b1 T ppi_ve_set_color_tone
+461356b5 T ppi_ve_set_colortone
+46130845 T ppi_ve_set_comfort_picture_level_osd
+4612907d T ppi_ve_set_condition
+46133a6d T ppi_ve_set_contrast_with_bright
+46135aa9 T ppi_ve_set_current_main_video_genre_desc
+4612eea1 T ppi_ve_set_current_temperature
+461308f1 T ppi_ve_set_current_time_ai
+4612eb3d T ppi_ve_set_decoder_info
+46133701 T ppi_ve_set_digital_clean_view
+4613153d T ppi_ve_set_display_rotator_info
+4613420d T ppi_ve_set_dlna_OnOff
+4612f201 T ppi_ve_set_dynamic_backlight
+461317f5 T ppi_ve_set_dynamic_black_eq
+46130591 T ppi_ve_set_dynamic_brightness_mode
+46132ed9 T ppi_ve_set_dynamic_contrast
+46125fb9 T ppi_ve_set_dynamic_peak_dimming
+46132a25 T ppi_ve_set_eco_sensor
+4612e88d T ppi_ve_set_energy_saving
+46126a05 T ppi_ve_set_ep_brightness
+46128fd1 T ppi_ve_set_ew_frc_post_pattern
+4612f8c9 T ppi_ve_set_expert_gamma
+4612b8a1 T ppi_ve_set_factory_backlight
+4612c845 T ppi_ve_set_factory_item
+46135c99 T ppi_ve_set_factory_onoff
+46132b7d T ppi_ve_set_film_mode
+4613521d T ppi_ve_set_fixed_backlight
+46132f85 T ppi_ve_set_flesh_tone
+4612b7f5 T ppi_ve_set_fpga_i2c_sel
+4612b749 T ppi_ve_set_fpga_scale_down
+4612b69d T ppi_ve_set_fpga_spi_flash_sel
+46126111 T ppi_ve_set_fpga_svc_pattern
+46134c2d T ppi_ve_set_framebacklight
+461348dd T ppi_ve_set_framebacklight_init
+46134cd9 T ppi_ve_set_framecurveinfo
+46134a31 T ppi_ve_set_framelux_cb
+46127c7d T ppi_ve_set_frc_contrast
+46135d3d T ppi_ve_set_frc_pattern
+46128f25 T ppi_ve_set_frc_post_pattern_low_level
+4612b5f1 T ppi_ve_set_full_dimming_test
+46132569 T ppi_ve_set_game_mode
+4613344d T ppi_ve_set_gamma
+46133399 T ppi_ve_set_gamma_10p
+461332e5 T ppi_ve_set_gamma_20p
+4612d6a9 T ppi_ve_set_gamma_32p
+461354bd T ppi_ve_set_g_color
+461342b9 T ppi_ve_set_geometry_changed
+461311cd T ppi_ve_set_hdmi_avi_info_with_path
+46132c29 T ppi_ve_set_hdmi_black_level
+4613111d T ppi_ve_set_hdmi_metadata_with_path
+46130231 T ppi_ve_set_hdr10p_game_mode
+46129355 T ppi_ve_set_hdr10_photo_mode
+4613127d T ppi_ve_set_hdr_compatibility_info_with_path
+4612de25 T ppi_ve_set_hdr_tone_map
+46130db1 T ppi_ve_set_hgig_mode
+46126d75 T ppi_ve_set_input_size
+46132211 T ppi_ve_set_instant_on
+46129401 T ppi_ve_set_intelligent_custom_info
+4612f819 T ppi_ve_set_internal_pattern
+4612ea91 T ppi_ve_set_inverse_tone_mapping
+4612ed45 T ppi_ve_set_irregular_video_wall
+4612c799 T ppi_ve_set_lcm_bootmode_onoff
+4612b545 T ppi_ve_set_lcm_mode
+4612e9e5 T ppi_ve_set_led_clear_motion
+461319f9 T ppi_ve_set_led_clear_motion_for_game
+46131695 T ppi_ve_set_led_hdr
+46134d81 T ppi_ve_set_lifestyle_enhance
+46135959 T ppi_ve_set_light_contents_info
+46126b61 T ppi_ve_set_light_detection
+46135a01 T ppi_ve_set_limit_bright_mode
+46130799 T ppi_ve_set_logo_lumi_detection
+461315e9 T ppi_ve_set_low_support_mode
+46131491 T ppi_ve_set_luminance_limit
+46131745 T ppi_ve_set_lux_information_for_ai
+46126801 T ppi_ve_set_lux_step_of_eco_sensor
+46130fbd T ppi_ve_set_mastering_display_colour_volume_with_path
+4612dd75 T ppi_ve_set_master_value
+46130f0d T ppi_ve_set_mdcv_metadata_with_path
+46126529 T ppi_ve_set_mga_pattern
+46132979 T ppi_ve_set_min_backlight
+46135bf5 T ppi_ve_set_mirror_info
+46130e5d T ppi_ve_set_mirror_mode_with_path
+461261bd T ppi_ve_set_mled_current_compensation
+461298e1 T ppi_ve_set_module_name
+46132ad1 T ppi_ve_set_motion_lighting
+4612647d T ppi_ve_set_mpeg_noise_filter
+4612b499 T ppi_ve_set_mura_bypass_test
+461346d5 T ppi_ve_set_netflix_play_state
+4612edf5 T ppi_ve_set_network_video_wall_frame_sync
+46130185 T ppi_ve_set_newhome_inout_state
+46128e79 T ppi_ve_set_off_sensing_fast_mode
+46130d05 T ppi_ve_set_oobe_dimming
+4612facd T ppi_ve_set_osd_color_effect_onoff
+4612fa21 T ppi_ve_set_osd_gray_onoff
+461328c9 T ppi_ve_set_osd_information
+4612ef4d T ppi_ve_set_outdoor_mode
+461304e1 T ppi_ve_set_overdrive
+46132819 T ppi_ve_set_panel_mute
+4613276d T ppi_ve_set_panel_seamless_mute
+4612b3e9 T ppi_ve_set_paneltype_mode
+461324bd T ppi_ve_set_pc_mode
+46130435 T ppi_ve_set_peak_brightness
+46130389 T ppi_ve_set_peak_brightness_prj
+4612fcd1 T ppi_ve_set_photo_loading_onoff
+46131ca9 T ppi_ve_set_photo_mode
+461318a1 T ppi_ve_set_picture_ai_tech
+4612fe29 T ppi_ve_set_picture_change_by_user_onoff
+4612ec99 T ppi_ve_set_picture_enhancement
+46133de1 T ppi_ve_set_picture_information
+46135b51 T ppi_ve_set_picturemenu_info
+4612fed5 T ppi_ve_set_picture_setting_onoff
+4613437d T ppi_ve_set_pig_onoff
+4613002d T ppi_ve_set_pip_channel_change_onoff
+461313e1 T ppi_ve_set_pip_information_with_path
+4612ff81 T ppi_ve_set_pip_onoff
+461320b1 T ppi_ve_set_pixelShift
+4612ded1 T ppi_ve_set_pixel_shift_onoff
+46132009 T ppi_ve_set_pnp_dimming
+461350cd T ppi_ve_set_portlandmirroring_enhance
+46133c79 T ppi_ve_set_postresolution_info
+46133f35 T ppi_ve_set_power_state_info
+46135565 T ppi_ve_set_r_color
+4612b335 T ppi_ve_set_recovery_mode
+4612db71 T ppi_ve_set_relumino_border
+4612dac5 T ppi_ve_set_relumino_color
+4612dc1d T ppi_ve_set_relumino_mode
+46133d2d T ppi_ve_set_resolution_info
+4612998d T ppi_ve_set_resolution_position
+461340ad T ppi_ve_set_rgb_measure_position
+461335a9 T ppi_ve_set_rgb_only_mode
+4613536d T ppi_ve_set_saturation
+46134429 T ppi_ve_set_screen_protected_app_launched
+4612fc25 T ppi_ve_set_seamless_play_onoff
+4612e689 T ppi_ve_set_self_diagnosis_pattern
+46133911 T ppi_ve_set_sharpness
+4612fd7d T ppi_ve_set_shop_mode_onoff
+46135175 T ppi_ve_set_sideblack_enhance
+4612d969 T ppi_ve_set_simple_info
+46131f5d T ppi_ve_set_smartbox
+46132615 T ppi_ve_set_smart_led
+46131aa5 T ppi_ve_set_smooth_motion_control
+4613099d T ppi_ve_set_sunset_sunrise_info_ai
+4612adbd T ppi_ve_set_tcon_fpga_ig_ctrl
+46134831 T ppi_ve_set_tcon_freeze_OnOff
+46128dcd T ppi_ve_set_tcon_screen_saver
+46133861 T ppi_ve_set_tint
+4612ac5d T ppi_ve_set_tvaccess_mode
+4612fb79 T ppi_ve_set_uhd_video_pack_onoff
+46132cd5 T ppi_ve_set_ultra_clean_view_demo
+461344d5 T ppi_ve_set_underfit_mode
+4612d559 T ppi_ve_set_underfit_step_down
+4612d601 T ppi_ve_set_underfit_step_up
+46134f7d T ppi_ve_set_user_enviroment_max_lux
+461352c5 T ppi_ve_set_usesensor
+4612b289 T ppi_ve_set_vae_test
+46132e2d T ppi_ve_set_video_signal_activity
+46131071 T ppi_ve_set_video_stop_with_path
+4612eff9 T ppi_ve_set_video_wall_frame_sync
+46129835 T ppi_ve_set_virtual_screen_info
+4612d80d T ppi_ve_set_vrr_control
+46131b51 T ppi_ve_set_vrr_mode
+46130c55 T ppi_ve_set_vrr_mode_type
+46133031 T ppi_ve_set_white_balance
+4612b1d5 T ppi_ve_start_internal_test
+4613575d T ppi_ve_start_local_dimming_test
+46133e8d T ppi_ve_start_monitor
+46132369 T ppi_ve_start_videoenhancer_init
+4612a901 T ppi_ve_system_get_frc3d_error_count
+4612a855 T ppi_ve_system_get_main_out_error_count
+4612a7a9 T ppi_ve_system_get_micom_error_count
+4612a6fd T ppi_ve_system_get_panel_vfreq
+4612a651 T ppi_ve_system_get_pmic_error_count
+4612a5a5 T ppi_ve_system_get_pmic_error_count_2_vdd
+4612a4f9 T ppi_ve_system_get_pmic_error_count_3_vdd_tcon
+4612a44d T ppi_ve_system_get_power_off_time
+4612a249 T ppi_ve_system_get_rank_number
+4612a3a1 T ppi_ve_system_get_temp_last
+4612a2f5 T ppi_ve_system_get_usit_error_count
+4612a19d T ppi_ve_system_set_frc3d_error_count
+4612a0f1 T ppi_ve_system_set_main_out_error_count
+4612a045 T ppi_ve_system_set_micom_error_count
+46129f99 T ppi_ve_system_set_panel_vfreq
+46129eed T ppi_ve_system_set_pmic_error_count
+46129e41 T ppi_ve_system_set_pmic_error_count_2_vdd
+46129d95 T ppi_ve_system_set_pmic_error_count_3_vdd_tcon
+46129ce9 T ppi_ve_system_set_power_off_time
+46129c3d T ppi_ve_system_set_rank_number
+46129b91 T ppi_ve_system_set_temp_last
+46129ae5 T ppi_ve_system_set_usit_error_count
+46127bd5 T ppi_ve_tcon_emmc_test
+46127b2d T ppi_ve_tcon_get_pmic_status
+46127a85 T ppi_ve_tcon_get_usit_status
+461279d9 T ppi_ve_tcon_set_dlg_mode
+4612792d T ppi_ve_tcon_set_usit_dvdd
+46127881 T ppi_ve_tcon_set_vrr_pattern
+461276fd T ppi_ve_tcon_set_vrr_setting
+4612c6ed T ppi_ve_update_mura_data
+461263d1 T ppi_ve_update_patial_fpga_data
+4612c63d T ppi_ve_update_total_mura
+4612b125 T ppi_ve_update_total_mura_display
+4612b075 T ppi_ve_upgrade_flash_automation
+4612afc9 T ppi_ve_upgrade_flash_data_force
+46129561 T ppi_ve_vconf_start
+4612af1d T ppi_ve_vx1_cmd_test
+4612e485 T ppi_videoenhancer_get_backend_data_address
+         U strcmp@GLIBC_2.4
+         U vconf_set_int@VCONF_BUXTON_1.0
+         U vconf_set_str@VCONF_BUXTON_1.0
+4612df7d T _Z23ppi_ve_vconf_cb_handlerPvS_
+4612e529 T _Z29ppi_videoenhancer_get_backendv
+4612e479 T _Z34ppi_videoenhancer_get_backend_datav
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 392 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 46125b7c     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 4614e054     0 SECTION LOCAL  DEFAULT   20 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlerror@GLIBC_2.4 (2)
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND @VCONF_BUXTON_1.0 (3)
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.4 (4)
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@libecs-sec-tv.so.0 (5)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlopen@GLIBC_2.4 (2)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND @VCONF_BUXTON_1.0 (3)
+     9: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.4 (4)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND strcmp@GLIBC_2.4 (4)
+    12: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    13: 00000000     0 FUNC    GLOBAL DEFAULT  UND __ae[...]@GCC_3.5 (6)
+    14: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    15: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    16: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (4)
+    17: 461268ad   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_enable_mu[...]
+    18: 461342b9   196 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_geome[...]
+    19: 4612fe29   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pictu[...]
+    20: 46132b7d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_film_mode
+    21: 461328c9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_osd_i[...]
+    22: 46134d81   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_lifes[...]
+    23: 4612792d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_tcon_set_[...]
+    24: 4612b5f1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_full_[...]
+    25: 46126321   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_backup_re[...]
+    26: 46134e29   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_camer[...]
+    27: 4612eea1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_curre[...]
+    28: 4612cc79   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_fpga_[...]
+    29: 4612f975   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_exper[...]
+    30: 46133911   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_sharpness
+    31: 4613194d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_ai_sc[...]
+    32: 4612fb79   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_uhd_v[...]
+    33: 4613002d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pip_c[...]
+    34: 4612f60d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_ambie[...]
+    35: 46126065   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_mled_[...]
+    36: 461304e1   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_overdrive
+    37: 4612a3a1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+    38: 4612c845   196 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_facto[...]
+    39: 461340ad   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_rgb_m[...]
+    40: 4612ac5d   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_tvacc[...]
+    41: 46134831   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_tcon_[...]
+    42: 461300d9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_chann[...]
+    43: 461289b1   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_fpga_set_[...]
+    44: 4612b125   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_update_to[...]
+    45: 46128d19   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_cell_[...]
+    46: 461339bd   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_brigh[...]
+    47: 4612dac5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_relum[...]
+    48: 4612e479    12 FUNC    GLOBAL DEFAULT   11 _Z34ppi_videoenh[...]
+    49: 461276fd   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_tcon_set_[...]
+    50: 461306e9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_cloud[...]
+    51: 4612c6ed   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_update_mu[...]
+    52: 46127881   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_tcon_set_[...]
+    53: 46126d75   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_input_size
+    54: 46133d2d   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_resol[...]
+    55: 4612dd75   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_maste[...]
+    56: 46134f7d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_user_[...]
+    57: 4613560d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_brightness
+    58: 46132615   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_smart_led
+    59: 4613344d   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_gamma
+    60: 4612bf6d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_ffc_c[...]
+    61: 461337b1   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_color_tone
+    62: 4612f405   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_pc_mode
+    63: 4612c019   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_ext_t[...]
+    64: 46127e81   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_qd_npc_test
+    65: 461324bd   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pc_mode
+    66: 461358b1   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_senso[...]
+    67: 4612ec99   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pictu[...]
+    68: 4612f155   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_calib[...]
+    69: 4612bec1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_mled_[...]
+    70: 46129c3d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+    71: 4612bc01   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_tcon_[...]
+    72: 46132979   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_min_b[...]
+    73: 461298e1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_modul[...]
+    74: 4612b545   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_lcm_mode
+    75: 4612b3e9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_panel[...]
+    76: 4612b075   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_upgrade_f[...]
+    77: 46127bd5   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_tcon_emmc_test
+    78: 461348dd   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_frame[...]
+    79: 4612f55d   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_inter[...]
+    80: 4612bcb1   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_pmic_[...]
+    81: 46135025   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_aodmo[...]
+    82: 4612e735   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_basic[...]
+    83: 461292a9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_woled[...]
+    84: 4612831d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_frc_usit_test
+    85: 46130389   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_peak_[...]
+    86: 46126c11   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_brigh[...]
+    87: 46128519   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_frc_spi_test
+    88: 4613127d   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_hdr_c[...]
+    89: 46129ce9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+    90: 4612d80d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_vrr_c[...]
+    91: 4612cdd9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_backe[...]
+    92: 4612a855   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+    93: 46130d05   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_oobe_[...]
+    94: 4612c0c9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_ext_temp
+    95: 4612a44d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+    96: 46132f85   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_flesh_tone
+    97: 46128275   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_init_module
+    98: 4612ea91   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_inver[...]
+    99: 46131d55   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_ambie[...]
+   100: 46135565   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_r_color
+   101: 46135e89   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_panel[...]
+   102: 4612dcc9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_clone_mode
+   103: 46129771   196 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_calib[...]
+   104: 461296c5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_8K_up[...]
+   105: 4612b9f9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_read_demu[...]
+   106: 46129619   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_ave_v[...]
+   107: 46129ae5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+   108: 46127f29   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_qd_logo_d[...]
+   109: 461291d9   208 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_woled[...]
+   110: 46133de1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pictu[...]
+   111: 46135809   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_color[...]
+   112: 4612be11   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_mled_[...]
+   113: 4612abb1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_memory_ge[...]
+   114: 46131695   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_led_hdr
+   115: 4612e529   352 FUNC    GLOBAL DEFAULT   11 _Z29ppi_videoenh[...]
+   116: 46135a01   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_limit[...]
+   117: 46131aa5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_smoot[...]
+   118: 46135175   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_sideb[...]
+   119: 46133b1d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_brigh[...]
+   120: 46134ed5   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_8k_st[...]
+   121: 461332e5   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_gamma_20p
+   122: 4612a249   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+   123: 46129f99   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+   124: 4612f765   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_conve[...]
+   125: 4612807d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_qd_dre_test
+   126: 46127b2d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_tcon_get_[...]
+   127: 461283c5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_frc_usit_[...]
+   128: 4612a7a9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+   129: 46128471   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_frc_syste[...]
+   130: 46135415   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_b_color
+   131: 46128e79   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_off_s[...]
+   132: 46133c79   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_postr[...]
+   133: 46133189   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_color[...]
+   134: 4612c63d   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_update_to[...]
+   135: 461313e1   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pip_i[...]
+   136: 4612f0a5   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_color[...]
+   137: 4613153d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_displ[...]
+   138: 46128a61   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_fpga_pre_[...]
+   139: 46133f35   200 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_power[...]
+   140: 461352c5   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_usesensor
+   141: 4612dc1d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_relum[...]
+   142: 461261bd   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_mled_[...]
+   143: 46127425   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_bm_get_ec[...]
+   144: 4612f359   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_histo[...]
+   145: 4612c175   180 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_cell_[...]
+   146: 4612fa21   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_osd_g[...]
+   147: 4612c9bd   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_pc_do_cal[...]
+   148: 46132009   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pnp_d[...]
+   149: 46130ba9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_aov_mode
+   150: 461326c1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_check_pan[...]
+   151: 4612a0f1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+   152: 46132569   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_game_mode
+   153: 4612d14d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_backup_re[...]
+   154: 46130231   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_hdr10[...]
+   155: 4612cd29   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_flash[...]
+   156: 4612b749   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_fpga_[...]
+   157: 4612cb19   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_tcon_info
+   158: 4612f201   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_dynam[...]
+   159: 461319f9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_led_c[...]
+   160: 4612fed5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pictu[...]
+   161: 4612f6b9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_ambie[...]
+   162: 4612e485   164 FUNC    GLOBAL DEFAULT   11 ppi_videoenhance[...]
+   163: 46135aa9   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_curre[...]
+   164: 4612bb55   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_jackpack_[...]
+   165: 46131491   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_lumin[...]
+   166: 46133bc9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_auto_[...]
+   167: 4612a2f5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+   168: 4612a045   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+   169: 46126685   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_ave_debug
+   170: 46128b09   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_ext_cmd_test
+   171: 46128125   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_qd_check_[...]
+   172: 4612d1f9   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_analog_vi[...]
+   173: 4612d4ad   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_under[...]
+   174: 461263d1   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_update_pa[...]
+   175: 46128dcd   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_tcon_[...]
+   176: 46135bf5   164 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_mirro[...]
+   177: 4612e7dd   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_color
+   178: 4613575d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_start_loc[...]
+   179: 46134cd9   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_frame[...]
+   180: 4612a901   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_ge[...]
+   181: 46135d3d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_frc_p[...]
+   182: 461356b5   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_colortone
+   183: 4612e9e5   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_led_c[...]
+   184: 4612ed45   176 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_irreg[...]
+   185: 4612c229   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_erase_dem[...]
+   186: 4612a19d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_system_se[...]
+   187: 4612647d   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_mpeg_[...]
+   188: 46134985   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_frame[...]
+   189: 46133e8d   168 FUNC    GLOBAL DEFAULT   11 ppi_ve_start_monitor
+   190: 4612f8c9   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_exper[...]
+   191: 46126a05   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_ep_br[...]
+   192: 4612f2ad   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_ecose[...]
+   193: 461334fd   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_black_tone
+   194: 46135b51   164 FUNC    GLOBAL DEFAULT   11 ppi_ve_set_pictu[...]
+   195: 46133655   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_get_noise[...]
+   196: 461322bd   172 FUNC    GLOBAL DEFAULT   11 ppi_ve_check_dim[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+  None found
+
+SCREEN functions:
+46134429 T ppi_ve_set_screen_protected_app_launched
+46128dcd T ppi_ve_set_tcon_screen_saver
+46129835 T ppi_ve_set_virtual_screen_info
+
+PIXEL/SAMPLE functions:
+46133ffd T ppi_ve_get_rgb_measure_pixel
+46127d2d T ppi_ve_qd_pixel_shift_test
+461320b1 T ppi_ve_set_pixelShift
+4612ded1 T ppi_ve_set_pixel_shift_onoff
+
+VIDEO functions:
+4612d1f9 T ppi_ve_analog_video_do_calibration
+46135aa9 T ppi_ve_set_current_main_video_genre_desc
+4612ed45 T ppi_ve_set_irregular_video_wall
+4612edf5 T ppi_ve_set_network_video_wall_frame_sync
+4612fb79 T ppi_ve_set_uhd_video_pack_onoff
+46132e2d T ppi_ve_set_video_signal_activity
+46131071 T ppi_ve_set_video_stop_with_path
+4612eff9 T ppi_ve_set_video_wall_frame_sync
+46132369 T ppi_ve_start_videoenhancer_init
+4612e485 T ppi_videoenhancer_get_backend_data_address
+4612e529 T _Z29ppi_videoenhancer_get_backendv
+4612e479 T _Z34ppi_videoenhancer_get_backend_datav
+
+GET/INSTANCE functions:
+46127581 T ppi_ve_bm_get_colorsensor_adc
+461274d5 T ppi_ve_bm_get_dimm_backlight
+46127425 T ppi_ve_bm_get_ecosensor_adc
+4612ae69 T ppi_ve_fpga_get_common
+46128c69 T ppi_ve_get_ambient_protection
+4612f6b9 T ppi_ve_get_ambient_value
+4612cdd9 T ppi_ve_get_backend_info
+46126959 T ppi_ve_get_brightness
+4612d8b9 T ppi_ve_get_calibration_info
+46129771 T ppi_ve_get_calibration_target_info
+4612c175 T ppi_ve_get_cell_auto_detect
+46128d19 T ppi_ve_get_cell_temp_protection
+46135809 T ppi_ve_get_colorsensor_info
+46131eb1 T ppi_ve_get_color_space_info_status
+4612f765 T ppi_ve_get_convert_backlight_value
+4613063d T ppi_ve_get_dynamic_brightness_mode
+4612f2ad T ppi_ve_get_ecosensor_state
+4612f975 T ppi_ve_get_expert_gamma
+46127025 T ppi_ve_get_ext_ids_value
+4612c0c9 T ppi_ve_get_ext_temp
+4612c019 T ppi_ve_get_ext_temp_pcb
+4612bf6d T ppi_ve_get_ffc_cable_status
+4612cd29 T ppi_ve_get_flash_wp_status
+4612cc79 T ppi_ve_get_fpga_version
+46134b85 T ppi_ve_get_framebacklight
+46134ad9 T ppi_ve_get_framebacklight_range
+4612f4b1 T ppi_ve_get_frame_lock
+46134985 T ppi_ve_get_framelux_level
+4612d2a9 T ppi_ve_get_framerate_multiplier
+46126cc5 T ppi_ve_get_gamma_lut
+4612f359 T ppi_ve_get_histo_value
+46125db1 T ppi_ve_get_humidity_ext
+4612f55d T ppi_ve_get_internal_pattern_state
+46126ab1 T ppi_ve_get_light_detection
+46131e01 T ppi_ve_get_master_value
+4612bec1 T ppi_ve_get_mled_cal_data_write_check
+46126065 T ppi_ve_get_mled_current_sensor_support
+4612be11 T ppi_ve_get_mled_fpga_version_no_tag
+4612cbc9 T ppi_ve_get_multisensor_temperature
+46133655 T ppi_ve_get_noise_meter_index
+4612bd61 T ppi_ve_get_oled_power_level
+46135e89 T ppi_ve_get_panel_config_type
+4612f405 T ppi_ve_get_pc_mode
+46125f09 T ppi_ve_get_pmic_fault_register_status
+4612bcb1 T ppi_ve_get_pmic_fault_with_reason
+46126f79 T ppi_ve_get_pmic_result_mode
+46125d01 T ppi_ve_get_pqreg_access_status
+461277a9 T ppi_ve_get_qdoled_subotp_tcon_check
+46134161 T ppi_ve_get_rgb_measure_condition
+46133ffd T ppi_ve_get_rgb_measure_pixel
+461358b1 T ppi_ve_get_sensor_detected
+4613462d T ppi_ve_get_size_of_VE_PPI_Frame_User_Backlight_Param
+4612bc01 T ppi_ve_get_tcon_fw_version
+4612cb19 T ppi_ve_get_tcon_info
+461294ad T ppi_ve_get_tcon_ip_status
+46126ecd T ppi_ve_get_tcon_status
+4612ca6d T ppi_ve_get_temperature
+46125e5d T ppi_ve_get_temperature_ext
+46128bb5 T ppi_ve_get_temp_protection
+4612d4ad T ppi_ve_get_underfit_current_step
+4612d401 T ppi_ve_get_underfit_max_step
+46126e21 T ppi_ve_get_usit_version
+461292a9 T ppi_ve_get_woled_error_detect_status
+461291d9 T ppi_ve_get_woled_subotp_lut_check
+4612912d T ppi_ve_get_woled_sync_done_status
+4612abb1 T ppi_ve_memory_get_pmic_fault
+4612ab05 T ppi_ve_memory_get_power_consumption
+4612a901 T ppi_ve_system_get_frc3d_error_count
+4612a855 T ppi_ve_system_get_main_out_error_count
+4612a7a9 T ppi_ve_system_get_micom_error_count
+4612a6fd T ppi_ve_system_get_panel_vfreq
+4612a651 T ppi_ve_system_get_pmic_error_count
+4612a5a5 T ppi_ve_system_get_pmic_error_count_2_vdd
+4612a4f9 T ppi_ve_system_get_pmic_error_count_3_vdd_tcon
+4612a44d T ppi_ve_system_get_power_off_time
+4612a249 T ppi_ve_system_get_rank_number
+4612a3a1 T ppi_ve_system_get_temp_last
+4612a2f5 T ppi_ve_system_get_usit_error_count
+46127b2d T ppi_ve_tcon_get_pmic_status
+46127a85 T ppi_ve_tcon_get_usit_status
+4612e485 T ppi_videoenhancer_get_backend_data_address
+4612e529 T _Z29ppi_videoenhancer_get_backendv
+4612e479 T _Z34ppi_videoenhancer_get_backend_datav
+
+LOCK/UNLOCK functions:
+461270d1 T ppi_ve_check_vx1_lock_status
+4612f4b1 T ppi_ve_get_frame_lock
+
+YUV/RGB/FRAME/BUFFER functions:
+46134b85 T ppi_ve_get_framebacklight
+46134ad9 T ppi_ve_get_framebacklight_range
+4612f4b1 T ppi_ve_get_frame_lock
+46134985 T ppi_ve_get_framelux_level
+4612d2a9 T ppi_ve_get_framerate_multiplier
+46134161 T ppi_ve_get_rgb_measure_condition
+46133ffd T ppi_ve_get_rgb_measure_pixel
+4613462d T ppi_ve_get_size_of_VE_PPI_Frame_User_Backlight_Param
+46134c2d T ppi_ve_set_framebacklight
+461348dd T ppi_ve_set_framebacklight_init
+46134cd9 T ppi_ve_set_framecurveinfo
+46134a31 T ppi_ve_set_framelux_cb
+4612edf5 T ppi_ve_set_network_video_wall_frame_sync
+461340ad T ppi_ve_set_rgb_measure_position
+461335a9 T ppi_ve_set_rgb_only_mode
+4612eff9 T ppi_ve_set_video_wall_frame_sync

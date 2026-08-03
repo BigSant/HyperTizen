@@ -1,0 +1,632 @@
+==================================================================
+Library: libscreen_connector_remote_surface.so.1.9.5
+Path: /home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libscreen_connector_remote_surface.so.1.9.5
+==================================================================
+
+--- File Info ---
+/home/icetea/projects/fix-hypertizen/hypertizen-minimal-fix/references/tizen9_os_files/usr/lib/libscreen_connector_remote_surface.so.1.9.5: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=b6f4c111ea9b27f7c8ecf8252ee1605a2c2ef23a, stripped
+
+--- Size ---
+54K
+
+--- All Exported Symbols (nm -D) ---
+         U __aeabi_atexit@CXXABI_ARM_1.3.3
+         U __aeabi_unwind_cpp_pr0@GCC_3.5
+         U __aeabi_unwind_cpp_pr1@GCC_3.5
+         U aul_screen_connector_add_screen_viewer
+         U aul_screen_connector_remove_screen_viewer
+         U aul_screen_connector_send_update_request
+         U close@GLIBC_2.4
+         U __cxa_end_cleanup@CXXABI_1.3
+         w __cxa_finalize@GLIBC_2.4
+         U __cxa_guard_abort@CXXABI_1.3
+         U __cxa_guard_acquire@CXXABI_1.3
+         U __cxa_guard_release@CXXABI_1.3
+         U __dlog_print
+         U ecore_event_handler_add
+         U ecore_event_handler_del
+         U ecore_wl2_connected_display_get
+         U ecore_wl2_display_connect
+         U ecore_wl2_display_disconnect
+         U ecore_wl2_display_get
+         U ecore_wl2_display_globals_get
+         U ecore_wl2_display_registry_get
+         U ECORE_WL2_EVENT_WINDOW_HIDE
+         U ECORE_WL2_EVENT_WINDOW_PRE_VISIBILITY_CHANGE
+         U ECORE_WL2_EVENT_WINDOW_SHOW
+         U ECORE_WL2_EVENT_WINDOW_VISIBILITY_CHANGE
+         U ecore_wl2_init
+         U ecore_wl2_shutdown
+         U eina_iterator_free
+         U eina_iterator_next
+         w __gmon_start__
+         U g_source_remove
+         U g_timeout_add
+         U __gxx_personality_v0@CXXABI_1.3
+         w _ITM_deregisterTMCloneTable
+         w _ITM_registerTMCloneTable
+         U memcmp@GLIBC_2.4
+         U memcpy@GLIBC_2.4
+         w __pthread_key_create@GLIBC_2.4
+         U __stack_chk_fail@GLIBC_2.4
+         U __stack_chk_guard@GLIBC_2.4
+         U strcmp@GLIBC_2.4
+         U strlen@GLIBC_2.4
+         U tbm_surface_internal_unref
+         U tizen_remote_surface_interface
+         U tizen_remote_surface_manager_interface
+         U wayland_tbm_client_deinit
+         U wayland_tbm_client_get_wl_tbm
+         U wayland_tbm_client_init
+         U wl_proxy_add_listener
+         U wl_proxy_get_user_data
+         U wl_proxy_get_version
+         U wl_proxy_marshal_flags
+         U wl_proxy_set_user_data
+         U _ZdlPv@GLIBCXX_3.4
+         U _ZdlPvj@CXXABI_1.3.9
+00007765 T _ZN16screen_connector13RemoteSurface11FiniManagerEv
+0000775d T _ZN16screen_connector13RemoteSurface11InitManagerEv
+00007aa9 T _ZN16screen_connector13RemoteSurface11SendMouseUpEiij
+000088f1 T _ZN16screen_connector13RemoteSurface12SendKeyEventERKNS_5input12KeyEventArgsE
+000075c1 T _ZN16screen_connector13RemoteSurface13OnBufferAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007b81 T _ZN16screen_connector13RemoteSurface14SendVisibilityEb
+000075c5 T _ZN16screen_connector13RemoteSurface15OnBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+000075c1 T _ZN16screen_connector13RemoteSurface15OnBufferRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007985 T _ZN16screen_connector13RemoteSurface15SendTouchCancelEv
+00007cfd T _ZN16screen_connector13RemoteSurface15SetRemoteRenderEv
+00007ced T _ZN16screen_connector13RemoteSurface17ClearRemoteRenderEv
+000088f9 T _ZN16screen_connector13RemoteSurface21SetChangedEventFilterENS0_18ChangedEventFilterE
+00007775 T _ZN16screen_connector13RemoteSurface22SetDelayedResumingTimeEj
+00007991 T _ZN16screen_connector13RemoteSurface4BindESt10shared_ptrINS_9WlSurfaceEE
+00008729 T _ZN16screen_connector13RemoteSurface4Impl10OnAppAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007581 T _ZN16screen_connector13RemoteSurface4Impl12OnAppFocusedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007629 T _ZN16screen_connector13RemoteSurface4Impl12OnAppRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+000080bd T _ZN16screen_connector13RemoteSurface4Impl12OnAppUpdatedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00008825 T _ZN16screen_connector13RemoteSurface4Impl12SendKeyEventERKNS_5input12KeyEventArgsE
+00007955 T _ZN16screen_connector13RemoteSurface4Impl16SetResumingTimerEv
+000077c9 T _ZN16screen_connector13RemoteSurface4Impl18ClearResumingTimerEv
+00007d61 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b25 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+0001d214 B _ZN16screen_connector13RemoteSurface4Impl19buffer_event_table_E
+000075e1 T _ZN16screen_connector13RemoteSurface4Impl20OnInputFilterChangedEj
+0001d22c B _ZN16screen_connector13RemoteSurface4Impl22delayed_resuming_time_E
+00007f11 T _ZN16screen_connector13RemoteSurface4Impl8RedirectEv
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007941 T _ZN16screen_connector13RemoteSurface4ImplD0Ev
+000077dd T _ZN16screen_connector13RemoteSurface4ImplD1Ev
+000077dd T _ZN16screen_connector13RemoteSurface4ImplD2Ev
+00007cd9 T _ZN16screen_connector13RemoteSurface4ThawEv
+00007cb5 T _ZN16screen_connector13RemoteSurface6FreezeEb
+00007cd1 T _ZN16screen_connector13RemoteSurface6GetRawEv
+000075c9 T _ZN16screen_connector13RemoteSurface6OnBindEv
+000076b5 T _ZN16screen_connector13RemoteSurface6UnbindEv
+00007ac5 T _ZN16screen_connector13RemoteSurface8SetBlockEb
+000077ad T _ZN16screen_connector13RemoteSurfaceaSEOS0_
+000085d1 T _ZN16screen_connector13RemoteSurfaceC1EiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007789 T _ZN16screen_connector13RemoteSurfaceC1EOS0_
+000082f9 T _ZN16screen_connector13RemoteSurfaceC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+000085d1 T _ZN16screen_connector13RemoteSurfaceC2EiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007789 T _ZN16screen_connector13RemoteSurfaceC2EOS0_
+000082f9 T _ZN16screen_connector13RemoteSurfaceC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+000075cd T _ZN16screen_connector13RemoteSurfaceD0Ev
+00007585 T _ZN16screen_connector13RemoteSurfaceD1Ev
+00007585 T _ZN16screen_connector13RemoteSurfaceD2Ev
+0000ae75 T _ZN16screen_connector13WindowContext12OnWindowHideEj
+0000b019 T _ZN16screen_connector13WindowContext12OnWindowShowEj
+0000ae35 T _ZN16screen_connector13WindowContext12RemoveWindowEj
+0000aeb9 T _ZN16screen_connector13WindowContext12UpdateWindowEjb
+0000b05d T _ZN16screen_connector13WindowContext24OnWindowVisibilityChangeEjb
+0000b0a5 T _ZN16screen_connector13WindowContext27OnWindowPreVisibilityChangeEjb
+0000ad81 T _ZN16screen_connector13WindowContextC1Ev
+0000ad81 T _ZN16screen_connector13WindowContextC2Ev
+0000b295 W _ZN16screen_connector13WindowContextD0Ev
+0000b221 W _ZN16screen_connector13WindowContextD1Ev
+0000b221 W _ZN16screen_connector13WindowContextD2Ev
+0000b129 W _ZN16screen_connector17EcoreEventHandler12EcoreEventCBEPviS1_
+0000b1bd W _ZN16screen_connector17EcoreEventHandlerD0Ev
+0000b0ed W _ZN16screen_connector17EcoreEventHandlerD1Ev
+0000b0ed W _ZN16screen_connector17EcoreEventHandlerD2Ev
+00009bd1 T _ZN16screen_connector20RemoteSurfaceManager4BindERKNS_4ITRSERKNS_9WlSurfaceE
+00009859 T _ZN16screen_connector20RemoteSurfaceManager4InitEv
+00009c11 T _ZN16screen_connector20RemoteSurfaceManager6UnbindERKNS_4ITRSE
+000097c5 T _ZN16screen_connector20RemoteSurfaceManager7DisposeEv
+00009b4d T _ZN16screen_connector20RemoteSurfaceManager7GetInstEb
+00009c4d T _ZN16screen_connector20RemoteSurfaceManager9CreateTRSEiSt10shared_ptrINS_9WlSurfaceEEb
+000097b9 T _ZN16screen_connector20RemoteSurfaceManagerC1Ev
+000097b9 T _ZN16screen_connector20RemoteSurfaceManagerC2Ev
+00009845 T _ZN16screen_connector20RemoteSurfaceManagerD1Ev
+00009845 T _ZN16screen_connector20RemoteSurfaceManagerD2Ev
+0000a321 W _ZN16screen_connector3TRS11AddListenerEPNS_4ITRS14IEventListenerE
+0000a9c9 W _ZN16screen_connector3TRS15BufferChangedCBEPvP20tizen_remote_surfacejP9wl_bufferijjP8wl_array
+00009ec5 W _ZN16screen_connector3TRS15BufferMissingCBEPvP20tizen_remote_surface
+00009ec1 W _ZN16screen_connector3TRS15BufferUpdatedCBEPvP20tizen_remote_surfaceP9wl_bufferj
+0000abdd W _ZN16screen_connector3TRS15GetRawInputTypeENS_4ITRS9InputTypeE
+0000a501 W _ZN16screen_connector3TRS15SetRemoteRenderEb
+0000a3dd W _ZN16screen_connector3TRS15TransferMouseUpEiij
+0000a121 W _ZN16screen_connector3TRS16TransferKeyEventEjijjPKcj
+00009ecd W _ZN16screen_connector3TRS18InputEventFilterCBEPvP20tizen_remote_surfacej
+0000a04d W _ZN16screen_connector3TRS18TransferMouseEventEjiiiiiiiijjPKcj
+00009fdd W _ZN16screen_connector3TRS18TransferMouseWheelEjijjPKcj
+0000a191 W _ZN16screen_connector3TRS18TransferTouchEventEjiiiiiiiijjPKcj
+0000a47d W _ZN16screen_connector3TRS18TransferVisibilityEb
+0000a2c1 W _ZN16screen_connector3TRS19TransferTouchCancelEv
+0000a279 W _ZN16screen_connector3TRS27SetChangedBufferEventFilterEi
+0000a239 W _ZN16screen_connector3TRS8RedirectEv
+0000a6f5 W _ZN16screen_connector3TRSD0Ev
+0000a585 W _ZN16screen_connector3TRSD1Ev
+0000a585 W _ZN16screen_connector3TRSD2Ev
+00008aed W _ZN16screen_connector4test13AulHandleMockD0Ev
+00008a89 W _ZN16screen_connector4test13AulHandleMockD1Ev
+00008a89 W _ZN16screen_connector4test13AulHandleMockD2Ev
+00009f05 W _ZN16screen_connector4test7TRSMock11AddListenerEPNS_4ITRS14IEventListenerE
+00009ef5 W _ZN16screen_connector4test7TRSMock15SetRemoteRenderEb
+00009eed W _ZN16screen_connector4test7TRSMock15TransferMouseUpEiij
+00009f1d W _ZN16screen_connector4test7TRSMock16TransferKeyEventEjijjPKcj
+00009f15 W _ZN16screen_connector4test7TRSMock18TransferMouseEventEjiiiiiiiijjPKcj
+00009f25 W _ZN16screen_connector4test7TRSMock18TransferMouseWheelEjijjPKcj
+00009f0d W _ZN16screen_connector4test7TRSMock18TransferTouchEventEjiiiiiiiijjPKcj
+00009edd W _ZN16screen_connector4test7TRSMock18TransferVisibilityEb
+00009ee5 W _ZN16screen_connector4test7TRSMock19TransferTouchCancelEv
+00009efd W _ZN16screen_connector4test7TRSMock27SetChangedBufferEventFilterEi
+00009f4d W _ZN16screen_connector4test7TRSMock8RedirectEv
+0000a811 W _ZN16screen_connector4test7TRSMockD0Ev
+0000a93d W _ZN16screen_connector4test7TRSMockD1Ev
+0000a93d W _ZN16screen_connector4test7TRSMockD2Ev
+         U _ZN16screen_connector5input5Proxy12SendKeyEventENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_12KeyEventArgsERb
+         U _ZN16screen_connector5input5Proxy7ConnectEv
+         U _ZN16screen_connector5input5ProxyC1ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+0000a3c9 W _ZN16screen_connector8WlBufferD0Ev
+0000a365 W _ZN16screen_connector8WlBufferD1Ev
+0000a365 W _ZN16screen_connector8WlBufferD2Ev
+000090b5 W _ZN16screen_connector9AulHandle17AulScreenViewerCBEPKcS2_ij33aul_screen_connector_event_type_ePv
+00008a5d W _ZN16screen_connector9AulHandleD0Ev
+00008a39 W _ZN16screen_connector9AulHandleD1Ev
+00008a39 W _ZN16screen_connector9AulHandleD2Ev
+00007ce5 T _ZNK16screen_connector13RemoteSurface21GetChangedEventFilterEv
+00007b1d T _ZNK16screen_connector13RemoteSurface6GetPidEv
+00007b71 T _ZNK16screen_connector13RemoteSurface6GetRidEv
+00007b79 T _ZNK16screen_connector13RemoteSurface7GetTypeEv
+00007a9d T _ZNK16screen_connector13RemoteSurface7IsBoundEv
+00007abd T _ZNK16screen_connector13RemoteSurface8GetAppIdB5cxx11Ev
+00007cc9 T _ZNK16screen_connector13RemoteSurface8IsFrozenEv
+00007b15 T _ZNK16screen_connector13RemoteSurface9GetInstIdB5cxx11Ev
+00009eb5 W _ZNK16screen_connector3TRS9GetHandleEv
+00009ed5 W _ZNK16screen_connector4test7TRSMock9GetHandleEv
+         U _ZNK16screen_connector5input5Proxy11IsConnectedEv
+         U _ZNKSt9type_infoeqERKS_@GLIBCXX_3.4
+00008a2d W _ZNSt15_Sp_counted_ptrIDnLN9__gnu_cxx12_Lock_policyE2EE10_M_disposeEv
+00008a31 W _ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_destroyEv
+00009541 W _ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv
+0000a31d W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE10_M_destroyEv
+00009f31 W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE10_M_disposeEv
+00009fa9 W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE14_M_get_deleterERKSt9type_info
+00009f3d W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EED0Ev
+00009f2d W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EED1Ev
+00009f2d W _ZNSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EED2Ev
+00009531 W _ZNSt3mapIijSt4lessIiESaISt4pairIKijEEED1Ev
+00009531 W _ZNSt3mapIijSt4lessIiESaISt4pairIKijEEED2Ev
+000095d9 W _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPcEEvT_S7_St20forward_iterator_tag
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_assignERKS4_@GLIBCXX_3.4.21
+         U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERjj@GLIBCXX_3.4.21
+0000966d W _ZNSt8_Rb_treeIiSt4pairIKijESt10_Select1stIS2_ESt4lessIiESaIS2_EE24_M_get_insert_unique_posERS1_
+000096ed W _ZNSt8_Rb_treeIiSt4pairIKijESt10_Select1stIS2_ESt4lessIiESaIS2_EE29_M_get_insert_hint_unique_posESt23_Rb_tree_const_iteratorIS2_ERS1_
+00009511 W _ZNSt8_Rb_treeIiSt4pairIKijESt10_Select1stIS2_ESt4lessIiESaIS2_EE8_M_eraseEPSt13_Rb_tree_nodeIS2_E
+0000b401 W _ZNSt8_Rb_treeIjSt4pairIKjbESt10_Select1stIS2_ESt4lessIjESaIS2_EE24_M_get_insert_unique_posERS1_
+0000b319 W _ZNSt8_Rb_treeIjSt4pairIKjbESt10_Select1stIS2_ESt4lessIjESaIS2_EE5eraseERS1_
+0000b201 W _ZNSt8_Rb_treeIjSt4pairIKjbESt10_Select1stIS2_ESt4lessIjESaIS2_EE8_M_eraseEPSt13_Rb_tree_nodeIS2_E
+         U _Znwj@GLIBCXX_3.4
+         U _ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base@GLIBCXX_3.4
+         U _ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base@GLIBCXX_3.4
+         U _ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base@GLIBCXX_3.4
+         U _ZSt19__throw_logic_errorPKc@GLIBCXX_3.4
+         U _ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_@GLIBCXX_3.4
+         U _ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_@GLIBCXX_3.4
+0000a341 W _ZThn12_N16screen_connector3TRS11AddListenerEPNS_4ITRS14IEventListenerE
+0000acad W _ZThn12_N16screen_connector3TRS15GetRawInputTypeENS_4ITRS9InputTypeE
+0000a541 W _ZThn12_N16screen_connector3TRS15SetRemoteRenderEb
+0000a42d W _ZThn12_N16screen_connector3TRS15TransferMouseUpEiij
+0000a159 W _ZThn12_N16screen_connector3TRS16TransferKeyEventEjijjPKcj
+0000a0b5 W _ZThn12_N16screen_connector3TRS18TransferMouseEventEjiiiiiiiijjPKcj
+0000a015 W _ZThn12_N16screen_connector3TRS18TransferMouseWheelEjijjPKcj
+0000a1e5 W _ZThn12_N16screen_connector3TRS18TransferTouchEventEjiiiiiiiijjPKcj
+0000a4bd W _ZThn12_N16screen_connector3TRS18TransferVisibilityEb
+0000a2ed W _ZThn12_N16screen_connector3TRS19TransferTouchCancelEv
+0000a29d W _ZThn12_N16screen_connector3TRS27SetChangedBufferEventFilterEi
+0000a259 W _ZThn12_N16screen_connector3TRS8RedirectEv
+0000a671 W _ZThn12_N16screen_connector3TRSD0Ev
+0000a5f5 W _ZThn12_N16screen_connector3TRSD1Ev
+00009f09 W _ZThn12_N16screen_connector4test7TRSMock11AddListenerEPNS_4ITRS14IEventListenerE
+00009ef9 W _ZThn12_N16screen_connector4test7TRSMock15SetRemoteRenderEb
+00009ef1 W _ZThn12_N16screen_connector4test7TRSMock15TransferMouseUpEiij
+00009f21 W _ZThn12_N16screen_connector4test7TRSMock16TransferKeyEventEjijjPKcj
+00009f19 W _ZThn12_N16screen_connector4test7TRSMock18TransferMouseEventEjiiiiiiiijjPKcj
+00009f29 W _ZThn12_N16screen_connector4test7TRSMock18TransferMouseWheelEjijjPKcj
+00009f11 W _ZThn12_N16screen_connector4test7TRSMock18TransferTouchEventEjiiiiiiiijjPKcj
+00009ee1 W _ZThn12_N16screen_connector4test7TRSMock18TransferVisibilityEb
+00009ee9 W _ZThn12_N16screen_connector4test7TRSMock19TransferTouchCancelEv
+00009f01 W _ZThn12_N16screen_connector4test7TRSMock27SetChangedBufferEventFilterEi
+00009f79 W _ZThn12_N16screen_connector4test7TRSMock8RedirectEv
+0000a76d W _ZThn12_N16screen_connector4test7TRSMockD0Ev
+0000a8a5 W _ZThn12_N16screen_connector4test7TRSMockD1Ev
+00009eb9 W _ZThn12_NK16screen_connector3TRS9GetHandleEv
+00009ed9 W _ZThn12_NK16screen_connector4test7TRSMock9GetHandleEv
+00007f09 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b69 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+00007621 T _ZThn4_N16screen_connector13RemoteSurface4Impl20OnInputFilterChangedEj
+0001cbb8 V _ZTIN16screen_connector12IBufferEventE
+0001cc08 D _ZTIN16screen_connector13RemoteSurface4ImplE
+0001cbfc D _ZTIN16screen_connector13RemoteSurfaceE
+0001ce74 D _ZTIN16screen_connector13WindowContextE
+0001ce54 V _ZTIN16screen_connector17EcoreEventHandler14IEventListenerE
+0001ce5c V _ZTIN16screen_connector17EcoreEventHandlerE
+0001ccd0 V _ZTIN16screen_connector3TRSE
+0001cbb0 V _ZTIN16screen_connector4ITRS14IEventListenerE
+0001ccc0 V _ZTIN16screen_connector4ITRSE
+0001cbd0 V _ZTIN16screen_connector4test13AulHandleMockE
+0001ccf0 V _ZTIN16screen_connector4test7TRSMockE
+0001ccc8 V _ZTIN16screen_connector6HandleIP20tizen_remote_surfaceEE
+0001cca0 V _ZTIN16screen_connector6HandleIP9wl_bufferEE
+0001cca8 V _ZTIN16screen_connector8WlBufferE
+0001cbc0 V _ZTIN16screen_connector9AulHandle14IEventListenerE
+0001cbc8 V _ZTIN16screen_connector9AulHandleE
+0001cc90 V _ZTISt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE
+0001ccb4 V _ZTISt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE
+0001cc98 V _ZTISt19_Sp_make_shared_tag
+0001ccfc V _ZTISt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE
+0000b7d4 V _ZTSN16screen_connector12IBufferEventE
+0000b898 R _ZTSN16screen_connector13RemoteSurface4ImplE
+0000b874 R _ZTSN16screen_connector13RemoteSurfaceE
+0000be94 R _ZTSN16screen_connector13WindowContextE
+0000be34 V _ZTSN16screen_connector17EcoreEventHandler14IEventListenerE
+0000be6c V _ZTSN16screen_connector17EcoreEventHandlerE
+0000bb7c V _ZTSN16screen_connector3TRSE
+0000b7a8 V _ZTSN16screen_connector4ITRS14IEventListenerE
+0000bb28 V _ZTSN16screen_connector4ITRSE
+0000b848 V _ZTSN16screen_connector4test13AulHandleMockE
+0000bb98 V _ZTSN16screen_connector4test7TRSMockE
+0000bb44 V _ZTSN16screen_connector6HandleIP20tizen_remote_surfaceEE
+0000baa8 V _ZTSN16screen_connector6HandleIP9wl_bufferEE
+0000bad4 V _ZTSN16screen_connector8WlBufferE
+0000b7f8 V _ZTSN16screen_connector9AulHandle14IEventListenerE
+0000b828 V _ZTSN16screen_connector9AulHandleE
+0000ba60 V _ZTSSt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE
+0000baf4 V _ZTSSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE
+0000ba90 V _ZTSSt19_Sp_make_shared_tag
+0000bbbc V _ZTSSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE
+         U _ZTVN10__cxxabiv117__class_type_infoE@CXXABI_1.3
+         U _ZTVN10__cxxabiv120__si_class_type_infoE@CXXABI_1.3
+         U _ZTVN10__cxxabiv121__vmi_class_type_infoE@CXXABI_1.3
+0001cc50 D _ZTVN16screen_connector13RemoteSurface4ImplE
+0001cc28 D _ZTVN16screen_connector13RemoteSurfaceE
+0001ce80 D _ZTVN16screen_connector13WindowContextE
+0001ce64 V _ZTVN16screen_connector17EcoreEventHandlerE
+0001cd18 V _ZTVN16screen_connector3TRSE
+0001cbec V _ZTVN16screen_connector4test13AulHandleMockE
+0001cda0 V _ZTVN16screen_connector4test7TRSMockE
+0001cd08 V _ZTVN16screen_connector8WlBufferE
+0001cbdc V _ZTVN16screen_connector9AulHandleE
+0001ce28 V _ZTVSt23_Sp_counted_ptr_inplaceIN16screen_connector8WlBufferESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE
+0001ce44 u _ZZN16screen_connector3TRS11AddListenerEPNS_4ITRS14IEventListenerEE10RSListener
+00008b59 W _ZZN16screen_connector4test13AulHandleMockC4EPNS_9AulHandle14IEventListenerE17aul_screen_type_eENUlPvE0_4_FUNES6_
+00008e01 W _ZZN16screen_connector4test13AulHandleMockC4EPNS_9AulHandle14IEventListenerE17aul_screen_type_eENUlPvE1_4_FUNES6_
+00008f55 W _ZZN16screen_connector4test13AulHandleMockC4EPNS_9AulHandle14IEventListenerE17aul_screen_type_eENUlPvE2_4_FUNES6_
+00008cad W _ZZN16screen_connector4test13AulHandleMockC4EPNS_9AulHandle14IEventListenerE17aul_screen_type_eENUlPvE_4_FUNES6_
+0000aae1 W _ZZN16screen_connector4test7TRSMock8RedirectEvENUlPvE_4_FUNES2_
+0000bc1c u _ZZNSt19_Sp_make_shared_tag5_S_tiEvE5__tag
+
+--- Dynamic Symbols (readelf --dyn-syms) ---
+
+Symbol table '.dynsym' contains 310 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00006f38     0 SECTION LOCAL  DEFAULT    9 .init
+     2: 0001d20c     0 SECTION LOCAL  DEFAULT   22 .data
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN16screen_conn[...]
+     4: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Znwj@GLIBCXX_3.4 (2)
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_event_hand[...]
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND @CXXABI_ARM_1.3.3 (3)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND g_timeout_add
+     9: 00000000     0 OBJECT  GLOBAL DEFAULT  UND ECORE_WL2_EVENT_[...]
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_shutdown
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_connec[...]
+    12: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (4)
+    13: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_set_use[...]
+    14: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_get_use[...]
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_displa[...]
+    16: 00000000     0 OBJECT  GLOBAL DEFAULT  UND ECORE_WL2_EVENT_[...]
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (5)
+    18: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    19: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@CXXABI_1.3.9 (7)
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN16screen_conn[...]
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    25: 00000000     0 OBJECT  GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    27: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_add_listener
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND aul_screen_conne[...]
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND close@GLIBC_2.4 (8)
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_display_get
+    32: 00000000     0 FUNC    GLOBAL DEFAULT  UND eina_iterator_next
+    33: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_event_hand[...]
+    35: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN16screen_conn[...]
+    36: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (8)
+    37: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    38: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    39: 00000000     0 FUNC    GLOBAL DEFAULT  UND __dlog_print
+    40: 00000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (9)
+    41: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    42: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_init
+    43: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4 (2)
+    44: 00000000     0 FUNC    GLOBAL DEFAULT  UND aul_screen_conne[...]
+    45: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZNK16screen_con[...]
+    46: 00000000     0 OBJECT  GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    47: 00000000     0 OBJECT  GLOBAL DEFAULT  UND ECORE_WL2_EVENT_[...]
+    48: 00000000     0 FUNC    GLOBAL DEFAULT  UND aul_screen_conne[...]
+    49: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.4 (9)
+    50: 00000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.4 (9)
+    51: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_displa[...]
+    52: 00000000     0 FUNC    GLOBAL DEFAULT  UND wayland_tbm_clie[...]
+    53: 00000000     0 FUNC    GLOBAL DEFAULT  UND __a[...]@GCC_3.5 (10)
+    54: 00000000     0 FUNC    GLOBAL DEFAULT  UND eina_iterator_free
+    55: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    56: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_get_version
+    57: 00000000     0 OBJECT  GLOBAL DEFAULT  UND ECORE_WL2_EVENT_[...]
+    58: 00000000     0 FUNC    GLOBAL DEFAULT  UND strcmp@GLIBC_2.4 (9)
+    59: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_displa[...]
+    60: 00000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBCXX_3.4.21 (5)
+    61: 00000000     0 OBJECT  GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    62: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    63: 00000000     0 FUNC    GLOBAL DEFAULT  UND memcmp@GLIBC_2.4 (9)
+    64: 00000000     0 FUNC    GLOBAL DEFAULT  UND __a[...]@GCC_3.5 (10)
+    65: 00000000     0 FUNC    GLOBAL DEFAULT  UND wl_proxy_marshal[...]
+    66: 00000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@CXXABI_1.3 (6)
+    67: 00000000     0 FUNC    GLOBAL DEFAULT  UND tbm_surface_inte[...]
+    68: 00000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    69: 00000000     0 FUNC    GLOBAL DEFAULT  UND ecore_wl2_displa[...]
+    70: 00000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    71: 00000000     0 FUNC    WEAK   DEFAULT  UND __[...]@GLIBC_2.4 (9)
+    72: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_remote_sur[...]
+    73: 00000000     0 OBJECT  GLOBAL DEFAULT  UND tizen_remote_sur[...]
+    74: 00000000     0 FUNC    GLOBAL DEFAULT  UND g_source_remove
+    75: 0000bb44    53 OBJECT  WEAK   DEFAULT   13 _ZTSN16screen_co[...]
+    76: 0000acad   212 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+    77: 00009ed9     4 FUNC    WEAK   DEFAULT   11 _ZThn12_NK16scre[...]
+    78: 0000bbbc    95 OBJECT  WEAK   DEFAULT   13 _ZTSSt23_Sp_coun[...]
+    79: 000085d1   344 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+    80: 0001cbec    16 OBJECT  WEAK   DEFAULT   19 _ZTVN16screen_co[...]
+    81: 00007b79     6 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+    82: 00007ced    16 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+    83: 00009f0d     2 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+    84: 00009f11     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+    85: 000077dd   356 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+    86: 00009f2d     2 FUNC    WEAK   DEFAULT   11 _ZNSt23_Sp_count[...]
+    87: 00009f31    10 FUNC    WEAK   DEFAULT   11 _ZNSt23_Sp_count[...]
+    88: 0000a42d    80 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+    89: 0000b898    41 OBJECT  GLOBAL DEFAULT   13 _ZTSN16screen_co[...]
+    90: 00008149   432 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+    91: 00007cc9     8 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+    92: 0001cc90     8 OBJECT  WEAK   DEFAULT   19 _ZTISt11_Mutex_b[...]
+    93: 0000b221   116 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+    94: 0000bb7c    25 OBJECT  WEAK   DEFAULT   13 _ZTSN16screen_co[...]
+    95: 0001ce28    28 OBJECT  WEAK   DEFAULT   19 _ZTVSt23_Sp_coun[...]
+    96: 0000a31d     4 FUNC    WEAK   DEFAULT   11 _ZNSt23_Sp_count[...]
+    97: 00007b1d     6 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+    98: 0000ba60    47 OBJECT  WEAK   DEFAULT   13 _ZTSSt11_Mutex_b[...]
+    99: 00007b25    68 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   100: 00009ec1     2 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   101: 000088f1     6 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   102: 0001ccc0     8 OBJECT  WEAK   DEFAULT   19 _ZTIN16screen_co[...]
+   103: 0000b828    31 OBJECT  WEAK   DEFAULT   13 _ZTSN16screen_co[...]
+   104: 0000aeb9   352 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   105: 0001cbdc    16 OBJECT  WEAK   DEFAULT   19 _ZTVN16screen_co[...]
+   106: 0000a4bd    66 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   107: 0001cd18   136 OBJECT  WEAK   DEFAULT   19 _ZTVN16screen_co[...]
+   108: 0000a671   132 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   109: 00009c11    58 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   110: 00009541   152 FUNC    WEAK   DEFAULT   11 _ZNSt16_Sp_count[...]
+   111: 0000b0a5    72 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   112: 000075cd    20 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   113: 0000a159    56 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   114: 00009ecd     8 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   115: 0000a29d    36 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   116: 000082f9   296 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   117: 00009845    20 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   118: 00009511    32 FUNC    WEAK   DEFAULT   11 _ZNSt8_Rb_treeIi[...]
+   119: 0000ba90    24 OBJECT  WEAK   DEFAULT   13 _ZTSSt19_Sp_make[...]
+   120: 00009f01     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   121: 0000a811   148 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   122: 0000a365   100 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   123: 00007b81   308 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   124: 0001cca8    12 OBJECT  WEAK   DEFAULT   19 _ZTIN16screen_co[...]
+   125: 0000baf4    52 OBJECT  WEAK   DEFAULT   13 _ZTSSt16_Sp_coun[...]
+   126: 00009ee9     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   127: 0000a3dd    80 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   128: 00009eb5     4 FUNC    WEAK   DEFAULT   11 _ZNK16screen_con[...]
+   129: 00007cd1     6 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   130: 000075c9     2 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   131: 0000a279    34 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   132: 0000a6f5   120 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   133: 0000b1bd    68 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   134: 00008421   432 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   135: 00009eed     2 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   136: 000075e1    64 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   137: 000077ad    26 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   138: 00007b15     6 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+   139: 0000ad81   180 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   140: 00008aed   108 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   141: 00007ce5     6 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+   142: 0001cc98     8 OBJECT  WEAK   DEFAULT   19 _ZTISt19_Sp_make[...]
+   143: 0000b129   148 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   144: 00007585    40 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   145: 00008a39    36 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   146: 0000a341    36 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   147: 0000b05d    72 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   148: 0000a76d   164 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   149: 000085d1   344 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   150: 0000a93d   140 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   151: 00007cfd   100 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   152: 0000b319   232 FUNC    WEAK   DEFAULT   11 _ZNSt8_Rb_treeIj[...]
+   153: 000097b9    12 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   154: 000075c1     2 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   155: 00007765    16 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   156: 0000bb28    26 OBJECT  WEAK   DEFAULT   13 _ZTSN16screen_co[...]
+   157: 0001ccf0    12 OBJECT  WEAK   DEFAULT   19 _ZTIN16screen_co[...]
+   158: 00009eb9     6 FUNC    WEAK   DEFAULT   11 _ZThn12_NK16scre[...]
+   159: 00009531    14 FUNC    WEAK   DEFAULT   11 _ZNSt3mapIijSt4l[...]
+   160: 00009efd     2 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   161: 0000b401   128 FUNC    WEAK   DEFAULT   11 _ZNSt8_Rb_treeIj[...]
+   162: 00009f25     2 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   163: 00007d61   424 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   164: 0000a501    64 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   165: 0000a585   112 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   166: 00009ed5     4 FUNC    WEAK   DEFAULT   11 _ZNK16screen_con[...]
+   167: 00009f2d     2 FUNC    WEAK   DEFAULT   11 _ZNSt23_Sp_count[...]
+   168: 000077dd   356 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   169: 00008825   204 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   170: 0000b201    32 FUNC    WEAK   DEFAULT   11 _ZNSt8_Rb_treeIj[...]
+   171: 0000a0b5   106 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   172: 0000b0ed    60 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   173: 00007abd     6 FUNC    GLOBAL DEFAULT   11 _ZNK16screen_con[...]
+   174: 0000a9c9   280 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   175: 0001ce44    16 OBJECT  UNIQUE DEFAULT   19 _ZZN16screen_con[...]
+   176: 0000b295   132 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   177: 00007985    10 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   178: 00009859   756 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   179: 000090b5  1116 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   180: 0000a2ed    46 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   181: 00009f21     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   182: 0000b019    68 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   183: 00009f29     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   184: 00008a89   100 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   185: 0000be6c    40 OBJECT  WEAK   DEFAULT   13 _ZTSN16screen_co[...]
+   186: 00008a31     6 FUNC    WEAK   DEFAULT   11 _ZNSt16_Sp_count[...]
+   187: 00009f05     4 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+   188: 00008e01   340 FUNC    WEAK   DEFAULT   11 _ZZN16screen_con[...]
+   189: 000097c5   128 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   190: 00009fa9    52 FUNC    WEAK   DEFAULT   11 _ZNSt23_Sp_count[...]
+   191: 0000ae35    64 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   192: 000082f9   296 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   193: 00009ef1     2 FUNC    WEAK   DEFAULT   11 _ZThn12_N16scree[...]
+   194: 00009845    20 FUNC    GLOBAL DEFAULT   11 _ZN16screen_conn[...]
+   195: 0001cc08    32 OBJECT  GLOBAL DEFAULT   19 _ZTIN16screen_co[...]
+   196: 0000a47d    64 FUNC    WEAK   DEFAULT   11 _ZN16screen_conn[...]
+
+--- Relevant Function Names ---
+CAPTURE functions:
+  None found
+
+SCREEN functions:
+00007765 T _ZN16screen_connector13RemoteSurface11FiniManagerEv
+0000775d T _ZN16screen_connector13RemoteSurface11InitManagerEv
+00007aa9 T _ZN16screen_connector13RemoteSurface11SendMouseUpEiij
+000088f1 T _ZN16screen_connector13RemoteSurface12SendKeyEventERKNS_5input12KeyEventArgsE
+000075c1 T _ZN16screen_connector13RemoteSurface13OnBufferAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007b81 T _ZN16screen_connector13RemoteSurface14SendVisibilityEb
+000075c5 T _ZN16screen_connector13RemoteSurface15OnBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+000075c1 T _ZN16screen_connector13RemoteSurface15OnBufferRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007985 T _ZN16screen_connector13RemoteSurface15SendTouchCancelEv
+00007cfd T _ZN16screen_connector13RemoteSurface15SetRemoteRenderEv
+00007ced T _ZN16screen_connector13RemoteSurface17ClearRemoteRenderEv
+000088f9 T _ZN16screen_connector13RemoteSurface21SetChangedEventFilterENS0_18ChangedEventFilterE
+00007775 T _ZN16screen_connector13RemoteSurface22SetDelayedResumingTimeEj
+00007991 T _ZN16screen_connector13RemoteSurface4BindESt10shared_ptrINS_9WlSurfaceEE
+00008729 T _ZN16screen_connector13RemoteSurface4Impl10OnAppAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007581 T _ZN16screen_connector13RemoteSurface4Impl12OnAppFocusedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00007629 T _ZN16screen_connector13RemoteSurface4Impl12OnAppRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+000080bd T _ZN16screen_connector13RemoteSurface4Impl12OnAppUpdatedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ij
+00008825 T _ZN16screen_connector13RemoteSurface4Impl12SendKeyEventERKNS_5input12KeyEventArgsE
+00007955 T _ZN16screen_connector13RemoteSurface4Impl16SetResumingTimerEv
+000077c9 T _ZN16screen_connector13RemoteSurface4Impl18ClearResumingTimerEv
+00007d61 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b25 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+000075e1 T _ZN16screen_connector13RemoteSurface4Impl20OnInputFilterChangedEj
+00007f11 T _ZN16screen_connector13RemoteSurface4Impl8RedirectEv
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC1EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008421 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_iRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00008149 T _ZN16screen_connector13RemoteSurface4ImplC2EPS0_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007941 T _ZN16screen_connector13RemoteSurface4ImplD0Ev
+000077dd T _ZN16screen_connector13RemoteSurface4ImplD1Ev
+000077dd T _ZN16screen_connector13RemoteSurface4ImplD2Ev
+00007cd9 T _ZN16screen_connector13RemoteSurface4ThawEv
+00007cb5 T _ZN16screen_connector13RemoteSurface6FreezeEb
+00007cd1 T _ZN16screen_connector13RemoteSurface6GetRawEv
+000075c9 T _ZN16screen_connector13RemoteSurface6OnBindEv
+000076b5 T _ZN16screen_connector13RemoteSurface6UnbindEv
+00007ac5 T _ZN16screen_connector13RemoteSurface8SetBlockEb
+000077ad T _ZN16screen_connector13RemoteSurfaceaSEOS0_
+000085d1 T _ZN16screen_connector13RemoteSurfaceC1EiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007789 T _ZN16screen_connector13RemoteSurfaceC1EOS0_
+000082f9 T _ZN16screen_connector13RemoteSurfaceC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+000085d1 T _ZN16screen_connector13RemoteSurfaceC2EiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+00007789 T _ZN16screen_connector13RemoteSurfaceC2EOS0_
+000082f9 T _ZN16screen_connector13RemoteSurfaceC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS0_4TypeESt10shared_ptrINS_9WlSurfaceEEb
+000075cd T _ZN16screen_connector13RemoteSurfaceD0Ev
+00007585 T _ZN16screen_connector13RemoteSurfaceD1Ev
+00007585 T _ZN16screen_connector13RemoteSurfaceD2Ev
+0000ae75 T _ZN16screen_connector13WindowContext12OnWindowHideEj
+0000b019 T _ZN16screen_connector13WindowContext12OnWindowShowEj
+0000ae35 T _ZN16screen_connector13WindowContext12RemoveWindowEj
+0000aeb9 T _ZN16screen_connector13WindowContext12UpdateWindowEjb
+0000b05d T _ZN16screen_connector13WindowContext24OnWindowVisibilityChangeEjb
+0000b0a5 T _ZN16screen_connector13WindowContext27OnWindowPreVisibilityChangeEjb
+0000ad81 T _ZN16screen_connector13WindowContextC1Ev
+0000ad81 T _ZN16screen_connector13WindowContextC2Ev
+00009bd1 T _ZN16screen_connector20RemoteSurfaceManager4BindERKNS_4ITRSERKNS_9WlSurfaceE
+00009859 T _ZN16screen_connector20RemoteSurfaceManager4InitEv
+00009c11 T _ZN16screen_connector20RemoteSurfaceManager6UnbindERKNS_4ITRSE
+000097c5 T _ZN16screen_connector20RemoteSurfaceManager7DisposeEv
+00009b4d T _ZN16screen_connector20RemoteSurfaceManager7GetInstEb
+00009c4d T _ZN16screen_connector20RemoteSurfaceManager9CreateTRSEiSt10shared_ptrINS_9WlSurfaceEEb
+000097b9 T _ZN16screen_connector20RemoteSurfaceManagerC1Ev
+000097b9 T _ZN16screen_connector20RemoteSurfaceManagerC2Ev
+00009845 T _ZN16screen_connector20RemoteSurfaceManagerD1Ev
+00009845 T _ZN16screen_connector20RemoteSurfaceManagerD2Ev
+00007ce5 T _ZNK16screen_connector13RemoteSurface21GetChangedEventFilterEv
+00007b1d T _ZNK16screen_connector13RemoteSurface6GetPidEv
+00007b71 T _ZNK16screen_connector13RemoteSurface6GetRidEv
+00007b79 T _ZNK16screen_connector13RemoteSurface7GetTypeEv
+00007a9d T _ZNK16screen_connector13RemoteSurface7IsBoundEv
+00007abd T _ZNK16screen_connector13RemoteSurface8GetAppIdB5cxx11Ev
+00007cc9 T _ZNK16screen_connector13RemoteSurface8IsFrozenEv
+00007b15 T _ZNK16screen_connector13RemoteSurface9GetInstIdB5cxx11Ev
+00007f09 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b69 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+00007621 T _ZThn4_N16screen_connector13RemoteSurface4Impl20OnInputFilterChangedEj
+
+PIXEL/SAMPLE functions:
+  None found
+
+VIDEO functions:
+  None found
+
+GET/INSTANCE functions:
+00007cd1 T _ZN16screen_connector13RemoteSurface6GetRawEv
+00009b4d T _ZN16screen_connector20RemoteSurfaceManager7GetInstEb
+00007ce5 T _ZNK16screen_connector13RemoteSurface21GetChangedEventFilterEv
+00007b1d T _ZNK16screen_connector13RemoteSurface6GetPidEv
+00007b71 T _ZNK16screen_connector13RemoteSurface6GetRidEv
+00007b79 T _ZNK16screen_connector13RemoteSurface7GetTypeEv
+00007abd T _ZNK16screen_connector13RemoteSurface8GetAppIdB5cxx11Ev
+00007b15 T _ZNK16screen_connector13RemoteSurface9GetInstIdB5cxx11Ev
+
+LOCK/UNLOCK functions:
+00007ac5 T _ZN16screen_connector13RemoteSurface8SetBlockEb
+
+YUV/RGB/FRAME/BUFFER functions:
+000075c1 T _ZN16screen_connector13RemoteSurface13OnBufferAddedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+000075c5 T _ZN16screen_connector13RemoteSurface15OnBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+000075c1 T _ZN16screen_connector13RemoteSurface15OnBufferRemovedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_i
+00007d61 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b25 T _ZN16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
+00007f09 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferChangedEiSt10shared_ptrINS_8WlBufferEEijj
+00007b69 T _ZThn4_N16screen_connector13RemoteSurface4Impl18OnRawBufferMissingEv
