@@ -34,12 +34,21 @@ namespace HyperTizenProbe
                 using (TcpClient client = _listener.AcceptTcpClient())
                 using (NetworkStream stream = client.GetStream())
                 {
-                    byte[] request = new byte[2048];
-                    int requestSize = 0;
-                    try { requestSize = stream.Read(request, 0, request.Length); } catch { }
-                    string requestText = Encoding.ASCII.GetString(request, 0, requestSize);
+                    byte[] request = ReadHttpRequest(stream);
+                    int headerEnd = FindHeaderEnd(request);
+                    int bodyOffset = headerEnd < 0 ? request.Length : headerEnd + 4;
+                    string requestText = Encoding.ASCII.GetString(
+                        request, 0, headerEnd < 0 ? request.Length : headerEnd);
+                    byte[] requestBody = new byte[request.Length - bodyOffset];
+                    if (requestBody.Length > 0)
+                        Buffer.BlockCopy(request, bodyOffset, requestBody, 0, requestBody.Length);
                     bool wantsFrame = requestText.StartsWith("GET /frame.ppm ");
                     bool wantsMirrorFrame = requestText.StartsWith("GET /mirror.ppm ");
+                    bool wantsHeaderDecrypt = requestText.StartsWith("POST /decrypt-header");
+                    bool wantsStreamBegin = requestText.StartsWith("POST /stream-begin");
+                    bool wantsStreamUpdate = requestText.StartsWith("POST /stream-update");
+                    bool wantsStreamFinish = requestText.StartsWith("POST /stream-finish");
+                    bool wantsStreamAbort = requestText.StartsWith("POST /stream-abort");
                     string downloadPath = requestText.StartsWith("GET /libefl.so ")
                         ? "/usr/lib/libcapi-ui-efl-util.so.0"
                         : requestText.StartsWith("GET /swu-api.so ")
@@ -73,14 +82,35 @@ namespace HyperTizenProbe
                                                                                 : requestText.StartsWith("GET /swu-standalone ")
                                                                                     ? "/usr/bin/SWUStandalone"
                                                                                     : null;
-                    byte[] body = wantsMirrorFrame && Probe.CapturedMirrorFramePpm != null
+                    byte[] body = wantsStreamBegin
+                        ? Probe.BeginFirmwareStream(
+                            requestBody,
+                            GetQueryInt(requestText, "derivation", 1),
+                            GetQueryInt(requestText, "keysize", 2),
+                            GetQueryInt(requestText, "mode", 1))
+                        : wantsStreamUpdate
+                        ? Probe.UpdateFirmwareStream(requestBody)
+                        : wantsStreamFinish
+                        ? Probe.FinishFirmwareStream()
+                        : wantsStreamAbort
+                        ? Probe.AbortFirmwareStream()
+                        : wantsHeaderDecrypt
+                        ? Probe.DecryptFirmwareHeader(
+                            requestBody,
+                            GetQueryInt(requestText, "derivation", 1),
+                            GetQueryInt(requestText, "keysize", 2),
+                            GetQueryInt(requestText, "mode", 0))
+                        : wantsMirrorFrame && Probe.CapturedMirrorFramePpm != null
                         ? Probe.CapturedMirrorFramePpm
                         : wantsFrame && Probe.CapturedFramePpm != null
                         ? Probe.CapturedFramePpm
                         : downloadPath != null
                             ? File.ReadAllBytes(downloadPath)
                             : Encoding.UTF8.GetBytes(_report);
-                    string contentType = wantsFrame || wantsMirrorFrame
+                    string contentType = wantsHeaderDecrypt || wantsStreamBegin ||
+                        wantsStreamUpdate || wantsStreamFinish || wantsStreamAbort
+                        ? "application/octet-stream"
+                        : wantsFrame || wantsMirrorFrame
                         ? "image/x-portable-pixmap"
                         : downloadPath != null ? "application/octet-stream" : "text/plain; charset=utf-8";
                     byte[] header = Encoding.ASCII.GetBytes(
@@ -93,6 +123,58 @@ namespace HyperTizenProbe
             }
         }
 
+        private static byte[] ReadHttpRequest(NetworkStream stream)
+        {
+            stream.ReadTimeout = 5000;
+            using (var data = new MemoryStream())
+            {
+                byte[] chunk = new byte[8192];
+                int expected = -1;
+                while (data.Length < 131072)
+                {
+                    int read;
+                    try { read = stream.Read(chunk, 0, chunk.Length); }
+                    catch { break; }
+                    if (read <= 0) break;
+                    data.Write(chunk, 0, read);
+                    byte[] current = data.ToArray();
+                    int end = FindHeaderEnd(current);
+                    if (end >= 0 && expected < 0)
+                    {
+                        string headers = Encoding.ASCII.GetString(current, 0, end);
+                        int contentLength = 0;
+                        foreach (string line in headers.Split(new[] { "\r\n" }, StringSplitOptions.None))
+                        {
+                            if (line.StartsWith("Content-Length:", StringComparison.OrdinalIgnoreCase))
+                                int.TryParse(line.Substring(line.IndexOf(':') + 1).Trim(), out contentLength);
+                        }
+                        expected = end + 4 + contentLength;
+                    }
+                    if (expected >= 0 && data.Length >= expected) break;
+                }
+                return data.ToArray();
+            }
+        }
+
+        private static int FindHeaderEnd(byte[] data)
+        {
+            for (int i = 0; i + 3 < data.Length; i++)
+                if (data[i] == 13 && data[i + 1] == 10 && data[i + 2] == 13 && data[i + 3] == 10)
+                    return i;
+            return -1;
+        }
+
+        private static int GetQueryInt(string request, string name, int fallback)
+        {
+            string marker = name + "=";
+            int start = request.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
+            if (start < 0) return fallback;
+            start += marker.Length;
+            int end = request.IndexOfAny(new[] { '&', ' ' }, start);
+            string value = end < 0 ? request.Substring(start) : request.Substring(start, end - start);
+            return int.TryParse(value, out int parsed) ? parsed : fallback;
+        }
+
         private static void Main(string[] args)
         {
             new App().Run(args);
@@ -103,6 +185,8 @@ namespace HyperTizenProbe
     {
         private const int RtldLazy = 1;
         private const int RtldGlobal = 0x100;
+        private static IntPtr _teecHandle;
+        private static IntPtr _nativeHandle;
         private static readonly byte[] RsmHeaderSalt =
             { 0xa8, 0x45, 0x90, 0x1f, 0xb0, 0xa0, 0x3c, 0x47 };
 
@@ -128,6 +212,153 @@ namespace HyperTizenProbe
         private delegate uint SwuUnwrap(
             byte[] salt, uint saltSize, byte[] output, uint outputCapacity,
             out uint outputSize, out uint origin, out int stage);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint SwuDecrypt(
+            byte[] salt, uint saltSize, byte[] ciphertext, uint ciphertextSize,
+            byte[] output, uint outputCapacity, out uint outputSize,
+            out uint origin, out int stage, uint derivation, uint keySize, uint mode);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint SwuStreamBegin(
+            byte[] salt, uint saltSize, out uint origin, out int stage,
+            uint derivation, uint keySize, uint mode);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint SwuStreamUpdate(
+            byte[] ciphertext, uint ciphertextSize, byte[] output,
+            uint outputCapacity, out uint outputSize, out uint origin, out int stage);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint SwuStreamFinish(
+            byte[] output, uint outputCapacity, out uint outputSize,
+            out uint origin, out int stage);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void SwuStreamAbort();
+
+        private static bool EnsureNative(out string error)
+        {
+            error = null;
+            if (_nativeHandle != IntPtr.Zero) return true;
+            _teecHandle = dlopen("/usr/lib/libteec.so", RtldLazy | RtldGlobal);
+            string nativePath = Path.Combine(AppContext.BaseDirectory, "libhypertizenprobe.so");
+            _nativeHandle = dlopen(nativePath, RtldLazy);
+            if (_nativeHandle != IntPtr.Zero) return true;
+            error = "native helper load failed: " + DlError();
+            return false;
+        }
+
+        private static byte[] NativeError(uint result, uint origin, int stage)
+        {
+            return Encoding.ASCII.GetBytes(
+                $"ERROR result=0x{result:x8} origin={origin} stage={stage}");
+        }
+
+        internal static byte[] BeginFirmwareStream(
+            byte[] salt, int derivation, int keySize, int mode)
+        {
+            if (salt == null || salt.Length == 0)
+                return Encoding.ASCII.GetBytes("ERROR missing salt");
+            if (!EnsureNative(out string error))
+                return Encoding.ASCII.GetBytes("ERROR " + error);
+            SwuStreamBegin begin = GetDelegate<SwuStreamBegin>(
+                _nativeHandle, "hypertizen_probe_swu_stream_begin");
+            if (begin == null) return Encoding.ASCII.GetBytes("ERROR begin symbol missing");
+            uint origin;
+            int stage;
+            uint result = begin(salt, (uint)salt.Length, out origin, out stage,
+                (uint)derivation, (uint)keySize, (uint)mode);
+            return result == 0 ? Encoding.ASCII.GetBytes("OK") : NativeError(result, origin, stage);
+        }
+
+        internal static byte[] UpdateFirmwareStream(byte[] ciphertext)
+        {
+            if (ciphertext == null || ciphertext.Length == 0 || ciphertext.Length > 65536)
+                return Encoding.ASCII.GetBytes("ERROR invalid ciphertext chunk");
+            if (!EnsureNative(out string error))
+                return Encoding.ASCII.GetBytes("ERROR " + error);
+            SwuStreamUpdate update = GetDelegate<SwuStreamUpdate>(
+                _nativeHandle, "hypertizen_probe_swu_stream_update");
+            if (update == null) return Encoding.ASCII.GetBytes("ERROR update symbol missing");
+            byte[] output = new byte[65536];
+            uint outputSize, origin;
+            int stage;
+            uint result = update(ciphertext, (uint)ciphertext.Length, output,
+                (uint)output.Length, out outputSize, out origin, out stage);
+            if (result != 0) return NativeError(result, origin, stage);
+            Array.Resize(ref output, (int)outputSize);
+            return output;
+        }
+
+        internal static byte[] FinishFirmwareStream()
+        {
+            if (!EnsureNative(out string error))
+                return Encoding.ASCII.GetBytes("ERROR " + error);
+            SwuStreamFinish finish = GetDelegate<SwuStreamFinish>(
+                _nativeHandle, "hypertizen_probe_swu_stream_finish");
+            if (finish == null) return Encoding.ASCII.GetBytes("ERROR finish symbol missing");
+            byte[] output = new byte[65536];
+            uint outputSize, origin;
+            int stage;
+            uint result = finish(output, (uint)output.Length,
+                out outputSize, out origin, out stage);
+            if (result != 0) return NativeError(result, origin, stage);
+            Array.Resize(ref output, (int)outputSize);
+            return output;
+        }
+
+        internal static byte[] AbortFirmwareStream()
+        {
+            if (!EnsureNative(out string error))
+                return Encoding.ASCII.GetBytes("ERROR " + error);
+            SwuStreamAbort abort = GetDelegate<SwuStreamAbort>(
+                _nativeHandle, "hypertizen_probe_swu_stream_abort");
+            if (abort == null) return Encoding.ASCII.GetBytes("ERROR abort symbol missing");
+            abort();
+            return Encoding.ASCII.GetBytes("OK");
+        }
+
+        internal static byte[] DecryptFirmwareHeader(
+            byte[] requestBody, int derivation, int keySize, int mode)
+        {
+            if (requestBody == null || requestBody.Length <= 8)
+                return Encoding.ASCII.GetBytes("ERROR malformed request body");
+            byte[] salt = new byte[8];
+            byte[] ciphertext = new byte[requestBody.Length - 8];
+            Buffer.BlockCopy(requestBody, 0, salt, 0, salt.Length);
+            Buffer.BlockCopy(requestBody, 8, ciphertext, 0, ciphertext.Length);
+
+            IntPtr teec = dlopen("/usr/lib/libteec.so", RtldLazy | RtldGlobal);
+            string nativePath = Path.Combine(AppContext.BaseDirectory, "libhypertizenprobe.so");
+            IntPtr native = dlopen(nativePath, RtldLazy);
+            if (native == IntPtr.Zero)
+                return Encoding.ASCII.GetBytes("ERROR native helper load failed: " + DlError());
+            try
+            {
+                SwuDecrypt decrypt = GetDelegate<SwuDecrypt>(
+                    native, "hypertizen_probe_swu_decrypt");
+                if (decrypt == null)
+                    return Encoding.ASCII.GetBytes("ERROR decrypt symbol missing");
+                byte[] output = new byte[ciphertext.Length + 32];
+                uint outputSize, origin;
+                int stage;
+                uint result = decrypt(
+                    salt, (uint)salt.Length, ciphertext, (uint)ciphertext.Length,
+                    output, (uint)output.Length, out outputSize, out origin, out stage,
+                    (uint)derivation, (uint)keySize, (uint)mode);
+                if (result != 0)
+                    return Encoding.ASCII.GetBytes(
+                        $"ERROR result=0x{result:x8} origin={origin} stage={stage}");
+                Array.Resize(ref output, (int)outputSize);
+                return output;
+            }
+            finally
+            {
+                dlclose(native);
+                if (teec != IntPtr.Zero) dlclose(teec);
+            }
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr ScreenshotInitialize(int width, int height);

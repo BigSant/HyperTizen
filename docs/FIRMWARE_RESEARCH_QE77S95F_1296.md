@@ -1,159 +1,255 @@
-# QE77S95F firmware 1296.8 research
+# QE77S95F 1296.8 full-frame capture research
 
-## Acquired package
+## Objective and status
 
-- Model: `QE77S95FATXXH`
-- Tizen generation: Tizen 9.0 / 2025 TV
-- Samsung package: `T-RSMFDEUC-0090_TB-RSWF4DEUC-0090.zip`
-- Firmware version: `1296.8`
-- Build date declared by Samsung: `2026-04-16`
-- ZIP size: `2,479,379,839` bytes
+The target is a complete, spatially coherent TV frame at approximately 24 FPS
+for Hyperion.  Sampling a small set of pixels is explicitly not an acceptable
+capture method.  Firmware decoding is documented separately in
+`FIRMWARE_DECODE_QE77S95F_1296.md`.
 
-The firmware archive is intentionally not stored in Git. The working copy is
-under `Samsung/firmware/QE77S95FATXXH_1296.8`.
+Two facts are now proven on the physical `QE77S95FATXXH`:
 
-## Container findings
+- a normal developer-signed app can capture the complete Wayland UI surface at
+  25-30 FPS through EFL screen mirror, despite not declaring the documented
+  platform screenshot privilege;
+- full-screen Plex video is on a separate hardware/DRM plane and is black in
+  both EFL screenshots and screen-mirror frames.
 
-The ZIP contains two `MSDU11` containers:
+The decoded firmware exposes four independent lower-level routes that may
+capture the video plane.  They have been statically reconstructed but have not
+yet been executed on the TV.  No route is claimed working until it produces
+changing, non-black, full-frame data under a timed test.
 
-- `T-RSMFDEUC-0090/image/upgrade.msd` (`1,516,607,106` bytes)
-- `TB-RSWF4DEUC-0090/image/upgrade.msd` (`962,379,412` bytes)
+Both RSM and RSW platform images were checked.  The display encoder, CAPI
+encoder, Wayland source, and RM implementation are byte-identical across them,
+which makes those findings independent of one container variant.  The RSM
+product partition additionally supplies the unstripped raw scaler backend.
 
-Both containers expose a valid clear-text section table with nine sections.
-Their OUIT metadata and section contents are encrypted. `info.txt` identifies
-the cipher suite as `aes-256-cbc-sha512` and the production key family as
-`RoseM 2025 rel key`.
+## Proven compositor behavior
 
-The current public extractors understand the MSDU11 layout, but their public
-key sets contain Samsung TV generations through `PontusM 2025` (`T-PTMF*`).
-They do not contain the `RoseM 2025` key required by `T-RSMFDEUC`.
+`libcapi-ui-efl-util.so.0` exports screenshot and screen-mirror APIs.  Tests
+from the separately packaged Probe app showed:
 
-Known plaintext in the OUIT header is sufficient to validate a candidate key,
-but it is not sufficient to derive an AES-256 key. Brute force is not a
-practical path.
+- `efl_util_screenshot_initialize(320, 180)` succeeds;
+- screenshots return a mappable `XR24`/XRGB8888 TBM surface, stride 1280;
+- screen mirror delivers approximately 25-30 callbacks per second;
+- TV Home/UI frames decode correctly as complete images;
+- with full-screen Plex video, screenshot and mirror surfaces are entirely
+  black or unchanged while overlay video continues on the panel.
 
-## Repeatable inspection
+The public Tizen API labels screenshot as platform-only and requiring
+`http://tizen.org/privilege/screenshot`.  The observed 1296.8 TV policy is
+therefore less restrictive for this particular compositor path than the API
+contract promises.  This does not grant access to protected overlay planes.
 
-Use `tools/firmware/inspect_msd.py` to print the clear section table and test
-the public unixtract MSD11 key collection:
+Reference: <https://docs.tizen.org/application/native/api/common/9.0/group__CAPI__EFL__UTIL__SCREENSHOT__MODULE.html>
 
-```sh
-python3 tools/firmware/inspect_msd.py /path/to/upgrade.msd \
-  --keys /path/to/unixtract/src/keys.ukf
+## Firmware capture-path inventory
+
+| Priority | Route | Output | Expected rate | User-space gate | Remaining risk |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | GStreamer `displayencodesrc` | H.264 byte stream | configurable, target 24 FPS | no Cynara import found | resource manager, DRM source selection, protected-content denial |
+| 2 | `libcapi-encoder-tv` | H.264 packets | configurable | no explicit feature gate found | wrapper may require Samsung resource allocation |
+| 3 | lower RM backend | H.264 from `/dev/video30` | configurable | bypasses disabled feature flag | Samsung DRM/V4L2 sequence and runtime SMACK |
+| 4 | direct scaler backend | raw Y/C planes | snapshots or continuous encoder input | bypasses high-level/TZ allowlist | `/dev/dri/card1`, ioctl policy, possible 15 FPS post-capture cap |
+| 5 | direct TZ capture protocol | raw Y/C planes | unknown | bypasses `libtzcapturec` process-name check | TA may deny DRM/protected content |
+| 6 | GStreamer `waylandsrc` | BGRA/NV12/SN12 | continuous | compositor privilege notification | probably same overlay exclusion as EFL |
+
+### 1. Hardware display encoder
+
+`/usr/lib/gstreamer-1.0/libgstdisplayencodesrc.so` is a complete Samsung
+display-to-H.264 source.  Static inspection found:
+
+- output caps `video/x-h264, stream-format=byte-stream`;
+- `/dev/video30` and `libencoder-control.so.0` integration;
+- DRM plane setup through `tvvideoenc_drm_*` helpers;
+- width, height, bitrate, frame-rate, device, trustzone, DRM type, and forced
+  keyframe properties;
+- DRM modes for HDCP, private TrustZone, and clear/unencrypted capture;
+- an explicit access-denied branch for protected DRM content.
+
+This is the strongest first candidate because it already combines display
+selection, queueing, hardware encoding, and timestamps.  The first test must
+use the clear mode and unprotected content.  It should not attempt to defeat
+HDCP or decrypt protected media.
+
+`/usr/lib/libcapi-encoder-tv.so.0.8.70` is a higher-level wrapper that builds a
+pipeline around the same source and exports `encoder_create`, configuration,
+start, callback, and `encoder_get_packet` operations.  It is simpler to embed
+if resource allocation succeeds; raw GStreamer remains the fallback when the
+wrapper rejects a third-party process.
+
+### 2. RM capture below the model feature gate
+
+`libcapi-rm-video-capture.so` returns unsupported because feature
+`com.samsung/featureconf/rm.h264_support` is disabled on this model.  That is a
+user-space product flag, not proof that the hardware is missing:
+
+- `/dev/video30` is configured as `sec_vid_enc0/1`;
+- `/dev/dri/card0` is the corresponding Samsung scaler/display DRM node;
+- the developer app already opened both nodes read/write;
+- `librm-video-capture-impl-sec.so.0.0.1` contains the complete lower backend.
+
+The reconstructed sequence opens DRM, obtains framebuffer dimensions, creates
+the capture framebuffer, selects source/property/plane and sync/mute behavior,
+then configures and streams the V4L2 encoder.  Calling this lower ABI bypasses
+only the high-level feature test; it does not bypass kernel or SMACK policy.
+
+### 3. Raw Samsung scaler capture
+
+`/prd/usr/lib/libvideo-capture-impl-sec.so.0.1.0` is an unstripped lower
+backend exporting screen/video/post-YUV/main/sub/background/cropped capture,
+lock/protect, and `scaler_capture*` functions.  It operates on
+`/dev/dri/card1` with Samsung ioctls including capture GEM creation, hardware
+capture, and last-captured-data retrieval.
+
+The backend yields complete Y and C planes, supports crop/rotation/flip, and
+does not import Cynara.  A diagnostic string limits post-capture use to 15
+pages per second, so the generic post-snapshot call may not meet 24 FPS.
+`getVideoYUVToEncoder` and continuous scaler/encoder paths must be tested
+separately before rejecting the backend.
+
+### 4. TZ capture without the proprietary client library
+
+High-level `libvideo-capture.so`, `libdisplay-capture-api.so`, and
+`libep-common-screencapture.so` route selected processes through
+`libtzcapturec.so`.  A developer label cannot read or load that installed
+library.  Static analysis nevertheless showed that its user-space admission
+check is only an exact `/proc/self/cmdline` comparison against a hard-coded
+Samsung-process allowlist.
+
+Shipping Samsung's proprietary binary or impersonating a system pathname is
+unnecessary.  The client protocol can be implemented directly with the public
+TEEC ABI:
+
+```text
+TA UUID: 58d50001-0006-0006-a06a-39b256ad7de7
+shared memory: three 0x80000-byte INPUT|OUTPUT blocks
+secure capture command: 0
+operation: PARTIAL_INOUT, PARTIAL_INOUT, PARTIAL_INOUT, NONE
 ```
 
-The checker tests the legacy MD5 IV derivation and both SHA-256 and SHA-512 IV
-derivations used by AES-256 generations.
+The first two blocks return Y and C planes.  The third contains requested and
+captured width/height, chroma/full-size selection, rotation/metadata, and the
+normal capture command ID.  After success, Y is `width * height`; C is either
+the same size or half-size depending on the returned selector.
 
-## Physical TV results (QE77S95FATXXH, firmware 1296.8)
+This avoids the client library's process-name allowlist, but not TA policy.
+The trusted application may still reject protected frames or unapproved
+runtime labels.  That boundary is measured rather than assumed.
 
-SDB pairing succeeded at `192.168.10.100:26101`. The TV reports Tizen 9.0,
-ARM, model group `25TV_PREMIUM3`. Interactive shell support is disabled, so
-the tests were performed with the separately packaged `HyperTizenProbe`
-service application.
+### 5. Wayland source and non-candidates
 
-### Compositor capture
+`libgstwaylandsrc.so` understands the Tizen screenshooter/screenmirror
+protocol, raw BGRA/NV12/SN12 formats, and separate NORMAL/VIDEO events.  Its
+VIDEO event is worth one controlled test, but it likely exposes the same
+compositor surface already proven black for overlay video.
 
-`libcapi-ui-efl-util.so.0` exposes both screenshot and screen-mirror APIs.
-Contrary to the public API warning that these calls are platform-only, a
-normally signed Samsung developer application can use them on this TV.
+The following are not primary solutions:
 
-- `efl_util_screenshot_initialize(320, 180)` succeeds.
-- `efl_util_screenshot_take_tbm_surface` returns a mappable `XR24`
-  (`XRGB8888`) TBM surface with stride 1280.
-- A full TV Home frame was captured and decoded successfully.
-- All five `efl_util_screenmirror_*` symbols are present.
-- The callback signature observed on ARM is
-  `(screenmirror_handle, tbm_surface_handle, user_data)`.
-- A two-second test delivered 49-61 frames (approximately 25-30 FPS).
+- `libscreen-analysis-api` sends an already acquired image to an analysis
+  service; it is not a capture producer;
+- `libgsttvextvideosrc` appears to source external HDMI hardware around
+  `/dev/video28`, not the composited panel output;
+- repeated EFL screenshots cannot recover a plane the compositor never sees;
+- pixel sampling remains useful only as a last-resort compatibility fallback,
+  not as completion of this objective.
 
-This path captures the complete Wayland UI layer, not only sampled pixels.
+## Permission strategy
 
-### Video-plane limitation
+The approach is to use the narrowest existing ABI and bypass only redundant
+user-space checks, never to modify firmware policy or weaken the TV globally.
 
-The same tests were repeated while Plex was playing video. Three screenshots
-taken at different times were byte-for-byte identical while the player UI was
-visible. Once playback entered full-screen video:
+The production native app currently declares only `notification`, `internet`,
+`network.get`, `externalstorage`, `mediastorage`, `display`, and
+`window.priority.set`.  The successful Probe declared only `internet` and
+`network.get`; notably it did not declare screenshot, media-capture, partner,
+or platform privileges.  Candidate tests therefore begin with this ordinary
+developer-signed security context and treat any additional privilege as a
+measured requirement, not an assumption.
 
-- the screenshot surface contained `0/230400` non-zero bytes;
-- the continuously delivered screen-mirror TBM surface was also black.
+| Gate | Evidence | Safe bypass/alternative |
+| --- | --- | --- |
+| screenshot platform privilege | EFL calls already succeed without declaration | use working ABI; retain black-frame detection |
+| RM `h264_support` feature | false while devices exist and open R/W | call lower RM/backend ABI |
+| `libtzcapturec` pathname allowlist | implemented entirely in client library | implement equivalent TEEC request in our code |
+| unreadable installed library | SMACK denies `dlopen` | link no proprietary file; reimplement documented calls |
+| kernel node policy | card0/video30 open succeeded; card1 unknown | probe capabilities first and fail closed |
+| DRM/HDCP protection | encoder and TA contain denial paths | do not bypass content protection; mark method unavailable |
 
-The decoded video is therefore on a separate hardware/DRM overlay plane that
-is deliberately absent from the compositor capture. Screen mirror improves
-latency and frame rate for UI capture, but does not bypass this boundary.
+Samsung documents that partner/platform privileges normally require matching
+vendor certificates.  Declaring such a privilege in a developer-signed TPK
+does not grant it, so manifest-only changes are not treated as a solution:
+<https://developer.samsung.com/smarttv/develop/extension-libraries/nacl/managing-nacl-projects/adding-privileges-and-permissions.html>.
 
-### Internal video-capture paths
+## Ordered physical-TV test plan
 
-The TV contains several relevant components:
+All tests use a separately named Probe package, strict timeouts, explicit
+cleanup, and no firmware writes.  Each method is tested first on TV Home, then
+on a changing unprotected local video, and finally only observed (not
+circumvented) on a protected streaming title.
 
-- `libvideo-capture.so.0.1.0`, `libdisplay-capture-api.so.0`, and
-  `libep-common-screencapture.so` all depend on `libtzcapturec.so`;
-- `libtzcapturec.so` cannot be read or loaded under the developer app label
-  (`Operation not permitted`), so that complete chain is blocked;
-- `librm-video-capture.so.0`, `libcapi-rm-video-capture.so.0`, and the backend
-  `/prd/usr/lib/librm-video-capture-impl.so` are readable;
-- the public RM capability check returns `is_supported=0` because
-  `com.samsung/featureconf/rm.h264_support` is disabled on this model;
-- nevertheless, the developer application can open `/dev/video30` and
-  `/dev/dri/card0` read/write.
+### P0: baseline and acceptance criteria
 
-Static analysis of the RM backend shows that `/dev/video30` is the Samsung
-H.264 encoder and `/dev/dri/card0` is configured with Samsung-specific DRM
-ioctls (`DRM_IOCTL_SDP_SET_DP_SOURCE`, `DRM_IOCTL_SDP_SET_ONOFF`). This is the
-most promising remaining software-only route, but it requires reproducing the
-DRM source-to-V4L2 encoder setup. The high-level API refuses it because the
-model feature flag is off.
+1. Record device-node open results, labels, supported V4L2 formats, DRM driver
+   version, and current resource ownership.
+2. Capture the EFL UI baseline at 320x180 and 1280x720.
+3. Require at least 240 frames over ten seconds for the 24 FPS target.
+4. Reject constant, all-black, malformed, duplicated, or stale frames.
+5. Record CPU, memory, dropped frames, end-to-end latency, and cleanup state.
 
-### SWU TrustZone result
+### P1: encoded full-display routes
 
-The installed SWU trusted application accepts the known session UUID: opening
-the session returned success (`0x00000000`, origin 4). Invoking legacy command
-3 with the RoseM encrypted passphrase and MSD header salt returned
-`0xffff0000` at the invoke stage. Static analysis of the installed 2025
-`SWUCoreTV` then recovered the current command-3 operation layout. Unlike the
-older public Python tooling, Tizen's header encodes parameter types in bytes:
+1. Build a minimal `displayencodesrc` pipeline in clear mode at 1280x720,
+   24 FPS, conservative bitrate, and pull H.264 access units for ten seconds.
+2. Decode several units locally and verify changing full images rather than
+   accepting packets as proof.
+3. Repeat through `libcapi-encoder-tv`; keep it only if it reduces integration
+   complexity without new policy failures.
+4. If the public wrappers reject the model flag, call the lower RM backend in
+   its reconstructed DRM-to-V4L2 order.
 
+### P2: raw scaler and trusted capture
+
+1. Probe `/dev/dri/card1` and backend initialization without issuing capture.
+2. Capture one small raw frame, validate dimensions/strides, then test
+   continuous `YUVToEncoder` and measure whether the 15 FPS limiter applies.
+3. Implement the TZ protocol in the Probe helper; request 320x180 command 0,
+   validate returned metadata and plane sizes, then move to 1280x720.
+4. Distinguish `TEEC_ERROR_ACCESS_DENIED`, unsupported command, black output,
+   and protected-frame denial in logs.
+
+### P3: compositor variant and last-resort ioctl work
+
+1. Test `waylandsrc` VIDEO/NV12 mode once for completeness.
+2. Only if wrappers fail while device access succeeds, reproduce the minimum
+   Samsung DRM/V4L2 ioctls directly, preserving exact cleanup order.
+3. Stop after three repeatable failures of the same gate and document the
+   boundary instead of destabilizing the running TV.
+
+## Intended Hyperion fallback chain
+
+Only verified methods enter the production chain.  The expected order is:
+
+```text
+DisplayEncode H.264
+  -> CAPI encoder / lower RM encoder
+  -> raw scaler capture
+  -> direct TZ capture
+  -> Wayland/EFL screen mirror (UI)
+  -> EFL screenshot (UI)
+  -> existing pixel sampler (legacy last resort)
 ```
-TEEC_PARAM_TYPES(PARTIAL_INPUT, PARTIAL_OUTPUT, VALUE_INOUT, NONE)
-```
 
-The input and output are 64 KiB registered shared-memory blocks and
-`params[2].value.a` is a one-byte mode selected by the SWU caller. Replaying
-this exact layout reached the TA, but mode 0 returned `0xffff0000` and modes
-1-3 returned `0xffff000a`. A preceding command-0 state setup visible in
-`SWUCoreTV` is therefore also required. Firmware decryption is not complete
-and no key material is stored in this repository.
+Each transition is triggered by initialization failure, policy denial,
+insufficient measured FPS, repeated stale/black frames, or malformed output.
+The chain must retry higher-quality methods after a bounded cooldown because
+resource ownership can change when applications start or stop playback.
 
-### HyperTizen integration test
+## Security and legal boundary
 
-Both proven compositor paths are now capture methods in the production
-fallback chain. `EflScreenMirrorCaptureMethod` continuously copies callback
-TBM surfaces to NV12, while `EflScreenshotCaptureMethod` provides synchronous
-snapshots. Both detect black video-overlay frames and advance the chain;
-pixel sampling remains the final video fallback.
-
-With full-screen Plex video playing, the installed build rejected both EFL
-methods as black, automatically selected the Tizen 9 `ppi_ve_*` pixel path,
-and registered successfully with Hyperion. This verifies the selection
-behavior on the actual TV, not only the individual probe calls.
-
-## Paths that remain viable
-
-1. **Reconstruct the command-0 SWU setup.** Command 3 is now understood, but
-   `SWUCoreTV` first supplies two buffers and two packed value fields to command
-   0. Recover those caller inputs and reproduce the state initialization before
-   requesting the RoseM passphrase.
-2. **Inspect the installed SWU components.** The TV inventory already showed
-   `libSWUProductionConfig.so`, `libSWUProductionConfigRelease.so`, and
-   `libSoftwareUpgradeAPI.so`. Once SDB is paired, copy permitted binaries and
-   inspect their imports, IPC endpoints, trusted-application UUIDs, and policy
-   failures.
-3. **Prototype the DRM-to-V4L2 path.** The device nodes are accessible even
-   though RM reports unsupported. Start with read-only capability ioctls and
-   reproduce Samsung's backend sequence with strict cleanup and timeouts.
-4. **Keep EFL screen mirror for UI capture.** It is proven at 25-30 FPS and can
-   be used when UI-only frames are useful, with pixel sampling as the video
-   fallback.
-
-No firmware write or update was attempted. All TV probes were read-only except
-for installing the separately named diagnostic TPK.
+This research analyzes the owner's TV and firmware for local interoperability.
+It does not extract keys, patch secure boot, flash modified firmware, defeat
+HDCP, or promise access to DRM-protected frames.  The achievable software-only
+result may be limited to complete unprotected video and UI; protected content
+denial is an expected valid outcome.

@@ -31,12 +31,15 @@ application. Continuous screen mirror delivered approximately 25-30 FPS at
 
 The decoded video plane is not part of those compositor frames. During actual
 Plex playback both screenshot and screen mirror returned fully black frames.
-The internal `libtzcapturec.so` path is blocked by the application security
-label. A lower DRM/V4L2 route remains under investigation: `/dev/video30` and
-`/dev/dri/card0` can be opened, although Samsung's RM capability flag reports
-H.264 screen capture as unsupported on this model. See
+The installed firmware has now been fully decrypted locally through the TV's
+normal SWU TrustZone service, without exporting its production secret. Static
+analysis identified hardware H.264 display encoding, lower RM, raw scaler, and
+direct trusted-capture protocols. `/dev/video30` and `/dev/dri/card0` can be
+opened even though Samsung's high-level RM feature flag is disabled. See
 [`docs/FIRMWARE_RESEARCH_QE77S95F_1296.md`](docs/FIRMWARE_RESEARCH_QE77S95F_1296.md)
-for exact results.
+for capture findings and the ordered TV test plan, and
+[`docs/FIRMWARE_DECODE_QE77S95F_1296.md`](docs/FIRMWARE_DECODE_QE77S95F_1296.md)
+for the repeatable decode and filesystem results.
 
 Both EFL paths are integrated as real `ICaptureMethod` implementations. The
 selector keeps an ordered fallback chain for the entire session; 30 black
@@ -327,4 +330,7 @@ Same as original HyperTizen project.
 
 This is experimental software for research and educational purposes. Use at your own risk. This fork is not affiliated with Samsung or the official Tizen project.
 
-This fork provides scaffolding and structure for exploring capture methods on Tizen 8.0+ TVs. Capture functionality is not yet implemented. Compatibility with specific TV models and firmware versions depends on future implementation and testing.
+This fork contains working UI capture and pixel-sampling fallbacks plus
+research prototypes for full-video capture on Tizen 8.0+ TVs. Full video-plane
+capture is not yet verified on hardware; compatibility depends on the TV model,
+firmware policy, and whether the displayed content is protected.

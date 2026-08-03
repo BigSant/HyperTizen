@@ -1,0 +1,16 @@
+{
+  "model": "QE77S95FATXXH",
+  "firmware": "T-RSMFDEUC-0090",
+  "version": "1296.8",
+  "sections": [
+    {"name": "platform.img", "salt": "3fd8e17f21684881", "crc32": 1618449758, "offset": "0x10c2", "size": 1478492176},
+    {"name": "uImage", "salt": "fea5c2b1830d6627", "crc32": 4290140359, "offset": "0x582010d2", "size": 11892544},
+    {"name": "factory_peq.img", "salt": "1f098e5ee8639637", "crc32": 3468289364, "offset": "0x58d58812", "size": 9306128},
+    {"name": "secos.bin", "salt": "461e8a4292261e4e", "crc32": 4282351788, "offset": "0x59638822", "size": 8380432},
+    {"name": "seret.bin", "salt": "1dd55e8d277efc91", "crc32": 2777830179, "offset": "0x59e36832", "size": 3661840},
+    {"name": "secos_drv.bin", "salt": "c3771241aeb4d34e", "crc32": 769030872, "offset": "0x5a1b4842", "size": 3137552},
+    {"name": "dtb.bin", "salt": "34a22091224192c2", "crc32": 3610503509, "offset": "0x5a4b2852", "size": 1564688},
+    {"name": "ddr.init", "salt": "29e6d5a4afc81c16", "crc32": 2641072742, "offset": "0x5a630862", "size": 166416},
+    {"name": "sign.bin", "salt": "d6a2a9472ecf7740", "crc32": 729576574, "offset": "0x5a659272", "size": 1040}
+  ]
+}
