@@ -21,6 +21,10 @@ HyperTizen is an experimental fork of a Hyperion/HyperHDR screen capturer for Sa
 - **TrustZone capture:** `libtzcapturec.so` is blocked by the developer-app
   SMACK label. `/dev/video30` and `/dev/dri/card0` are directly openable, but
   RM H.264 capture reports unsupported by model feature flag.
+- **2026-08-04 lower-encoder test:** direct RM wrapper initialization and the
+  product encoder backend caused the Probe to stop responding and left the
+  encoder resource wedged across reinstall. Do not invoke `ProbeRmEncoder`
+  during startup; power-cycle the TV before continuing hardware tests.
 - **T8 SDK Capture Method** = NOT YET IMPLEMENTED (scaffolding exists)
 - **T7 SDK Capture Method** = NOT YET IMPLEMENTED (scaffolding exists)
 - **Pixel Sampling Capture Method** = IMPLEMENTED and hardware-verified via

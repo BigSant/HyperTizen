@@ -254,6 +254,36 @@ insufficient measured FPS, repeated stale/black frames, or malformed output.
 The chain must retry higher-quality methods after a bounded cooldown because
 resource ownership can change when applications start or stop playback.
 
+## 2026-08-04 physical-TV validation (non-Hue paths)
+
+Target: QE77S95FATXXH, Tizen 9, firmware 1296.8, developer-signed Probe with
+only `internet` and `network.get` privileges; changing video was playing.
+
+| Path | Measured result | Production decision |
+| --- | --- | --- |
+| EFL screenshot | valid 320x180 XRGB surface; all bytes zero over video | UI-only fallback |
+| EFL screen mirror | 61 callbacks in 2 s (~30.5 FPS); sampled frame black | UI-only continuous fallback |
+| `libvideo-capture` / secvideo | `dlopen` fails because `libtzcapturec.so` is SMACK denied; direct helper returns `-ENOENT` | blocked for developer label |
+| high-level RM capture | `rm_video_capture_is_supported() == 0` | unavailable on this model configuration |
+| lower RM wrapper init | probe ceased responding before a result | reject; unsafe resource initialization |
+| product RM encoder open | probe ceased responding and resource remained wedged across package reinstall | reject; requires TV power cycle |
+| `/dev/video30` | ordinary open succeeds; `VIDIOC_QUERYCAP`/activation does not return safely | node access alone is insufficient |
+| `displayencodesrc` | source activates, then terminates/stalls probe; no decodable H.264 unit obtained | reject on current label/model |
+| direct TZ request | command did not return within 16 seconds | reject; not a permission workaround |
+
+The RM product implementation was nevertheless decoded far enough to confirm
+its exact V4L2 sequence: open `/dev/video30`, set resolution/fps/bitrate,
+subscribe private event `0x08000001`, stream on, dequeue two 32-bit event
+values, then stream off/unsubscribe/close. Runtime evidence shows that calling
+this sequence outside its owning service context is not safe, even though the
+device node can be opened.
+
+The probe no longer invokes the hazardous RM or external-tool tests during
+startup. Their helpers remain isolated diagnostics so a normal launch stays
+on the verified read-only/EFL checks. After the encoder experiment the TV must
+be power-cycled before further physical capture testing; package reinstall is
+not enough to clear the driver/resource state.
+
 ## Security and legal boundary
 
 This research analyzes the owner's TV and firmware for local interoperability.
