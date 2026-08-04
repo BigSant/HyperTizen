@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,8 +22,8 @@ namespace HyperTizenProbe
         protected override void OnCreate()
         {
             base.OnCreate();
-            Task.Run(() => _report = Probe.BuildReport());
-            Task.Run((Action)ServeReport);
+            new Thread(() => _report = Probe.BuildReport()) { IsBackground = true }.Start();
+            new Thread(ServeReport) { IsBackground = true }.Start();
         }
 
         private static void ServeReport()
@@ -44,6 +45,8 @@ namespace HyperTizenProbe
                         Buffer.BlockCopy(request, bodyOffset, requestBody, 0, requestBody.Length);
                     bool wantsFrame = requestText.StartsWith("GET /frame.ppm ");
                     bool wantsMirrorFrame = requestText.StartsWith("GET /mirror.ppm ");
+                    bool wantsDisplayStream = requestText.StartsWith("GET /display.h264 ");
+                    bool wantsTzFrame = requestText.StartsWith("GET /tz.ppm ");
                     bool wantsHeaderDecrypt = requestText.StartsWith("POST /decrypt-header");
                     bool wantsStreamBegin = requestText.StartsWith("POST /stream-begin");
                     bool wantsStreamUpdate = requestText.StartsWith("POST /stream-update");
@@ -104,14 +107,19 @@ namespace HyperTizenProbe
                         ? Probe.CapturedMirrorFramePpm
                         : wantsFrame && Probe.CapturedFramePpm != null
                         ? Probe.CapturedFramePpm
+                        : wantsDisplayStream && Probe.CapturedDisplayH264 != null
+                        ? Probe.CapturedDisplayH264
+                        : wantsTzFrame && Probe.CapturedTzFramePpm != null
+                        ? Probe.CapturedTzFramePpm
                         : downloadPath != null
                             ? File.ReadAllBytes(downloadPath)
                             : Encoding.UTF8.GetBytes(_report);
                     string contentType = wantsHeaderDecrypt || wantsStreamBegin ||
                         wantsStreamUpdate || wantsStreamFinish || wantsStreamAbort
                         ? "application/octet-stream"
-                        : wantsFrame || wantsMirrorFrame
+                        : wantsFrame || wantsMirrorFrame || wantsTzFrame
                         ? "image/x-portable-pixmap"
+                        : wantsDisplayStream ? "video/h264"
                         : downloadPath != null ? "application/octet-stream" : "text/plain; charset=utf-8";
                     byte[] header = Encoding.ASCII.GetBytes(
                         "HTTP/1.1 200 OK\r\nContent-Type: " + contentType + "\r\n" +
@@ -192,6 +200,9 @@ namespace HyperTizenProbe
 
         internal static byte[] CapturedFramePpm { get; private set; }
         internal static byte[] CapturedMirrorFramePpm { get; private set; }
+        internal static byte[] CapturedDisplayH264 { get; private set; }
+        internal static byte[] CapturedTzFramePpm { get; private set; }
+        internal static byte[] CapturedSecvideoFramePpm { get; private set; }
 
         [DllImport("libdl.so.2")]
         private static extern IntPtr dlopen(string file, int flags);
@@ -204,6 +215,9 @@ namespace HyperTizenProbe
 
         [DllImport("libdl.so.2")]
         private static extern IntPtr dlerror();
+
+        [DllImport("libc.so.6", SetLastError = true)]
+        private static extern int ioctl(int fd, uint request, byte[] argument);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate uint SwuOpen(out uint origin);
@@ -236,6 +250,21 @@ namespace HyperTizenProbe
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SwuStreamAbort();
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint TzCapture(
+            byte[] y, uint yCapacity, byte[] c, uint cCapacity,
+            out uint width, out uint height, out uint chromaFull,
+            out uint metadata, out uint origin, out int stage);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int SecvideoCapture(
+            byte[] y, uint yCapacity, byte[] c, uint cCapacity,
+            uint requestedWidth, uint requestedHeight,
+            uint[] resultWords, uint resultWordCount);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int RmEncoderProbe(uint[] resultWords, uint resultWordCount);
 
         private static bool EnsureNative(out string error)
         {
@@ -441,10 +470,380 @@ namespace HyperTizenProbe
             ProbeDeviceAccess(report);
             ProbeLibraries(report);
             ProbeRmVideoCapture(report);
+            ProbeRemoteManagement(report);
+            ProbeSecvideoCapture(report);
             ProbeScreenshot(report);
             ProbeSwu(report);
             report.AppendLine("DONE");
             return report.ToString();
+        }
+
+        private static void ProbeSecvideoCapture(StringBuilder report)
+        {
+            report.AppendLine();
+            report.AppendLine("[SECVIDEO FULL-FRAME CAPTURE]");
+            try
+            {
+                if (!EnsureNative(out string error))
+                {
+                    report.AppendLine("native unavailable: " + error);
+                    return;
+                }
+                IntPtr symbol = dlsym(_nativeHandle, "hypertizen_probe_secvideo_capture");
+                if (symbol == IntPtr.Zero)
+                {
+                    report.AppendLine("helper symbol unavailable");
+                    return;
+                }
+                var capture = Marshal.GetDelegateForFunctionPointer<SecvideoCapture>(symbol);
+                const uint width = 320;
+                const uint height = 180;
+                byte[] y = new byte[width * height];
+                byte[] c = new byte[width * height];
+                uint[] words = new uint[23];
+                int result = capture(y, (uint)y.Length, c, (uint)c.Length,
+                    width, height, words, (uint)words.Length);
+                report.AppendLine($"result={result} output={words[2]}x{words[3]} " +
+                    $"format={words[7]} yBytes={words[0]} cBytes={words[1]}");
+                if (result >= 0 && words[2] > 0 && words[3] > 0 &&
+                    words[2] * words[3] <= y.Length)
+                {
+                    bool chromaFull = words[1] >= words[0];
+                    CapturedSecvideoFramePpm = ToPpmYuv(
+                        y, c, words[2], words[3], chromaFull);
+                    using (SHA256 sha = SHA256.Create())
+                        report.AppendLine("frame sha256=" +
+                            BitConverter.ToString(sha.ComputeHash(CapturedSecvideoFramePpm))
+                                .Replace("-", "").ToLowerInvariant());
+                }
+            }
+            catch (Exception ex)
+            {
+                report.AppendLine(ex.GetType().Name + ": " + ex.Message);
+            }
+        }
+
+        private static void ProbeRmEncoder(StringBuilder report)
+        {
+            report.AppendLine();
+            report.AppendLine("[RM LOW-LEVEL H264 ENCODER]");
+            try
+            {
+                if (!EnsureNative(out string error))
+                {
+                    report.AppendLine("native unavailable: " + error);
+                    return;
+                }
+                IntPtr symbol = dlsym(_nativeHandle, "hypertizen_probe_rm_encoder");
+                if (symbol == IntPtr.Zero)
+                {
+                    report.AppendLine("helper symbol unavailable");
+                    return;
+                }
+                var probe = Marshal.GetDelegateForFunctionPointer<RmEncoderProbe>(symbol);
+                uint[] values = new uint[16];
+                int result = probe(values, (uint)values.Length);
+                report.AppendLine($"final={result} init={unchecked((int)values[0])} " +
+                    $"open={unchecked((int)values[1])} fd={unchecked((int)values[2])}");
+                report.AppendLine($"resolution={unchecked((int)values[3])} " +
+                    $"fps={unchecked((int)values[4])} bitrate={unchecked((int)values[5])} " +
+                    $"subscribe={unchecked((int)values[6])} streamOn={unchecked((int)values[7])}");
+                report.AppendLine($"event={unchecked((int)values[8])} " +
+                    $"offset={values[9]} bytes={values[10]} attempts={values[11]} " +
+                    $"streamOff={unchecked((int)values[12])} " +
+                    $"unsubscribe={unchecked((int)values[13])} close={unchecked((int)values[14])}");
+            }
+            catch (Exception ex)
+            {
+                report.AppendLine(ex.GetType().Name + ": " + ex.Message);
+            }
+        }
+
+        private static void ProbeMediatedAlternatives(StringBuilder report)
+        {
+            report.AppendLine();
+            report.AppendLine("[MEDIATED / SOURCE-SPECIFIC ALTERNATIVES]");
+            foreach (var command in new[]
+            {
+                new[] { "/usr/bin/gdbus", "introspect --system --dest com.uifw.colorpick --object-path /com/uifw/colorpick" },
+                new[] { "/usr/bin/gst-inspect-1.0", "tvmultihdmisrc" },
+                new[] { "/usr/bin/gst-inspect-1.0", "displayencodesrc" }
+            })
+            {
+                if (!File.Exists(command[0]))
+                {
+                    report.AppendLine(command[0] + " missing");
+                    continue;
+                }
+                try
+                {
+                    var start = new ProcessStartInfo(command[0], command[1])
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    };
+                    using (Process process = Process.Start(start))
+                    {
+                        if (process == null)
+                        {
+                            report.AppendLine(Path.GetFileName(command[0]) + " failed to start");
+                            continue;
+                        }
+                        if (!process.WaitForExit(3000))
+                        {
+                            try { process.Kill(); } catch { }
+                            report.AppendLine(Path.GetFileName(command[0]) + " timed out");
+                            continue;
+                        }
+                        string stdout = process.StandardOutput.ReadToEnd();
+                        string stderr = process.StandardError.ReadToEnd();
+                        string compact = (stdout + " " + stderr).Replace('\r', ' ').Replace('\n', ' ').Trim();
+                        if (compact.Length > 500) compact = compact.Substring(0, 500);
+                        report.AppendLine($"{Path.GetFileName(command[0])} exit={process.ExitCode}: {compact}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    report.AppendLine(Path.GetFileName(command[0]) + " " +
+                        ex.GetType().Name + ": " + ex.Message);
+                }
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int VconfGetInt(string key, out int value);
+
+        private static void ProbeRemoteManagement(StringBuilder report)
+        {
+            report.AppendLine("[REMOTE MANAGEMENT]");
+            foreach (string marker in new[]
+            {
+                "/opt/usr/apps/org.tizen.remote-management/tmp/RMStateFile",
+                "/tmp/rmDaemonRun"
+            })
+                report.AppendLine($"marker {marker} exists={File.Exists(marker)}");
+
+            int matches = 0;
+            try
+            {
+                foreach (string directory in Directory.EnumerateDirectories("/proc"))
+                {
+                    if (!int.TryParse(Path.GetFileName(directory), out int pid)) continue;
+                    try
+                    {
+                        string command = Encoding.UTF8.GetString(
+                            File.ReadAllBytes(Path.Combine(directory, "cmdline"))).Replace('\0', ' ').Trim();
+                        if (command.IndexOf("rmdemon", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                            command.IndexOf("remote-management", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            report.AppendLine($"process pid={pid} cmd={command}");
+                            matches++;
+                        }
+                    }
+                    catch { }
+                }
+            }
+            catch (Exception ex) { report.AppendLine("proc scan: " + ex.GetType().Name); }
+            report.AppendLine("matching_processes=" + matches);
+            report.AppendLine();
+        }
+
+        private static void ProbeDirectTzCapture(StringBuilder report)
+        {
+            report.AppendLine("[DIRECT TRUSTZONE CAPTURE]");
+            try
+            {
+                if (!EnsureNative(out string error))
+                {
+                    report.AppendLine(error);
+                    return;
+                }
+                TzCapture capture = GetDelegate<TzCapture>(
+                    _nativeHandle, "hypertizen_probe_tzcapture");
+                if (capture == null)
+                {
+                    report.AppendLine("native capture symbol missing");
+                    return;
+                }
+                byte[] y = new byte[0x80000];
+                byte[] c = new byte[0x80000];
+                uint width, height, chromaFull, metadata, origin;
+                int stage;
+                uint result = capture(y, (uint)y.Length, c, (uint)c.Length,
+                    out width, out height, out chromaFull, out metadata,
+                    out origin, out stage);
+                report.AppendLine($"result=0x{result:x8} origin={origin} stage={stage} " +
+                    $"size={width}x{height} chroma_full={chromaFull} metadata=0x{metadata:x8}");
+                if (result == 0 && width > 0 && height > 0)
+                {
+                    CapturedTzFramePpm = ToPpmYuv(y, c, width, height, chromaFull != 0);
+                    int nonZeroY = y.Take(checked((int)(width * height))).Count(value => value != 0);
+                    using (SHA256 sha = SHA256.Create())
+                    {
+                        string digest = BitConverter.ToString(sha.ComputeHash(CapturedTzFramePpm))
+                            .Replace("-", "").ToLowerInvariant();
+                        report.AppendLine($"frame bytes={CapturedTzFramePpm.Length} " +
+                            $"nonzero_y={nonZeroY}/{width * height} sha256={digest} download=/tz.ppm");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                report.AppendLine(ex.GetType().Name + ": " + ex.Message);
+            }
+            report.AppendLine();
+        }
+
+        private static byte[] ToPpmYuv(
+            byte[] yPlane, byte[] cPlane, uint width, uint height, bool chromaFull)
+        {
+            byte[] header = Encoding.ASCII.GetBytes($"P6\n{width} {height}\n255\n");
+            byte[] ppm = new byte[header.Length + checked((int)(width * height * 3))];
+            Buffer.BlockCopy(header, 0, ppm, 0, header.Length);
+            int output = header.Length;
+            for (uint row = 0; row < height; row++)
+            {
+                for (uint column = 0; column < width; column++)
+                {
+                    int yIndex = checked((int)(row * width + column));
+                    int cIndex = chromaFull
+                        ? checked((int)(row * width + (column & ~1u)))
+                        : checked((int)((row / 2) * width + (column & ~1u)));
+                    int yy = yPlane[yIndex] - 16;
+                    int u = cPlane[cIndex] - 128;
+                    int v = cPlane[cIndex + 1] - 128;
+                    int red = (298 * yy + 409 * v + 128) >> 8;
+                    int green = (298 * yy - 100 * u - 208 * v + 128) >> 8;
+                    int blue = (298 * yy + 516 * u + 128) >> 8;
+                    ppm[output++] = (byte)Math.Max(0, Math.Min(255, red));
+                    ppm[output++] = (byte)Math.Max(0, Math.Min(255, green));
+                    ppm[output++] = (byte)Math.Max(0, Math.Min(255, blue));
+                }
+            }
+            return ppm;
+        }
+
+        private static void ProbeV4L2(StringBuilder report)
+        {
+            report.AppendLine("[V4L2 VIDEO30]");
+            try
+            {
+                using (FileStream stream = File.Open(
+                    "/dev/video30", FileMode.Open, FileAccess.ReadWrite))
+                {
+                    int fd = stream.SafeFileHandle.DangerousGetHandle().ToInt32();
+                    byte[] capability = new byte[104];
+                    int result = ioctl(fd, 0x80685600, capability);
+                    report.AppendLine($"VIDIOC_QUERYCAP={result} errno={Marshal.GetLastWin32Error()}");
+                    if (result == 0)
+                    {
+                        report.AppendLine("driver=" + ReadCString(capability, 0, 16));
+                        report.AppendLine("card=" + ReadCString(capability, 16, 32));
+                        report.AppendLine("bus=" + ReadCString(capability, 48, 32));
+                        report.AppendLine($"version=0x{BitConverter.ToUInt32(capability, 80):x8} " +
+                            $"caps=0x{BitConverter.ToUInt32(capability, 84):x8} " +
+                            $"device_caps=0x{BitConverter.ToUInt32(capability, 88):x8}");
+
+                        for (uint index = 0; index < 16; index++)
+                        {
+                            byte[] format = new byte[64];
+                            Buffer.BlockCopy(BitConverter.GetBytes(index), 0, format, 0, 4);
+                            Buffer.BlockCopy(BitConverter.GetBytes(1u), 0, format, 4, 4);
+                            int enumResult = ioctl(fd, 0xc0405602, format);
+                            if (enumResult != 0)
+                                break;
+                            uint fourcc = BitConverter.ToUInt32(format, 44);
+                            report.AppendLine($"format[{index}]={ReadCString(format, 12, 32)} " +
+                                $"fourcc={FourCc(fourcc)} flags=0x{BitConverter.ToUInt32(format, 8):x8}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                report.AppendLine(ex.GetType().Name + ": " + ex.Message);
+            }
+            report.AppendLine();
+        }
+
+        private static string ReadCString(byte[] data, int offset, int length)
+        {
+            int end = offset;
+            while (end < offset + length && data[end] != 0) end++;
+            return Encoding.ASCII.GetString(data, offset, end - offset);
+        }
+
+        private static string FourCc(uint value)
+        {
+            return new string(new[]
+            {
+                (char)(value & 0xff), (char)((value >> 8) & 0xff),
+                (char)((value >> 16) & 0xff), (char)((value >> 24) & 0xff)
+            });
+        }
+
+        private static void ProbeDisplayEncode(StringBuilder report)
+        {
+            report.AppendLine("[DISPLAY ENCODE GSTREAMER]");
+            string outputPath = Path.GetFullPath(Path.Combine(
+                AppContext.BaseDirectory, "..", "data", "hypertizen-display.h264"));
+            try
+            {
+                if (File.Exists(outputPath))
+                    File.Delete(outputPath);
+
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "/usr/bin/gst-launch-1.0",
+                    Arguments = "-q displayencodesrc dst-w=320 dst-h=180 " +
+                        "frame-rate=24 ! h264parse ! filesink location=" + outputPath,
+                    UseShellExecute = false,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = false,
+                    CreateNoWindow = true
+                };
+                using (Process process = Process.Start(startInfo))
+                {
+                    var errors = new StringBuilder();
+                    process.ErrorDataReceived += (sender, args) =>
+                    {
+                        if (!string.IsNullOrEmpty(args.Data))
+                            errors.AppendLine(args.Data);
+                    };
+                    process.BeginErrorReadLine();
+                    bool exited = process.WaitForExit(8000);
+                    if (!exited)
+                        process.Kill();
+                    process.WaitForExit(1000);
+                    report.AppendLine("started=true exited=" + exited +
+                        (exited ? " code=" + process.ExitCode : " killed-after=8s"));
+                    if (errors.Length > 0)
+                        report.AppendLine("stderr=" + errors.ToString().Trim().Replace('\n', ' '));
+                }
+
+                if (File.Exists(outputPath))
+                {
+                    CapturedDisplayH264 = File.ReadAllBytes(outputPath);
+                    using (SHA256 sha = SHA256.Create())
+                    {
+                        string digest = BitConverter.ToString(
+                            sha.ComputeHash(CapturedDisplayH264)).Replace("-", "").ToLowerInvariant();
+                        report.AppendLine($"stream bytes={CapturedDisplayH264.Length} " +
+                            $"sha256={digest} download=/display.h264");
+                    }
+                }
+                else
+                {
+                    report.AppendLine("stream file was not created");
+                }
+            }
+            catch (Exception ex)
+            {
+                report.AppendLine(ex.GetType().Name + ": " + ex.Message);
+            }
+            report.AppendLine();
         }
 
         private static void ProbeDeviceAccess(StringBuilder report)

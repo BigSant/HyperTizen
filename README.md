@@ -31,6 +31,15 @@ application. Continuous screen mirror delivered approximately 25-30 FPS at
 
 The decoded video plane is not part of those compositor frames. During actual
 Plex playback both screenshot and screen mirror returned fully black frames.
+Additional non-Hue tests on the same TV established a harder boundary:
+`libvideo-capture.so` cannot be loaded by the developer application because
+its `libtzcapturec.so` dependency is rejected by SMACK (`Operation not
+permitted`); the reconstructed `secvideo_api_capture_screen` path therefore
+returns `-ENOENT` before capture. The public RM API reports `is_supported=0`.
+Calling either the lower RM initializer or product `/dev/video30` encoder
+backend directly wedged/terminated the probe and left the encoder resource
+unresponsive until a TV power cycle. These paths are retained as documented
+firmware candidates, not enabled production fallbacks.
 The installed firmware has now been fully decrypted locally through the TV's
 normal SWU TrustZone service, without exporting its production secret. Static
 analysis identified hardware H.264 display encoding, lower RM, raw scaler, and
@@ -47,6 +56,11 @@ frames or 10 repeated capture errors advance to the next viable method. On the
 physical TV with Plex playing, screen mirror and screenshot were correctly
 rejected as black, the `ppi_ve_*` pixel sampler was selected, and HyperTizen
 registered with Hyperion successfully.
+
+No tested method currently delivers the decoded video plane as a coherent
+full image at 24 FPS in an ordinary developer-signed application. UI-only EFL
+capture is the sole verified full-frame method; pixel sampling remains a
+degraded legacy fallback and does not satisfy the full-image requirement.
 
 This fork is focused on implementing screen capture functionality for **Tizen 8.0+ TVs**.
 
