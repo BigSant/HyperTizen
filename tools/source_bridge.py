@@ -333,8 +333,10 @@ class SourceBridge:
               f"decoder={hardware_mode or 'software'}, source="
               f"{'local' if os.path.isfile(session.stream_url) else 'plex-http'})",
               flush=True)
-        process = subprocess.Popen(command, stdout=subprocess.PIPE,
-                                   stderr=subprocess.DEVNULL)
+        # Keep FFmpeg diagnostics in the supervisor log. Its stdout contains
+        # raw NV12 frames, while inherited stderr is redirected by the
+        # supervisor to /state/source-bridge.log.
+        process = subprocess.Popen(command, stdout=subprocess.PIPE)
         started = time.monotonic()
         sync_interval = 1.0 if session.timeline_calibrated else 0.2
         next_sync = started + sync_interval
