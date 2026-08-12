@@ -15,6 +15,35 @@ from pathlib import Path
 from typing import Optional
 
 
+BRIDGE_VERSION = "2026.08.12.2"
+
+
+def system_diagnostics() -> dict:
+    commands = {
+        "identity": ["id"],
+        "vaapi": ["vainfo", "--display", "drm", "--device",
+                  "/dev/dri/renderD128"],
+        "ffmpegHwaccels": ["ffmpeg", "-hide_banner", "-hwaccels"],
+    }
+    results = {}
+    for name, command in commands.items():
+        try:
+            completed = subprocess.run(
+                command, capture_output=True, text=True, timeout=10,
+                check=False)
+            results[name] = {
+                "exitCode": completed.returncode,
+                "output": (completed.stdout + completed.stderr)[-12000:],
+            }
+        except Exception as error:
+            results[name] = {"error": f"{type(error).__name__}: {error}"}
+    results["devices"] = {
+        path: os.path.exists(path)
+        for path in ("/dev/dri", "/dev/dri/card0", "/dev/dri/renderD128")
+    }
+    return {"bridgeVersion": BRIDGE_VERSION, **results}
+
+
 def terminate_stale_bridges(bridge_name: str) -> None:
     """Remove bridge process groups orphaned by a previous supervisor."""
     own_pid = os.getpid()
@@ -119,7 +148,10 @@ def handler_for(supervisor: BridgeSupervisor):
 
         def do_GET(self) -> None:
             if self.path.rstrip("/") in ("", "/status"):
-                self._reply(200, supervisor.status())
+                self._reply(200, {
+                    **supervisor.status(), "bridgeVersion": BRIDGE_VERSION})
+            elif self.path.rstrip("/") == "/diagnostics":
+                self._reply(200, system_diagnostics())
             else:
                 self._reply(404, {"error": "not found"})
 
