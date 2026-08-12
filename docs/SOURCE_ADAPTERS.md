@@ -28,6 +28,19 @@ Run continuously:
 python3 tools/source_bridge.py
 ```
 
+To control the bridge from `controls.html`, start the lightweight supervisor
+once on the same Windows/WSL computer:
+
+```bash
+python3 tools/source_bridge_control.py
+```
+
+Keep the control panel's Source Bridge value at
+`http://127.0.0.1:19445`. The Start, Stop, Pause and Resume buttons then manage
+the Plex bridge process through the supervisor. If the control panel is opened
+on another device, run the supervisor with `--listen 0.0.0.0` and enter the
+Linux host's LAN address instead of `127.0.0.1`.
+
 The adapter follows pause, resume, seek and media changes. It only handles
 sources that the owner can read from the local Plex server. It does not bypass
 DRM or HDCP. Other TV applications require their own legitimate source adapter

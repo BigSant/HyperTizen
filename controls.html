@@ -481,6 +481,10 @@
             Logs Port:
             <input type="number" id="logsPort" value="45678" style="width: 100px;">
         </label>
+        <label>
+            Source Bridge:
+            <input type="text" id="bridgeUrl" value="http://127.0.0.1:19445" style="width: 230px;">
+        </label>
         <button class="btn-start" onclick="connectAll()">🔌 Connect</button>
         <button class="btn-secondary" onclick="disconnectAll()">Disconnect</button>
     </div>
@@ -586,6 +590,10 @@
         let logCount = 1;
         let selectedDevices = new Set();
         let ssdpDevices = [];
+        let bridgeRunning = false;
+        let bridgePaused = false;
+        let bridgeStatusTimer = null;
+        let lastBridgeStatus = null;
 
         // Event types (matching C# backend)
         const Events = {
@@ -608,6 +616,8 @@
         const savedIp = localStorage.getItem('tvIp');
         const savedControlPort = localStorage.getItem('controlPort') || '45677';
         const savedLogsPort = localStorage.getItem('logsPort') || '45678';
+        const savedBridgeUrl = localStorage.getItem('bridgeUrl') || 'http://127.0.0.1:19445';
+        document.getElementById('bridgeUrl').value = savedBridgeUrl;
 
         if (savedIp) {
             document.getElementById('tvIp').value = savedIp;
@@ -627,10 +637,14 @@
             localStorage.setItem('tvIp', ip);
             localStorage.setItem('controlPort', document.getElementById('controlPort').value);
             localStorage.setItem('logsPort', document.getElementById('logsPort').value);
+            localStorage.setItem('bridgeUrl', document.getElementById('bridgeUrl').value.trim());
 
             autoReconnectEnabled = true;
             connectControl();
             connectLogs();
+            refreshBridgeStatus();
+            clearInterval(bridgeStatusTimer);
+            bridgeStatusTimer = setInterval(refreshBridgeStatus, 3000);
         }
 
         function disconnectAll() {
@@ -639,6 +653,7 @@
             if (logsWS) logsWS.close();
             clearTimeout(reconnectTimers.control);
             clearTimeout(reconnectTimers.logs);
+            clearInterval(bridgeStatusTimer);
             updateBadge('controlStatus', 'disconnected');
             updateBadge('logsStatus', 'disconnected');
         }
@@ -795,16 +810,18 @@
         }
 
         function handleStatusResult(data) {
-            updateStatus('serviceState', data.state || 'Unknown');
-            updateStatus('connState', data.isConnected ? 'Connected' : 'Disconnected');
+            if (!bridgeRunning) {
+                updateStatus('serviceState', data.state || 'Unknown');
+                updateStatus('connState', data.isConnected ? 'Connected' : 'Disconnected');
+                updateStatus('sourceAdapter', data.sourceAdapter || 'None');
+            }
             updateStatus('framesCaptured', (data.framesCaptured || 0).toLocaleString());
             updateStatus('avgFPS', (data.averageFPS || 0).toFixed(1));
             updateStatus('errorCount', (data.errorCount || 0).toString());
             updateStatus('uptime', data.uptime || '00:00:00');
             updateStatus('captureMethod', data.captureMethod || 'Unknown');
-            updateStatus('sourceAdapter', data.sourceAdapter || 'None');
 
-            if (data.state === 'Capturing') {
+            if ((bridgeRunning && !bridgePaused) || data.state === 'Capturing') {
                 setRainbow(true);
             } else {
                 setRainbow(false);
@@ -880,23 +897,64 @@
         // ============================================================================
 
         function startCapture() {
-            addLog('Info', 'Starting capture...');
-            send({ Event: Events.SetConfig, key: 'enabled', value: 'true' });
+            addLog('Info', 'Starting Plex source bridge...');
+            bridgeRequest('start', 'POST');
         }
 
         function stopCapture() {
-            addLog('Info', 'Stopping capture...');
+            addLog('Info', 'Stopping Plex source bridge...');
+            bridgeRequest('stop', 'POST');
             send({ Event: Events.SetConfig, key: 'enabled', value: 'false' });
         }
 
         function pauseCapture() {
-            addLog('Info', 'Pausing capture...');
-            send({ Event: Events.PauseCapture });
+            addLog('Info', 'Pausing Plex source bridge...');
+            bridgeRequest('pause', 'POST');
         }
 
         function resumeCapture() {
-            addLog('Info', 'Resuming capture...');
-            send({ Event: Events.ResumeCapture });
+            addLog('Info', 'Resuming Plex source bridge...');
+            bridgeRequest('resume', 'POST');
+        }
+
+        async function bridgeRequest(action, method = 'GET') {
+            const baseUrl = document.getElementById('bridgeUrl').value.trim().replace(/\/$/, '');
+            localStorage.setItem('bridgeUrl', baseUrl);
+            try {
+                const response = await fetch(`${baseUrl}/${action}`, { method });
+                const data = await response.json();
+                if (!response.ok || data.error) throw new Error(data.error || `HTTP ${response.status}`);
+                applyBridgeStatus(data);
+                return data;
+            } catch (error) {
+                bridgeRunning = false;
+                setRainbow(false);
+                updateStatus('sourceAdapter', 'Bridge controller unavailable');
+                addLog('Error', `Source bridge ${action} failed: ${error.message}`);
+                return null;
+            }
+        }
+
+        function refreshBridgeStatus() {
+            return bridgeRequest('status');
+        }
+
+        function applyBridgeStatus(data) {
+            bridgeRunning = !!data.running;
+            bridgePaused = !!data.paused;
+            const statusName = bridgeRunning ? (data.paused ? 'paused' : 'running') : 'stopped';
+            setRainbow(bridgeRunning && !data.paused);
+            if (bridgeRunning) {
+                updateStatus('serviceState', data.paused ? 'Bridge paused' : 'Bridge running');
+                updateStatus('sourceAdapter', `Plex bridge (PID ${data.pid})`);
+                updateStatus('connState', 'External bridge');
+            } else {
+                updateStatus('sourceAdapter', 'Plex bridge stopped');
+            }
+            if (statusName !== lastBridgeStatus) {
+                addLog('Info', `Source bridge: ${statusName}`);
+                lastBridgeStatus = statusName;
+            }
         }
 
         function restartService() {

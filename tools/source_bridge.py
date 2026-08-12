@@ -11,6 +11,7 @@ MediaSourceAdapter without changing the decoder or HyperHDR sink.
 from __future__ import annotations
 
 import argparse
+import select
 import socket
 import struct
 import subprocess
@@ -100,8 +101,8 @@ class HyperHdrFlatBufferSink:
     def _connect(self) -> None:
         self.close()
         self._socket = socket.create_connection((self.host, self.port), timeout=3)
-        self._send_message(self._register_message())
         self._socket.setblocking(False)
+        self._send_message(self._register_message())
 
     def send_nv12(self, frame: bytes, width: int, height: int) -> None:
         if self._socket is None:
@@ -109,7 +110,7 @@ class HyperHdrFlatBufferSink:
         try:
             self._send_message(self._image_message(frame, width, height))
             try:
-                while self._socket.recv(4096):
+                while self._socket.recv(4096, socket.MSG_DONTWAIT):
                     pass
             except BlockingIOError:
                 pass
@@ -118,7 +119,21 @@ class HyperHdrFlatBufferSink:
             raise
 
     def _send_message(self, message: bytes) -> None:
-        self._socket.sendall(struct.pack(">I", len(message)) + message)
+        packet = memoryview(struct.pack(">I", len(message)) + message)
+        deadline = time.monotonic() + 5
+        while packet:
+            try:
+                sent = self._socket.send(packet)
+                if sent == 0:
+                    raise ConnectionError("HyperHDR closed the connection")
+                packet = packet[sent:]
+            except BlockingIOError:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError("HyperHDR send timed out")
+                _, writable, _ = select.select([], [self._socket], [], remaining)
+                if not writable:
+                    raise TimeoutError("HyperHDR send timed out")
 
     def _register_message(self) -> bytes:
         builder = flatbuffers.Builder(256)
@@ -247,7 +262,7 @@ class SourceBridge:
                                     and abs(current.position_seconds
                                             - last_server_position) > 0.2)
                 seeked = (changed_position
-                          and abs(current.position_seconds - expected) > 3.0)
+                          and abs(current.position_seconds - expected) > 10.0)
                 if (current is None or current.state != "playing"
                         or current.identity != session.identity or seeked):
                     print("Playback changed; resynchronizing", flush=True)
