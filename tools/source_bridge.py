@@ -34,6 +34,7 @@ class SourceSession:
     position_seconds: float
     stream_url: str
     video_codec: str = ""
+    video_profile: str = ""
     timeline_calibrated: bool = False
 
 
@@ -60,7 +61,7 @@ class PlexSessionAdapter(MediaSourceAdapter):
         self._timeline_calibrated = False
         self.plex_path_prefix = plex_path_prefix.rstrip("/")
         self.local_media_root = local_media_root.rstrip("/")
-        self._stream_details: dict[str, tuple[str, str]] = {}
+        self._stream_details: dict[str, tuple[str, str, str]] = {}
 
     def _source_for_part(self, part: ET.Element) -> Optional[str]:
         plex_path = part.get("file", "")
@@ -107,9 +108,10 @@ class PlexSessionAdapter(MediaSourceAdapter):
                 if not stream_url:
                     continue
                 video_codec = media.get("videoCodec", "") if media is not None else ""
-                stream_details = (stream_url, video_codec)
+                video_profile = media.get("videoProfile", "") if media is not None else ""
+                stream_details = (stream_url, video_codec, video_profile)
                 self._stream_details[metadata_key] = stream_details
-            stream_url, video_codec = stream_details
+            stream_url, video_codec, video_profile = stream_details
 
             identity = (video.get("playbackSessionId")
                         or player.get("playbackSessionId")
@@ -142,6 +144,7 @@ class PlexSessionAdapter(MediaSourceAdapter):
                 position_seconds=position,
                 stream_url=stream_url,
                 video_codec=video_codec,
+                video_profile=video_profile,
                 timeline_calibrated=self._timeline_calibrated,
             )
         return None
@@ -318,24 +321,32 @@ class SourceBridge:
             "-ss", f"{session.position_seconds + self.sync_lead:.3f}",
             "-i", session.stream_url, "-an", "-vf"
         ]
+        centered_scale = (
+            f"scale={self.width}:{self.height}:force_original_aspect_ratio=decrease:"
+            "flags=fast_bilinear,"
+            f"pad={self.width}:{self.height}:(ow-iw)/2:(oh-ih)/2:color=black,"
+            "setsar=1")
         if hardware_mode == "cuda":
             command += [f"fps={self.fps},format=nv12"]
         elif hardware_mode == "vaapi":
             # Kaby Lake / HD 630 decodes HEVC Main10 in hardware but its VAAPI
             # VPP cannot create a Main10 -> NV12 scaling pipeline. Download the
             # decoded surface and do only the inexpensive 320x180 scale on CPU.
-            command += [("hwdownload,format=nv12|p010le,"
-                         f"scale={self.width}:{self.height},"
+            download_format = ("p010le" if "10" in session.video_profile
+                               else "nv12")
+            command += [(f"hwdownload,format={download_format},"
+                         f"{centered_scale},"
                          f"format=nv12,fps={self.fps}")]
         else:
-            command += [f"scale={self.width}:{self.height},fps={self.fps}"]
+            command += [f"{centered_scale},fps={self.fps}"]
         command += [
             "-pix_fmt", "nv12", "-f", "rawvideo", "pipe:1",
         ]
         print(f"Mirroring {session.title!r} at {session.position_seconds:.3f}s "
               f"({self.width}x{self.height}@{self.fps}, "
               f"decoder={hardware_mode or 'software'}, source="
-              f"{'local' if os.path.isfile(session.stream_url) else 'plex-http'})",
+              f"{'local' if os.path.isfile(session.stream_url) else 'plex-http'}, "
+              f"profile={session.video_profile or 'unknown'})",
               flush=True)
         # Keep FFmpeg diagnostics in the supervisor log. Its stdout contains
         # raw NV12 frames, while inherited stderr is redirected by the
