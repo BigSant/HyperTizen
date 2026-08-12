@@ -19,6 +19,17 @@
     <Folder Include="res\" />
   </ItemGroup>
 
+  <!-- TV builds are control-only. Full-frame processing runs in the PC/WSL
+       source bridge, so no capture probes or native capture interop are
+       compiled into the package. -->
+  <ItemGroup>
+    <Compile Remove="HyperionClient.cs" />
+    <Compile Remove="DiagnosticCapture.cs" />
+    <Compile Remove="VideoCapture.cs" />
+    <Compile Remove="SDK\SecVideoCapture.cs" />
+    <Compile Remove="Capture\**\*.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Google.FlatBuffers" Version="25.2.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

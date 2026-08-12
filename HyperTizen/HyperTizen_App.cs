@@ -1,7 +1,6 @@
 using System;
 using Tizen.Applications;
 using Tizen.Applications.Notifications;
-using Tizen.System;
 using System.Threading.Tasks;
 
 namespace HyperTizen
@@ -67,7 +66,6 @@ namespace HyperTizen
 
             // Continue startup immediately. Firmware/native capture diagnostics
             // are explicit research operations and must never block OnCreate().
-            Display.StateChanged += Display_StateChanged;
             client = new HyperionClient();
 
             // Show service started notification (always shown)
@@ -78,17 +76,6 @@ namespace HyperTizen
                 Count = 1
             };
             NotificationManager.Post(startNotif);
-        }
-
-        private void Display_StateChanged(object sender, DisplayStateChangedEventArgs e)
-        {
-            if (e.State == DisplayState.Off)
-            {
-                Task.Run(() => client.Stop());
-            } else if (e.State == DisplayState.Normal && Globals.Instance.Enabled)
-            {
-                Task.Run(() => client.Start());
-            }
         }
 
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)

@@ -77,6 +77,9 @@ package and cannot launch the `.NET` service directly on Tizen 2.4+; start the
 service with Tizen/SDB, then use the UI or `controls.html` through ports 45677
 and 45678. This avoids the misleading `NotSupportedError: required function`
 message emitted by `tizen.application.launch()` for cross-package services.
+Capture implementations, diagnostics and native capture interop are excluded
+from the TV compilation entirely; the TV package cannot inspect or process
+video frames. All image work is performed by the PC/WSL source bridge.
 
 This fork is focused on implementing screen capture functionality for **Tizen 8.0+ TVs**.
 
