@@ -274,6 +274,9 @@ def main() -> None:
     parser.add_argument("--hyperhdr-host", default="192.168.10.10")
     parser.add_argument("--hyperhdr-port", type=int, default=19400)
     parser.add_argument("--sync-lead", type=float, default=1.0)
+    parser.add_argument("--drift-threshold", type=float, default=0.75)
+    parser.add_argument("--drift-confirmations", type=int, default=2)
+    parser.add_argument("--session-grace", type=float, default=3.0)
     parser.add_argument("--hardware-decoder",
                         choices=("auto", "cuda", "vaapi", "off"),
                         default="auto")
@@ -293,6 +296,9 @@ def main() -> None:
         "--hardware-decoder", args.hardware_decoder,
         "--plex-path-prefix", args.plex_path_prefix,
         "--local-media-root", args.local_media_root,
+        "--drift-threshold", str(args.drift_threshold),
+        "--drift-confirmations", str(args.drift_confirmations),
+        "--session-grace", str(args.session_grace),
     ]
     log_path = Path(args.log)
     supervisor = BridgeSupervisor(

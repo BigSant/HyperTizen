@@ -43,9 +43,13 @@ Linux host's LAN address instead of `127.0.0.1`.
 
 Plex reports `viewOffset` in roughly 10-second steps. The adapter detects those
 updates at 5 Hz and interpolates the playback position with a monotonic clock,
-then reduces polling to 1 Hz after the first calibration. Subsequent decoder
-restarts are reserved for real timeline jumps over 30 seconds, avoiding
-periodic seeks against the same large HDR file Plex is serving to the TV.
+then reduces polling to 1 Hz after the first calibration. A dedicated reader
+continuously drains FFmpeg and retains only the newest complete frame. If
+HyperHDR or WLED briefly stalls, intermediate frames are dropped instead of
+building an ever-growing pipe backlog. A timeline difference over 0.75 seconds
+must be observed twice before FFmpeg is restarted; a seek over 5 seconds is
+handled immediately. A missing Plex session is tolerated for three seconds to
+avoid restarting on a transient status response.
 The default `--sync-lead 1.0` compensates for measured FFmpeg startup and the
 short FlatBuffers/preview path. For frame-accurate calibration, play a video
 with a per-frame timecode and record the TV and HyperHDR preview together with
@@ -74,3 +78,8 @@ python3 tools/source_bridge.py \
 
 The complete two-container TrueNAS deployment is in
 `deploy/truenas-hyperhdr/`.
+
+The bridge emits a `Bridge timing` line every 30 seconds with current timeline
+drift and the number of stale frames discarded. `Session pass` reports the same
+discard counter when a decoder pass ends. These values distinguish healthy
+latency control from decoder or network throughput problems.

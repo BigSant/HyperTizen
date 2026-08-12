@@ -70,6 +70,12 @@ The controls page can change `sync-lead` from 0 to 5 seconds. The setting is
 stored as `/state/bridge-settings.json`; saving it while the bridge is running
 restarts only the bridge so the new value takes effect immediately.
 
+The bridge keeps only the latest decoded frame, checks sustained timeline drift
+against Plex, and tolerates short status interruptions. Inspect `Bridge timing`
+entries in `/state/source-bridge.log`: `drift` should remain within about 0.75 s
+and `stale-dropped` may increase during a short overload without adding lasting
+latency.
+
 ## Rollback
 
 Stop the `hypertizen-hyperhdr` app and start the old Hyperion app. The two

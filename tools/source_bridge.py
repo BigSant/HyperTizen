@@ -17,6 +17,7 @@ import socket
 import struct
 import subprocess
 import sys
+import threading
 import time
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -255,10 +256,110 @@ def read_exact(stream: BinaryIO, size: int) -> bytes:
     return bytes(chunks)
 
 
+@dataclass(frozen=True)
+class FrameSnapshot:
+    sequence: int
+    data: bytes
+    captured_at: float
+
+
+class LatestFrameReader:
+    """Drain FFmpeg continuously while retaining only its newest frame."""
+
+    def __init__(self, stream: BinaryIO, frame_size: int):
+        self.stream = stream
+        self.frame_size = frame_size
+        self._condition = threading.Condition()
+        self._stop = threading.Event()
+        self._thread = threading.Thread(
+            target=self._run, name="ffmpeg-latest-frame", daemon=True)
+        self._latest: Optional[FrameSnapshot] = None
+        self._sequence = 0
+        self._error: Optional[BaseException] = None
+        self._done = False
+
+    def start(self) -> None:
+        self._thread.start()
+
+    def stop(self) -> None:
+        self._stop.set()
+        with self._condition:
+            self._condition.notify_all()
+
+    def join(self, timeout: float = 1.0) -> None:
+        self._thread.join(timeout)
+
+    def latest_after(self, sequence: int,
+                     timeout: float = 1.0) -> Optional[FrameSnapshot]:
+        deadline = time.monotonic() + timeout
+        with self._condition:
+            while True:
+                if self._latest is not None and self._latest.sequence > sequence:
+                    return self._latest
+                if self._error is not None:
+                    raise self._error
+                if self._done:
+                    raise EOFError
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    return None
+                self._condition.wait(remaining)
+
+    def _run(self) -> None:
+        try:
+            while not self._stop.is_set():
+                frame = read_exact(self.stream, self.frame_size)
+                snapshot = FrameSnapshot(
+                    self._sequence + 1, frame, time.monotonic())
+                with self._condition:
+                    self._sequence = snapshot.sequence
+                    self._latest = snapshot
+                    self._condition.notify_all()
+        except BaseException as error:
+            if not self._stop.is_set():
+                with self._condition:
+                    self._error = error
+        finally:
+            with self._condition:
+                self._done = True
+                self._condition.notify_all()
+
+
+class TimelineDriftGuard:
+    """Require repeatable drift before restarting a healthy decoder."""
+
+    def __init__(self, threshold: float, confirmations: int,
+                 hard_threshold: float = 5.0):
+        self.threshold = threshold
+        self.confirmations = confirmations
+        self.hard_threshold = max(hard_threshold, threshold)
+        self.consecutive = 0
+
+    def observe(self, drift_seconds: float) -> bool:
+        magnitude = abs(drift_seconds)
+        if magnitude >= self.hard_threshold:
+            self.consecutive = self.confirmations
+            return True
+        if magnitude >= self.threshold:
+            self.consecutive += 1
+        else:
+            self.consecutive = 0
+        return self.consecutive >= self.confirmations
+
+
+def timeline_drift_seconds(initial_position: float, current_position: float,
+                           source_sequence: int, fps: int) -> float:
+    """Return positive seconds when the decoded source is behind playback."""
+    decoded_position = initial_position + max(0, source_sequence - 1) / fps
+    return current_position - decoded_position
+
+
 class SourceBridge:
     def __init__(self, adapter: MediaSourceAdapter, sink: HyperHdrFlatBufferSink,
                  width: int, height: int, fps: int, sync_lead: float,
-                 hardware_decoder: str):
+                 hardware_decoder: str, drift_threshold: float = 0.75,
+                 drift_confirmations: int = 2,
+                 session_grace: float = 3.0):
         self.adapter = adapter
         self.sink = sink
         self.width = width
@@ -266,6 +367,9 @@ class SourceBridge:
         self.fps = fps
         self.sync_lead = sync_lead
         self.hardware_decoder = hardware_decoder
+        self.drift_threshold = drift_threshold
+        self.drift_confirmations = drift_confirmations
+        self.session_grace = session_grace
         self._disabled_hardware_modes: set[tuple[str, str]] = set()
 
     def _hardware_mode(self, codec: str) -> tuple[Optional[str], Optional[str]]:
@@ -352,10 +456,23 @@ class SourceBridge:
         # raw NV12 frames, while inherited stderr is redirected by the
         # supervisor to /state/source-bridge.log.
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
+        if process.stdout is None:
+            process.terminate()
+            raise RuntimeError("FFmpeg stdout pipe is unavailable")
+        reader = LatestFrameReader(
+            process.stdout, self.width * self.height * 3 // 2)
+        reader.start()
         started = time.monotonic()
         sync_interval = 1.0 if session.timeline_calibrated else 0.2
         next_sync = started + sync_interval
         last_server_position = session.position_seconds
+        missing_session_since = None
+        drift_guard = TimelineDriftGuard(
+            self.drift_threshold, self.drift_confirmations)
+        last_drift = 0.0
+        next_timing_log = started + 30.0
+        source_sequence = 0
+        stale_frames = 0
         frames = 0
         first_frame_at = None
         last_frame_at = None
@@ -363,9 +480,12 @@ class SourceBridge:
             while process.poll() is None:
                 if deadline is not None and time.monotonic() >= deadline:
                     return
-                frame = read_exact(process.stdout,
-                                   self.width * self.height * 3 // 2)
-                self.sink.send_nv12(frame, self.width, self.height)
+                snapshot = reader.latest_after(source_sequence, timeout=1.0)
+                if snapshot is None:
+                    continue
+                stale_frames += max(0, snapshot.sequence - source_sequence - 1)
+                source_sequence = snapshot.sequence
+                self.sink.send_nv12(snapshot.data, self.width, self.height)
                 frame_time = time.monotonic()
                 if first_frame_at is None:
                     first_frame_at = frame_time
@@ -376,22 +496,44 @@ class SourceBridge:
                 if now < next_sync:
                     continue
                 current = self.adapter.current_session()
-                expected = session.position_seconds + (now - started)
-                changed_position = (current is not None
-                                    and abs(current.position_seconds
-                                            - last_server_position) > 0.2)
-                seeked = (changed_position
-                          and abs(current.position_seconds - expected) > 30.0)
-                became_calibrated = (current is not None
-                                     and current.timeline_calibrated
+                if current is None or current.state != "playing":
+                    if missing_session_since is None:
+                        missing_session_since = now
+                        print("Plex session temporarily unavailable; holding "
+                              f"the stream for {self.session_grace:.1f}s",
+                              flush=True)
+                    if now - missing_session_since >= self.session_grace:
+                        print("Plex session grace period expired; "
+                              "resynchronizing", flush=True)
+                        return
+                    next_sync = now + sync_interval
+                    continue
+                missing_session_since = None
+                changed_position = (abs(current.position_seconds
+                                        - last_server_position) > 0.2)
+                became_calibrated = (current.timeline_calibrated
                                      and not session.timeline_calibrated)
-                if (current is None or current.state != "playing"
-                        or current.identity != session.identity or seeked
-                        or became_calibrated):
+                if (current.identity != session.identity or became_calibrated):
                     print("Playback changed; resynchronizing", flush=True)
                     return
                 if changed_position:
+                    last_drift = timeline_drift_seconds(
+                        session.position_seconds + self.sync_lead,
+                        current.position_seconds,
+                        source_sequence,
+                        self.fps)
+                    if drift_guard.observe(last_drift):
+                        print(f"Timeline drift {last_drift:+.3f}s "
+                              f"({drift_guard.consecutive}/"
+                              f"{self.drift_confirmations}); resynchronizing",
+                              flush=True)
+                        return
                     last_server_position = current.position_seconds
+                if now >= next_timing_log:
+                    print(f"Bridge timing: drift={last_drift:+.3f}s, "
+                          f"sent={frames}, stale-dropped={stale_frames}",
+                          flush=True)
+                    next_timing_log = now + 30.0
                 next_sync = now + sync_interval
         finally:
             process.terminate()
@@ -399,6 +541,8 @@ class SourceBridge:
                 process.wait(timeout=2)
             except subprocess.TimeoutExpired:
                 process.kill()
+            reader.stop()
+            reader.join()
             elapsed = max(time.monotonic() - started, 0.001)
             active = max((last_frame_at - first_frame_at)
                          if first_frame_at is not None and last_frame_at is not None
@@ -411,7 +555,8 @@ class SourceBridge:
                 print(f"Hardware decoder {hardware_mode} failed; falling back to software",
                       file=sys.stderr, flush=True)
             print(f"Session pass: {frames} frames, steady {steady_fps:.2f} FPS, "
-                  f"startup {startup:.3f}s", flush=True)
+                  f"startup {startup:.3f}s, stale-dropped={stale_frames}",
+                  flush=True)
 
 
 def main() -> None:
@@ -426,6 +571,12 @@ def main() -> None:
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--sync-lead", type=float, default=1.0,
                         help="Seek this many seconds ahead to offset decoder startup")
+    parser.add_argument("--drift-threshold", type=float, default=0.75,
+                        help="Sustained timeline drift that restarts FFmpeg")
+    parser.add_argument("--drift-confirmations", type=int, default=2,
+                        help="Consecutive drift samples required before restart")
+    parser.add_argument("--session-grace", type=float, default=3.0,
+                        help="Seconds to tolerate a missing Plex session")
     parser.add_argument("--hardware-decoder",
                         choices=("auto", "cuda", "vaapi", "off"),
                         default="auto")
@@ -444,7 +595,9 @@ def main() -> None:
     sink = HyperHdrFlatBufferSink(args.hyperhdr_host, args.hyperhdr_port,
                                   args.priority)
     SourceBridge(adapter, sink, args.width, args.height, args.fps,
-                 args.sync_lead, args.hardware_decoder).run(
+                 args.sync_lead, args.hardware_decoder,
+                 args.drift_threshold, args.drift_confirmations,
+                 args.session_grace).run(
         args.run_seconds)
 
 

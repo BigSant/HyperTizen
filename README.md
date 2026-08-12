@@ -69,6 +69,9 @@ HyperHDR over FlatBuffers. Physical testing measured 23.94-23.97 steady FPS.
 The bridge uses a generic source-adapter boundary so other applications can be
 added without changing its decoder or HyperHDR transport. See
 `docs/SOURCE_ADAPTERS.md` for setup and limitations.
+Its FFmpeg reader retains only the newest complete frame, resynchronizes after
+sustained timeline drift, and tolerates brief Plex status gaps so temporary
+load spikes cannot accumulate into permanent LED delay.
 
 The current TV package intentionally starts in control-only mode. Experimental
 on-TV capture probes are disabled in normal builds because restricted native

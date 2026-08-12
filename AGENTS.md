@@ -29,6 +29,9 @@ HyperTizen is an experimental fork of a Hyperion/HyperHDR screen capturer for Sa
 - **T7 SDK Capture Method** = NOT YET IMPLEMENTED (scaffolding exists)
 - **Pixel Sampling Capture Method** = IMPLEMENTED and hardware-verified via
   Tizen 9 `ppi_ve_*`; selected automatically during Plex playback
+- **Plex source bridge:** full-frame 320x180@24 NV12 path runs on TrueNAS;
+  FFmpeg is drained by a latest-frame reader, sustained drift triggers a
+  decoder resync, and transient Plex status gaps have a grace period.
 
 **Critical Constraint:** Always verify methods on actual TV hardware - emulator testing is not reliable. Different Tizen firmware versions may have different API availability.
 
