@@ -321,8 +321,12 @@ class SourceBridge:
         if hardware_mode == "cuda":
             command += [f"fps={self.fps},format=nv12"]
         elif hardware_mode == "vaapi":
-            command += [(f"scale_vaapi=w={self.width}:h={self.height}:format=nv12,"
-                         f"hwdownload,format=nv12,fps={self.fps}")]
+            # Kaby Lake / HD 630 decodes HEVC Main10 in hardware but its VAAPI
+            # VPP cannot create a Main10 -> NV12 scaling pipeline. Download the
+            # decoded surface and do only the inexpensive 320x180 scale on CPU.
+            command += [("hwdownload,format=nv12|p010le,"
+                         f"scale={self.width}:{self.height},"
+                         f"format=nv12,fps={self.fps}")]
         else:
             command += [f"scale={self.width}:{self.height},fps={self.fps}"]
         command += [
