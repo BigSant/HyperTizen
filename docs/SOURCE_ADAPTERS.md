@@ -43,7 +43,9 @@ Linux host's LAN address instead of `127.0.0.1`.
 
 Plex reports `viewOffset` in roughly 10-second steps. The adapter detects those
 updates at 5 Hz and interpolates the playback position with a monotonic clock,
-then resynchronizes if the corrected timeline differs by more than 750 ms.
+then reduces polling to 1 Hz after the first calibration. Subsequent decoder
+restarts are reserved for real timeline jumps over 30 seconds, avoiding
+periodic seeks against the same large HDR file Plex is serving to the TV.
 The default `--sync-lead 1.0` compensates for measured FFmpeg startup and the
 short FlatBuffers/preview path. For frame-accurate calibration, play a video
 with a per-frame timecode and record the TV and HyperHDR preview together with
@@ -54,8 +56,21 @@ sources that the owner can read from the local Plex server. It does not bypass
 DRM or HDCP. Other TV applications require their own legitimate source adapter
 or a working TV capture backend.
 
-On NVIDIA-equipped Linux/WSL hosts, `--hardware-decoder auto` uses CUVID to
-decode HEVC/H.264 and resize the source directly on the GPU. The QE77S95F HDR
-test reduced FFmpeg from about 118% of one CPU core to roughly 8% CPU time.
-Use `--hardware-decoder off` only for troubleshooting; a failed GPU decoder
-automatically falls back to software.
+On NVIDIA-equipped Linux/WSL hosts, `--hardware-decoder auto` uses CUVID. On
+Linux servers with `/dev/dri/renderD128`, it uses VAAPI; this is the TrueNAS
+deployment path for the Intel HD 630. Both modes decode and resize on the GPU.
+The QE77S95F HDR test with CUVID reduced FFmpeg from about 118% of one CPU core
+to roughly 8% CPU time. Use `--hardware-decoder off` only for troubleshooting;
+a failed GPU decoder automatically falls back to software.
+
+When Plex and the adapter run on the same TrueNAS host, map the Plex metadata
+prefix to the read-only dataset instead of downloading the movie through Plex:
+
+```bash
+python3 tools/source_bridge.py \
+  --plex-path-prefix /data --local-media-root /media \
+  --hardware-decoder vaapi
+```
+
+The complete two-container TrueNAS deployment is in
+`deploy/truenas-hyperhdr/`.

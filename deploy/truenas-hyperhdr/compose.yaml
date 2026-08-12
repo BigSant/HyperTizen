@@ -1,0 +1,64 @@
+name: hypertizen-hyperhdr
+
+services:
+  hyperhdr:
+    build:
+      context: ${BUILD_CONTEXT:-/mnt/Vault/apps/hypertizen-hyperhdr/build}
+      dockerfile: deploy/truenas-hyperhdr/hyperhdr.Dockerfile
+    image: local/hypertizen-hyperhdr:21.0.0.0
+    restart: unless-stopped
+    init: true
+    environment:
+      TZ: Europe/Vilnius
+    ports:
+      - "8091:8090"
+      - "8093:8092"
+      - "19401:19400"
+      - "19446:19444"
+    volumes:
+      - ${APP_CONFIG_PATH:-/mnt/Vault/apps/hypertizen-hyperhdr/config}:/config
+    security_opt:
+      - no-new-privileges:true
+
+  source-bridge:
+    build:
+      context: ${BUILD_CONTEXT:-/mnt/Vault/apps/hypertizen-hyperhdr/build}
+      dockerfile: deploy/truenas-hyperhdr/bridge.Dockerfile
+    image: local/hypertizen-source-bridge:1
+    restart: unless-stopped
+    init: true
+    depends_on:
+      - hyperhdr
+    command:
+      - --listen
+      - 0.0.0.0
+      - --plex-url
+      - http://192.168.10.10:32400
+      - --tv-model
+      - QE77S95FATXXH
+      - --hyperhdr-host
+      - hyperhdr
+      - --hyperhdr-port
+      - "19400"
+      - --hardware-decoder
+      - vaapi
+      - --plex-path-prefix
+      - /data
+      - --local-media-root
+      - /media
+      - --log
+      - /state/source-bridge.log
+    ports:
+      - "19545:19445"
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    volumes:
+      - ${MEDIA_PATH:-/mnt/Vault/Media}:/media:ro
+      - ${BRIDGE_STATE_PATH:-/mnt/Vault/apps/hypertizen-hyperhdr/bridge-state}:/state
+    read_only: true
+    tmpfs:
+      - /tmp:size=128m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

@@ -159,8 +159,11 @@ def main() -> None:
     parser.add_argument("--hyperhdr-host", default="192.168.10.10")
     parser.add_argument("--hyperhdr-port", type=int, default=19400)
     parser.add_argument("--sync-lead", type=float, default=1.0)
-    parser.add_argument("--hardware-decoder", choices=("auto", "cuda", "off"),
+    parser.add_argument("--hardware-decoder",
+                        choices=("auto", "cuda", "vaapi", "off"),
                         default="auto")
+    parser.add_argument("--plex-path-prefix", default="")
+    parser.add_argument("--local-media-root", default="")
     parser.add_argument("--log", default="/tmp/hypertizen-source-bridge.log")
     args = parser.parse_args()
 
@@ -174,6 +177,8 @@ def main() -> None:
         "--hyperhdr-port", str(args.hyperhdr_port),
         "--sync-lead", str(args.sync_lead),
         "--hardware-decoder", args.hardware_decoder,
+        "--plex-path-prefix", args.plex_path_prefix,
+        "--local-media-root", args.local_media_root,
     ]
     supervisor = BridgeSupervisor(command, Path(args.log))
     server = ThreadingHTTPServer((args.listen, args.port), handler_for(supervisor))

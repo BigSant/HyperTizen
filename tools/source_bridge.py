@@ -47,7 +47,8 @@ class MediaSourceAdapter:
 class PlexSessionAdapter(MediaSourceAdapter):
     name = "Plex session"
 
-    def __init__(self, base_url: str, tv_model: str, timeout: float = 3.0):
+    def __init__(self, base_url: str, tv_model: str, timeout: float = 3.0,
+                 plex_path_prefix: str = "", local_media_root: str = ""):
         self.base_url = base_url.rstrip("/")
         self.tv_model = tv_model
         self.timeout = timeout
@@ -57,7 +58,23 @@ class PlexSessionAdapter(MediaSourceAdapter):
         self._position_anchor = 0.0
         self._anchor_time = 0.0
         self._timeline_calibrated = False
+        self.plex_path_prefix = plex_path_prefix.rstrip("/")
+        self.local_media_root = local_media_root.rstrip("/")
         self._stream_details: dict[str, tuple[str, str]] = {}
+
+    def _source_for_part(self, part: ET.Element) -> Optional[str]:
+        plex_path = part.get("file", "")
+        if (self.plex_path_prefix and self.local_media_root
+                and (plex_path == self.plex_path_prefix
+                     or plex_path.startswith(self.plex_path_prefix + "/"))):
+            suffix = plex_path[len(self.plex_path_prefix):].lstrip("/")
+            local_path = os.path.join(self.local_media_root, suffix)
+            if os.path.isfile(local_path):
+                return local_path
+            print(f"Mapped media file is missing: {local_path}",
+                  file=sys.stderr, flush=True)
+        part_key = part.get("key")
+        return self.base_url + part_key if part_key else None
 
     def _xml(self, path: str) -> ET.Element:
         request = urllib.request.Request(
@@ -84,9 +101,11 @@ class PlexSessionAdapter(MediaSourceAdapter):
                 metadata = self._xml(metadata_key)
                 media = metadata.find("./Video/Media")
                 part = metadata.find("./Video/Media/Part")
-                if part is None or not part.get("key"):
+                if part is None:
                     continue
-                stream_url = self.base_url + part.get("key")
+                stream_url = self._source_for_part(part)
+                if not stream_url:
+                    continue
                 video_codec = media.get("videoCodec", "") if media is not None else ""
                 stream_details = (stream_url, video_codec)
                 self._stream_details[metadata_key] = stream_details
@@ -244,20 +263,24 @@ class SourceBridge:
         self.fps = fps
         self.sync_lead = sync_lead
         self.hardware_decoder = hardware_decoder
-        self._disabled_hardware_codecs: set[str] = set()
+        self._disabled_hardware_modes: set[tuple[str, str]] = set()
 
-    def _cuda_decoder(self, codec: str) -> Optional[str]:
+    def _hardware_mode(self, codec: str) -> tuple[Optional[str], Optional[str]]:
         codec = codec.lower()
-        decoder = {"hevc": "hevc_cuvid", "h265": "hevc_cuvid",
-                   "h264": "h264_cuvid", "avc": "h264_cuvid"}.get(codec)
-        if not decoder or codec in self._disabled_hardware_codecs:
-            return None
+        cuda_decoder = {"hevc": "hevc_cuvid", "h265": "hevc_cuvid",
+                        "h264": "h264_cuvid", "avc": "h264_cuvid"}.get(codec)
         if self.hardware_decoder == "off":
-            return None
+            return None, None
         has_cuda_device = os.path.exists("/dev/dxg") or os.path.exists("/dev/nvidia0")
-        if self.hardware_decoder == "auto" and not has_cuda_device:
-            return None
-        return decoder
+        has_vaapi_device = os.path.exists("/dev/dri/renderD128")
+        if (self.hardware_decoder in ("auto", "cuda") and has_cuda_device
+                and cuda_decoder
+                and ("cuda", codec) not in self._disabled_hardware_modes):
+            return "cuda", cuda_decoder
+        if (self.hardware_decoder in ("auto", "vaapi") and has_vaapi_device
+                and ("vaapi", codec) not in self._disabled_hardware_modes):
+            return "vaapi", None
+        return None, None
 
     def run(self, run_seconds: float = 0) -> None:
         deadline = time.monotonic() + run_seconds if run_seconds else None
@@ -281,27 +304,40 @@ class SourceBridge:
 
     def _mirror_session(self, session: SourceSession,
                         deadline: Optional[float]) -> None:
-        cuda_decoder = self._cuda_decoder(session.video_codec)
+        hardware_mode, cuda_decoder = self._hardware_mode(session.video_codec)
         command = [
             "ffmpeg", "-hide_banner", "-loglevel", "error", "-re"
         ]
-        if cuda_decoder:
+        if hardware_mode == "cuda":
             command += ["-c:v", cuda_decoder,
                         "-resize", f"{self.width}x{self.height}"]
+        elif hardware_mode == "vaapi":
+            command += ["-hwaccel", "vaapi", "-hwaccel_device",
+                        "/dev/dri/renderD128", "-hwaccel_output_format", "vaapi"]
         command += [
             "-ss", f"{session.position_seconds + self.sync_lead:.3f}",
-            "-i", session.stream_url, "-an", "-vf",
-            (f"fps={self.fps},format=nv12" if cuda_decoder
-             else f"scale={self.width}:{self.height},fps={self.fps}"),
+            "-i", session.stream_url, "-an", "-vf"
+        ]
+        if hardware_mode == "cuda":
+            command += [f"fps={self.fps},format=nv12"]
+        elif hardware_mode == "vaapi":
+            command += [(f"scale_vaapi=w={self.width}:h={self.height}:format=nv12,"
+                         f"hwdownload,format=nv12,fps={self.fps}")]
+        else:
+            command += [f"scale={self.width}:{self.height},fps={self.fps}"]
+        command += [
             "-pix_fmt", "nv12", "-f", "rawvideo", "pipe:1",
         ]
         print(f"Mirroring {session.title!r} at {session.position_seconds:.3f}s "
               f"({self.width}x{self.height}@{self.fps}, "
-              f"decoder={cuda_decoder or 'software'})", flush=True)
+              f"decoder={hardware_mode or 'software'}, source="
+              f"{'local' if os.path.isfile(session.stream_url) else 'plex-http'})",
+              flush=True)
         process = subprocess.Popen(command, stdout=subprocess.PIPE,
                                    stderr=subprocess.DEVNULL)
         started = time.monotonic()
-        next_sync = started + 0.2
+        sync_interval = 1.0 if session.timeline_calibrated else 0.2
+        next_sync = started + sync_interval
         last_server_position = session.position_seconds
         frames = 0
         first_frame_at = None
@@ -328,7 +364,7 @@ class SourceBridge:
                                     and abs(current.position_seconds
                                             - last_server_position) > 0.2)
                 seeked = (changed_position
-                          and abs(current.position_seconds - expected) > 3.0)
+                          and abs(current.position_seconds - expected) > 30.0)
                 became_calibrated = (current is not None
                                      and current.timeline_calibrated
                                      and not session.timeline_calibrated)
@@ -339,7 +375,7 @@ class SourceBridge:
                     return
                 if changed_position:
                     last_server_position = current.position_seconds
-                next_sync = now + 0.2
+                next_sync = now + sync_interval
         finally:
             process.terminate()
             try:
@@ -352,9 +388,10 @@ class SourceBridge:
                          else 0, 0.001)
             steady_fps = (frames - 1) / active if frames > 1 else 0
             startup = (first_frame_at - started) if first_frame_at else elapsed
-            if frames == 0 and cuda_decoder:
-                self._disabled_hardware_codecs.add(session.video_codec.lower())
-                print(f"Hardware decoder {cuda_decoder} failed; falling back to software",
+            if frames == 0 and hardware_mode:
+                self._disabled_hardware_modes.add(
+                    (hardware_mode, session.video_codec.lower()))
+                print(f"Hardware decoder {hardware_mode} failed; falling back to software",
                       file=sys.stderr, flush=True)
             print(f"Session pass: {frames} frames, steady {steady_fps:.2f} FPS, "
                   f"startup {startup:.3f}s", flush=True)
@@ -372,13 +409,21 @@ def main() -> None:
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--sync-lead", type=float, default=1.0,
                         help="Seek this many seconds ahead to offset decoder startup")
-    parser.add_argument("--hardware-decoder", choices=("auto", "cuda", "off"),
+    parser.add_argument("--hardware-decoder",
+                        choices=("auto", "cuda", "vaapi", "off"),
                         default="auto")
+    parser.add_argument("--plex-path-prefix", default="",
+                        help="Plex metadata path prefix mapped into this host")
+    parser.add_argument("--local-media-root", default="",
+                        help="Local read-only root corresponding to Plex path prefix")
     parser.add_argument("--run-seconds", type=float, default=0,
                         help="Stop after N seconds; zero runs continuously")
     args = parser.parse_args()
 
-    adapter = PlexSessionAdapter(args.plex_url, args.tv_model)
+    adapter = PlexSessionAdapter(
+        args.plex_url, args.tv_model,
+        plex_path_prefix=args.plex_path_prefix,
+        local_media_root=args.local_media_root)
     sink = HyperHdrFlatBufferSink(args.hyperhdr_host, args.hyperhdr_port,
                                   args.priority)
     SourceBridge(adapter, sink, args.width, args.height, args.fps,

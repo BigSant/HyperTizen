@@ -6,6 +6,7 @@ bin
 *.csproj.user
 .sign
 *.wgt
+deploy/truenas-hyperhdr/*.zip
 references/tizen9_os_files
 Probe/libhypertizenprobe.so
 __pycache__/

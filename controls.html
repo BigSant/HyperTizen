@@ -483,7 +483,7 @@
         </label>
         <label>
             Source Bridge:
-            <input type="text" id="bridgeUrl" value="http://127.0.0.1:19445" style="width: 230px;">
+            <input type="text" id="bridgeUrl" value="http://192.168.10.10:19545" style="width: 230px;">
         </label>
         <button class="btn-start" onclick="connectAll()">🔌 Connect</button>
         <button class="btn-secondary" onclick="disconnectAll()">Disconnect</button>
@@ -616,7 +616,7 @@
         const savedIp = localStorage.getItem('tvIp');
         const savedControlPort = localStorage.getItem('controlPort') || '45677';
         const savedLogsPort = localStorage.getItem('logsPort') || '45678';
-        const savedBridgeUrl = localStorage.getItem('bridgeUrl') || 'http://127.0.0.1:19445';
+        const savedBridgeUrl = localStorage.getItem('bridgeUrl') || 'http://192.168.10.10:19545';
         document.getElementById('bridgeUrl').value = savedBridgeUrl;
 
         if (savedIp) {
