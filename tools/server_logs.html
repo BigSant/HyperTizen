@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HyperTizen serverio logai</title>
+  <style>
+    :root { color-scheme: dark; font-family: Consolas, monospace; }
+    body { margin: 0; background: #15171b; color: #d7dae0; }
+    header { position: sticky; top: 0; display: flex; gap: 12px;
+      align-items: center; padding: 12px 18px; background: #24272d;
+      border-bottom: 1px solid #3b3f48; }
+    h1 { margin: 0; font: 18px system-ui; flex: 1; }
+    a, button { color: white; background: #1683c8; border: 0;
+      border-radius: 4px; padding: 7px 12px; text-decoration: none; cursor: pointer; }
+    #status { color: #69d785; font: 13px system-ui; }
+    pre { margin: 0; padding: 16px 20px; white-space: pre-wrap;
+      word-break: break-word; line-height: 1.45; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HyperTizen / HyperHDR serverio logai</h1>
+    <span id="status">Jungiama…</span>
+    <button onclick="refreshLogs()">Atnaujinti</button>
+    <a href="/controls.html">Valdymas</a>
+    <a href="http://192.168.10.10:8091" target="_blank">HyperHDR</a>
+  </header>
+  <pre id="logs"></pre>
+  <script>
+    let lastText = '';
+    async function refreshLogs() {
+      try {
+        const response = await fetch('/api/logs?tail=1000', {cache: 'no-store'});
+        const data = await response.json();
+        const text = data.lines.join('\n');
+        const atBottom = innerHeight + scrollY >= document.body.scrollHeight - 80;
+        document.getElementById('logs').textContent = text || 'Logas dar tuščias.';
+        document.getElementById('status').textContent = 'Veikia · ' + data.lines.length + ' eilučių';
+        if (atBottom && text !== lastText) scrollTo(0, document.body.scrollHeight);
+        lastText = text;
+      } catch (error) {
+        document.getElementById('status').textContent = 'Klaida: ' + error.message;
+      }
+    }
+    refreshLogs();
+    setInterval(refreshLogs, 2000);
+  </script>
+</body>
+</html>

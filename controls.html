@@ -485,6 +485,13 @@
             Source Bridge:
             <input type="text" id="bridgeUrl" value="http://192.168.10.10:19545" style="width: 230px;">
         </label>
+        <label>
+            Sync lead (s):
+            <input type="number" id="syncLead" value="1.5" min="0" max="5" step="0.05" style="width: 85px;">
+        </label>
+        <button class="btn-apply" onclick="saveBridgeSettings()">Save sync</button>
+        <a class="btn-secondary" href="/logs.html" style="text-decoration:none;">Server logs</a>
+        <a class="btn-secondary" href="http://192.168.10.10:8091" target="_blank" style="text-decoration:none;">HyperHDR</a>
         <button class="btn-start" onclick="connectAll()">🔌 Connect</button>
         <button class="btn-secondary" onclick="disconnectAll()">Disconnect</button>
     </div>
@@ -625,6 +632,10 @@
             document.getElementById('logsPort').value = savedLogsPort;
             setTimeout(() => connectAll(), 1000);
         }
+        refreshBridgeStatus();
+        loadBridgeSettings();
+        clearInterval(bridgeStatusTimer);
+        bridgeStatusTimer = setInterval(refreshBridgeStatus, 3000);
 
         function connectAll() {
             const ip = document.getElementById('tvIp').value.trim();
@@ -924,7 +935,9 @@
                 const response = await fetch(`${baseUrl}/${action}`, { method });
                 const data = await response.json();
                 if (!response.ok || data.error) throw new Error(data.error || `HTTP ${response.status}`);
-                applyBridgeStatus(data);
+                if (Object.prototype.hasOwnProperty.call(data, 'running')) {
+                    applyBridgeStatus(data);
+                }
                 return data;
             } catch (error) {
                 bridgeRunning = false;
@@ -937,6 +950,36 @@
 
         function refreshBridgeStatus() {
             return bridgeRequest('status');
+        }
+
+        async function loadBridgeSettings() {
+            const data = await bridgeRequest('settings');
+            if (data && Number.isFinite(Number(data.syncLead))) {
+                document.getElementById('syncLead').value = Number(data.syncLead).toFixed(2);
+            }
+        }
+
+        async function saveBridgeSettings() {
+            const baseUrl = document.getElementById('bridgeUrl').value.trim().replace(/\/$/, '');
+            const syncLead = Number(document.getElementById('syncLead').value);
+            if (!Number.isFinite(syncLead) || syncLead < 0 || syncLead > 5) {
+                addLog('Error', 'Sync lead must be between 0 and 5 seconds');
+                return;
+            }
+            try {
+                const response = await fetch(`${baseUrl}/settings`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({syncLead, restart: bridgeRunning})
+                });
+                const data = await response.json();
+                if (!response.ok || data.error) throw new Error(data.error || `HTTP ${response.status}`);
+                document.getElementById('syncLead').value = Number(data.syncLead).toFixed(2);
+                applyBridgeStatus(data);
+                addLog('Info', `Sync lead saved: ${Number(data.syncLead).toFixed(2)} s${bridgeRunning ? ' (bridge restarted)' : ''}`);
+            } catch (error) {
+                addLog('Error', `Saving sync lead failed: ${error.message}`);
+            }
         }
 
         function applyBridgeStatus(data) {
@@ -958,8 +1001,11 @@
         }
 
         function restartService() {
-            addLog('Info', 'Restarting service...');
-            send({ Event: Events.RestartService });
+            addLog('Info', 'Restarting source bridge...');
+            bridgeRequest('restart', 'POST');
+            if (controlWS && controlWS.readyState === WebSocket.OPEN) {
+                send({ Event: Events.RestartService });
+            }
         }
 
         function rescanDevices() {

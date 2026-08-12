@@ -11,6 +11,8 @@ mode replaces the existing Hyperion app during initial validation.
 - HyperHDR web UI: `http://192.168.10.10:8091`
 - HyperHDR FlatBuffers inside the app: `hyperhdr:19400`
 - Source bridge control API: `http://192.168.10.10:19545`
+- Unified controls: `http://192.168.10.10:19545/controls.html`
+- Server logs: `http://192.168.10.10:19545/logs.html`
 - Persistent configuration: `/mnt/Vault/apps/hypertizen-hyperhdr/config`
 - Persistent bridge log: `/mnt/Vault/apps/hypertizen-hyperhdr/bridge-state`
 - Plex media: `/mnt/Vault/Media` mounted read-only as `/media`
@@ -64,6 +66,9 @@ copies the bridge scripts from `tools/`.
 The bridge supervisor starts automatically but video decoding does not. A
 decode process starts only after the Start request and stops with the Stop
 request. This keeps Plex playback unaffected while HyperHDR is being set up.
+The controls page can change `sync-lead` from 0 to 5 seconds. The setting is
+stored as `/state/bridge-settings.json`; saving it while the bridge is running
+restarts only the bridge so the new value takes effect immediately.
 
 ## Rollback
 

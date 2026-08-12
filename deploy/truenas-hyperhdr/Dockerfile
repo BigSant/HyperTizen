@@ -18,6 +18,7 @@ RUN apt-get update \
 
 WORKDIR /opt/hypertizen
 COPY tools/requirements.txt tools/source_bridge.py tools/source_bridge_control.py ./
+COPY controls.html tools/server_logs.html ./
 RUN pip3 install --break-system-packages --no-cache-dir -r requirements.txt
 COPY deploy/truenas-hyperhdr/supervisord.conf /etc/supervisor/conf.d/hypertizen.conf
 

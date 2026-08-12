@@ -10,12 +10,13 @@ import signal
 import subprocess
 import sys
 import threading
+import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Optional
 
 
-BRIDGE_VERSION = "2026.08.12.2"
+BRIDGE_VERSION = "2026.08.12.3"
 
 
 def system_diagnostics() -> dict:
@@ -61,13 +62,59 @@ def terminate_stale_bridges(bridge_name: str) -> None:
 
 
 class BridgeSupervisor:
-    def __init__(self, command: list[str], log_path: Path):
+    def __init__(self, command: list[str], log_path: Path, sync_lead: float,
+                 settings_path: Path):
         self.command = command
         self.log_path = log_path
+        self.settings_path = settings_path
+        self.sync_lead = sync_lead
         self._process: Optional[subprocess.Popen] = None
         self._log = None
         self._paused = False
         self._lock = threading.Lock()
+        self._load_settings()
+
+    def _load_settings(self) -> None:
+        try:
+            saved = json.loads(self.settings_path.read_text(encoding="utf-8"))
+            self.sync_lead = self._validate_sync_lead(saved["syncLead"])
+        except (FileNotFoundError, KeyError, ValueError, TypeError,
+                json.JSONDecodeError):
+            pass
+
+    @staticmethod
+    def _validate_sync_lead(value) -> float:
+        value = float(value)
+        if not 0 <= value <= 5:
+            raise ValueError("syncLead must be between 0 and 5 seconds")
+        return round(value, 3)
+
+    def _save_settings_locked(self) -> None:
+        self.settings_path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = self.settings_path.with_suffix(".tmp")
+        temporary.write_text(
+            json.dumps({"syncLead": self.sync_lead}, indent=2),
+            encoding="utf-8")
+        temporary.replace(self.settings_path)
+
+    def settings(self) -> dict:
+        with self._lock:
+            return {
+                "syncLead": self.sync_lead,
+                "appliesOnNextStart": self._process is not None
+                and self._process.poll() is None,
+            }
+
+    def update_settings(self, sync_lead, restart: bool = False) -> dict:
+        with self._lock:
+            self.sync_lead = self._validate_sync_lead(sync_lead)
+            self._save_settings_locked()
+            was_running = (self._process is not None
+                           and self._process.poll() is None)
+        if restart and was_running:
+            self.stop()
+            self.start()
+        return {**self.settings(), **self.status()}
 
     def _status_locked(self) -> dict:
         process = self._process
@@ -90,8 +137,9 @@ class BridgeSupervisor:
                 return self._status_locked()
             self.log_path.parent.mkdir(parents=True, exist_ok=True)
             self._log = self.log_path.open("a", encoding="utf-8")
+            command = [*self.command, "--sync-lead", str(self.sync_lead)]
             self._process = subprocess.Popen(
-                self.command,
+                command,
                 stdout=self._log,
                 stderr=subprocess.STDOUT,
                 start_new_session=True,
@@ -134,8 +182,12 @@ def handler_for(supervisor: BridgeSupervisor):
     class Handler(BaseHTTPRequestHandler):
         def _reply(self, status: int, body: dict) -> None:
             payload = json.dumps(body).encode("utf-8")
+            self._reply_bytes(status, payload, "application/json; charset=utf-8")
+
+        def _reply_bytes(self, status: int, payload: bytes,
+                         content_type: str) -> None:
             self.send_response(status)
-            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(payload)))
             self.send_header("Access-Control-Allow-Origin", "*")
             self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
@@ -147,18 +199,49 @@ def handler_for(supervisor: BridgeSupervisor):
             self._reply(204, {})
 
         def do_GET(self) -> None:
-            if self.path.rstrip("/") in ("", "/status"):
+            parsed = urllib.parse.urlparse(self.path)
+            path = parsed.path.rstrip("/")
+            if path in ("", "/controls.html"):
+                self._serve_asset("controls.html")
+            elif path == "/logs.html":
+                self._serve_asset("server_logs.html")
+            elif path == "/status":
                 self._reply(200, {
                     **supervisor.status(), "bridgeVersion": BRIDGE_VERSION})
-            elif self.path.rstrip("/") == "/diagnostics":
+            elif path == "/settings":
+                self._reply(200, supervisor.settings())
+            elif path == "/api/logs":
+                query = urllib.parse.parse_qs(parsed.query)
+                tail = min(max(int(query.get("tail", ["300"])[0]), 1), 2000)
+                try:
+                    lines = supervisor.log_path.read_text(
+                        encoding="utf-8", errors="replace").splitlines()[-tail:]
+                except FileNotFoundError:
+                    lines = []
+                self._reply(200, {"lines": lines})
+            elif path == "/diagnostics":
                 self._reply(200, system_diagnostics())
             else:
                 self._reply(404, {"error": "not found"})
 
+        def _serve_asset(self, name: str) -> None:
+            path = Path(__file__).with_name(name)
+            try:
+                payload = path.read_bytes()
+            except FileNotFoundError:
+                self._reply(404, {"error": f"missing asset: {name}"})
+                return
+            self._reply_bytes(200, payload, "text/html; charset=utf-8")
+
         def do_POST(self) -> None:
             action = self.path.strip("/")
             try:
-                if action == "start":
+                if action == "settings":
+                    length = int(self.headers.get("Content-Length", "0"))
+                    body = json.loads(self.rfile.read(length) or b"{}")
+                    result = supervisor.update_settings(
+                        body.get("syncLead"), bool(body.get("restart", False)))
+                elif action == "start":
                     result = supervisor.start()
                 elif action == "stop":
                     result = supervisor.stop()
@@ -207,12 +290,14 @@ def main() -> None:
         "--tv-model", args.tv_model,
         "--hyperhdr-host", args.hyperhdr_host,
         "--hyperhdr-port", str(args.hyperhdr_port),
-        "--sync-lead", str(args.sync_lead),
         "--hardware-decoder", args.hardware_decoder,
         "--plex-path-prefix", args.plex_path_prefix,
         "--local-media-root", args.local_media_root,
     ]
-    supervisor = BridgeSupervisor(command, Path(args.log))
+    log_path = Path(args.log)
+    supervisor = BridgeSupervisor(
+        command, log_path, args.sync_lead,
+        log_path.with_name("bridge-settings.json"))
     server = ThreadingHTTPServer((args.listen, args.port), handler_for(supervisor))
     print(f"Source bridge control listening on http://{args.listen}:{args.port}", flush=True)
     try:
