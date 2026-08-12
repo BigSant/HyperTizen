@@ -264,7 +264,9 @@ namespace HyperTizen.WebSocket
                                 status.IsConnected,
                                 status.LastError ?? "None",
                                 uptime,
-                                activeServerUrl
+                                activeServerUrl,
+                                App.client.ActiveCaptureMethod,
+                                App.client.SourceAdapter
                             ));
                             await SendAsync(webSocket, resultEvent);
                             break;

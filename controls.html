@@ -528,6 +528,14 @@
                         <div class="label">Errors</div>
                         <div class="value" id="errorCount">0</div>
                     </div>
+                    <div class="status-item">
+                        <div class="label">Capture method</div>
+                        <div class="value" id="captureMethod">Unknown</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Source adapter</div>
+                        <div class="value" id="sourceAdapter">None</div>
+                    </div>
                 </div>
             </div>
 
@@ -793,6 +801,8 @@
             updateStatus('avgFPS', (data.averageFPS || 0).toFixed(1));
             updateStatus('errorCount', (data.errorCount || 0).toString());
             updateStatus('uptime', data.uptime || '00:00:00');
+            updateStatus('captureMethod', data.captureMethod || 'Unknown');
+            updateStatus('sourceAdapter', data.sourceAdapter || 'None');
 
             if (data.state === 'Capturing') {
                 setRainbow(true);
@@ -820,7 +830,8 @@
             }
 
             data.devices.forEach((device, index) => {
-                const url = device.UrlBase.replace('http', 'ws').replace('https', 'wss');
+                const parsed = new URL(device.UrlBase);
+                const url = `ws://${parsed.hostname}:19444/`;
 
                 const item = document.createElement('div');
                 item.className = 'device-item';

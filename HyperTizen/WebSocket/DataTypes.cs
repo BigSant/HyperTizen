@@ -98,7 +98,9 @@ namespace HyperTizen.WebSocket.DataTypes
     public class StatusResultEvent : BasicEvent
     {
         public StatusResultEvent(string state, long framesCaptured, double averageFPS,
-            int errorCount, bool isConnected, string lastError, string uptime, string activeServerUrl = null)
+            int errorCount, bool isConnected, string lastError, string uptime,
+            string activeServerUrl = null, string captureMethod = null,
+            string sourceAdapter = null)
         {
             this.Event = Event.StatusResult;
             this.state = state;
@@ -109,6 +111,8 @@ namespace HyperTizen.WebSocket.DataTypes
             this.lastError = lastError;
             this.uptime = uptime;
             this.activeServerUrl = activeServerUrl;
+            this.captureMethod = captureMethod;
+            this.sourceAdapter = sourceAdapter;
         }
 
         public string state { get; set; }
@@ -119,6 +123,8 @@ namespace HyperTizen.WebSocket.DataTypes
         public string lastError { get; set; }
         public string uptime { get; set; }
         public string activeServerUrl { get; set; }
+        public string captureMethod { get; set; }
+        public string sourceAdapter { get; set; }
     }
 
     public class ImageCommand

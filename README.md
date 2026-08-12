@@ -62,6 +62,14 @@ full image at 24 FPS in an ordinary developer-signed application. UI-only EFL
 capture is the sole verified full-frame method; pixel sampling remains a
 degraded legacy fallback and does not satisfy the full-image requirement.
 
+For locally readable media, a source-side full-frame path is now available.
+`tools/source_bridge.py` follows the active Plex session on the selected TV,
+decodes a synchronized 320x180 NV12 stream with FFmpeg, and sends it to
+HyperHDR over FlatBuffers. Physical testing measured 23.94-23.97 steady FPS.
+The bridge uses a generic source-adapter boundary so other applications can be
+added without changing its decoder or HyperHDR transport. See
+`docs/SOURCE_ADAPTERS.md` for setup and limitations.
+
 This fork is focused on implementing screen capture functionality for **Tizen 8.0+ TVs**.
 
 **✅ Pixel Sampling Capture Method**: Now **IMPLEMENTED** using `libvideoenhance.so`

@@ -798,5 +798,11 @@ namespace HyperTizen
 
             return status;
         }
+
+        public string ActiveCaptureMethod => _selectedCaptureMethod?.Name ?? "None";
+
+        // Full-frame application adapters (Plex first) run in the source bridge.
+        // This value identifies the in-TV fallback chain shown by controls.html.
+        public string SourceAdapter => "TV capture fallback chain";
     }
 }
