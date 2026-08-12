@@ -2,7 +2,7 @@ name: hypertizen-hyperhdr
 
 services:
   hyperhdr:
-    image: ghcr.io/bigsant/hypertizen-hyperhdr:sha-dc3291b
+    image: ghcr.io/bigsant/hypertizen-hyperhdr:sha-7d4f0ab
     pull_policy: always
     restart: unless-stopped
     init: true
