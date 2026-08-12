@@ -1,10 +1,10 @@
 # HyperTizen + HyperHDR on TrueNAS
 
 This deployment runs HyperHDR and the HyperTizen full-frame Plex source bridge
-as one TrueNAS Custom App. The published single-container image is intended for
-the TrueNAS form-based Custom App installer. `compose.yaml` remains available
-for TrueNAS releases that expose the Compose/YAML installer. Neither mode
-replaces the existing Hyperion app during initial validation.
+as one TrueNAS Custom App. The published single-container image works with the
+form-based installer and `compose.yaml`. The Compose deployment pulls the
+ready-made GHCR image, so TrueNAS does not need a local build context. Neither
+mode replaces the existing Hyperion app during initial validation.
 
 ## Layout
 
