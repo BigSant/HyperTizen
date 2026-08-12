@@ -357,8 +357,8 @@ def timeline_drift_seconds(initial_position: float, current_position: float,
 class SourceBridge:
     def __init__(self, adapter: MediaSourceAdapter, sink: HyperHdrFlatBufferSink,
                  width: int, height: int, fps: int, sync_lead: float,
-                 hardware_decoder: str, drift_threshold: float = 0.75,
-                 drift_confirmations: int = 2,
+                 hardware_decoder: str, drift_threshold: float = 2.0,
+                 drift_confirmations: int = 3,
                  session_grace: float = 3.0):
         self.adapter = adapter
         self.sink = sink
@@ -571,9 +571,9 @@ def main() -> None:
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--sync-lead", type=float, default=1.0,
                         help="Seek this many seconds ahead to offset decoder startup")
-    parser.add_argument("--drift-threshold", type=float, default=0.75,
+    parser.add_argument("--drift-threshold", type=float, default=2.0,
                         help="Sustained timeline drift that restarts FFmpeg")
-    parser.add_argument("--drift-confirmations", type=int, default=2,
+    parser.add_argument("--drift-confirmations", type=int, default=3,
                         help="Consecutive drift samples required before restart")
     parser.add_argument("--session-grace", type=float, default=3.0,
                         help="Seconds to tolerate a missing Plex session")

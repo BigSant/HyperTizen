@@ -274,8 +274,8 @@ def main() -> None:
     parser.add_argument("--hyperhdr-host", default="192.168.10.10")
     parser.add_argument("--hyperhdr-port", type=int, default=19400)
     parser.add_argument("--sync-lead", type=float, default=1.0)
-    parser.add_argument("--drift-threshold", type=float, default=0.75)
-    parser.add_argument("--drift-confirmations", type=int, default=2)
+    parser.add_argument("--drift-threshold", type=float, default=2.0)
+    parser.add_argument("--drift-confirmations", type=int, default=3)
     parser.add_argument("--session-grace", type=float, default=3.0)
     parser.add_argument("--hardware-decoder",
                         choices=("auto", "cuda", "vaapi", "off"),

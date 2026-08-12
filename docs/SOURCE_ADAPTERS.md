@@ -46,8 +46,8 @@ updates at 5 Hz and interpolates the playback position with a monotonic clock,
 then reduces polling to 1 Hz after the first calibration. A dedicated reader
 continuously drains FFmpeg and retains only the newest complete frame. If
 HyperHDR or WLED briefly stalls, intermediate frames are dropped instead of
-building an ever-growing pipe backlog. A timeline difference over 0.75 seconds
-must be observed twice before FFmpeg is restarted; a seek over 5 seconds is
+building an ever-growing pipe backlog. A timeline difference over 2 seconds
+must be observed three times before FFmpeg is restarted; a seek over 5 seconds is
 handled immediately. A missing Plex session is tolerated for three seconds to
 avoid restarting on a transient status response.
 The default `--sync-lead 1.0` compensates for measured FFmpeg startup and the

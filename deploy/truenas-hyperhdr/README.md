@@ -72,8 +72,9 @@ restarts only the bridge so the new value takes effect immediately.
 
 The bridge keeps only the latest decoded frame, checks sustained timeline drift
 against Plex, and tolerates short status interruptions. Inspect `Bridge timing`
-entries in `/state/source-bridge.log`: `drift` should remain within about 0.75 s
-and `stale-dropped` may increase during a short overload without adding lasting
+entries in `/state/source-bridge.log`: short drift around 1 s is normal for
+Plex's stepped timeline; sustained drift above 2 s triggers a resync, while
+`stale-dropped` may increase during a short overload without adding lasting
 latency.
 
 ## Rollback
