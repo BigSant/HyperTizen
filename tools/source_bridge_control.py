@@ -15,6 +15,22 @@ from pathlib import Path
 from typing import Optional
 
 
+def terminate_stale_bridges(bridge_name: str) -> None:
+    """Remove bridge process groups orphaned by a previous supervisor."""
+    own_pid = os.getpid()
+    for entry in Path("/proc").iterdir():
+        if not entry.name.isdigit() or int(entry.name) == own_pid:
+            continue
+        try:
+            arguments = (entry / "cmdline").read_bytes().split(b"\0")
+            names = [Path(value.decode(errors="ignore")).name
+                     for value in arguments if value]
+            if bridge_name in names:
+                os.killpg(os.getpgid(int(entry.name)), signal.SIGTERM)
+        except (FileNotFoundError, ProcessLookupError, PermissionError):
+            continue
+
+
 class BridgeSupervisor:
     def __init__(self, command: list[str], log_path: Path):
         self.command = command
@@ -142,16 +158,19 @@ def main() -> None:
     parser.add_argument("--tv-model", default="QE77S95FATXXH")
     parser.add_argument("--hyperhdr-host", default="192.168.10.10")
     parser.add_argument("--hyperhdr-port", type=int, default=19400)
+    parser.add_argument("--sync-lead", type=float, default=2.8)
     parser.add_argument("--log", default="/tmp/hypertizen-source-bridge.log")
     args = parser.parse_args()
 
     bridge = Path(__file__).with_name("source_bridge.py")
+    terminate_stale_bridges(bridge.name)
     command = [
         sys.executable, str(bridge),
         "--plex-url", args.plex_url,
         "--tv-model", args.tv_model,
         "--hyperhdr-host", args.hyperhdr_host,
         "--hyperhdr-port", str(args.hyperhdr_port),
+        "--sync-lead", str(args.sync_lead),
     ]
     supervisor = BridgeSupervisor(command, Path(args.log))
     server = ThreadingHTTPServer((args.listen, args.port), handler_for(supervisor))

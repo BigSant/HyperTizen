@@ -41,6 +41,11 @@ the Plex bridge process through the supervisor. If the control panel is opened
 on another device, run the supervisor with `--listen 0.0.0.0` and enter the
 Linux host's LAN address instead of `127.0.0.1`.
 
+The default `--sync-lead 2.8` compensates for Plex session reporting, decoder
+startup and the measured TV-to-HyperHDR path latency on the QE77S95F. If the
+preview leads or trails on another setup, adjust this value when starting the
+supervisor.
+
 The adapter follows pause, resume, seek and media changes. It only handles
 sources that the owner can read from the local Plex server. It does not bypass
 DRM or HDCP. Other TV applications require their own legitimate source adapter

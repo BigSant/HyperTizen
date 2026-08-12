@@ -296,7 +296,7 @@ def main() -> None:
     parser.add_argument("--width", type=int, default=320)
     parser.add_argument("--height", type=int, default=180)
     parser.add_argument("--fps", type=int, default=24)
-    parser.add_argument("--sync-lead", type=float, default=0.8,
+    parser.add_argument("--sync-lead", type=float, default=2.8,
                         help="Seek this many seconds ahead to offset decoder startup")
     parser.add_argument("--run-seconds", type=float, default=0,
                         help="Stop after N seconds; zero runs continuously")
