@@ -68,6 +68,13 @@ namespace HyperTizen
 
         public HyperionClient()
         {
+            if (!Globals.Instance.Enabled)
+            {
+                Helper.Log.Write(Helper.eLogType.Info,
+                    "HyperTizen ready in control-only mode; TV capture is stopped");
+                return;
+            }
+
             Task.Run(async () =>
             {
                 try
@@ -109,6 +116,16 @@ namespace HyperTizen
                 if (_isRunning)
                 {
                     Helper.Log.Write(Helper.eLogType.Warning, "HyperionClient already running");
+                    return;
+                }
+
+                if (!Globals.EXPERIMENTAL_TV_CAPTURE_ENABLED && !Globals.FILESTEALER_ENABLED)
+                {
+                    _lastError = "On-TV capture is disabled in this safe build; run a source adapter such as tools/source_bridge.py";
+                    State = ServiceState.Idle;
+                    Globals.Instance.Enabled = false;
+                    Preference.Set("enabled", "false");
+                    Helper.Log.Write(Helper.eLogType.Warning, _lastError);
                     return;
                 }
 
@@ -267,14 +284,8 @@ namespace HyperTizen
                             Helper.Log.Write(Helper.eLogType.Info,
                                 $"CAPTURE METHOD SELECTED: {_selectedCaptureMethod.Name}");
 
-                            // Automatically enable capturing now that we have a working method
-                            // This ensures the capture loop will run even if preferences have Enabled=false
-                            if (!Globals.Instance.Enabled)
-                            {
-                                Helper.Log.Write(Helper.eLogType.Info,
-                                    "Auto-enabling capture (was disabled in preferences)");
-                                Globals.Instance.Enabled = true;
-                            }
+                            // Respect the explicit enabled preference. Capture
+                            // selection must never silently change user state.
                         }
                     }
                     catch (Exception ex)
@@ -802,7 +813,9 @@ namespace HyperTizen
         public string ActiveCaptureMethod => _selectedCaptureMethod?.Name ?? "None";
 
         // Full-frame application adapters (Plex first) run in the source bridge.
-        // This value identifies the in-TV fallback chain shown by controls.html.
-        public string SourceAdapter => "TV capture fallback chain";
+        // Report the active architecture accurately in controls.html.
+        public string SourceAdapter => Globals.EXPERIMENTAL_TV_CAPTURE_ENABLED
+            ? "TV capture fallback chain"
+            : "External source adapter (Plex bridge)";
     }
 }

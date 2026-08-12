@@ -16,6 +16,16 @@ namespace HyperTizen
             // STEP 1: Load preferences FIRST (before any testing)
             if (!Preference.Contains("enabled")) Preference.Set("enabled", "false");
 
+            // Older builds auto-enabled capture after selecting any fallback.
+            // Reset that persisted value once when upgrading to the safe-start
+            // build. The service remains available for WebSocket control and
+            // source-side adapters without touching restricted capture APIs.
+            if (!Preference.Contains("safeStartupV1"))
+            {
+                Preference.Set("enabled", "false");
+                Preference.Set("safeStartupV1", "true");
+            }
+
             // CRITICAL: Force diagnostic mode based on build constant
             // This OVERRIDES any saved preference to ensure build const is respected
             // Set Globals.DIAGNOSTIC_MODE_ENABLED = true in code to enable diagnostic mode
@@ -55,30 +65,8 @@ namespace HyperTizen
                 }
             });
 
-            // STEP 4: Wait for network stack (10 seconds as requested)
-            Helper.Log.Write(Helper.eLogType.Info, "Waiting 10 seconds for network stack initialization...");
-            System.Threading.Thread.Sleep(10000);
-            Helper.Log.Write(Helper.eLogType.Info, "Network stack ready - continuing startup");
-
-            // STEP 5: Run diagnostics (ONLY if not in diagnostic mode)
-            if (!Globals.Instance.DiagnosticMode)
-            {
-                try
-                {
-                    DiagnosticCapture.RunDiagnostics();
-                }
-                catch (Exception ex)
-                {
-                    Helper.Log.Write(Helper.eLogType.Error, $"Diagnostic testing failed: {ex.Message}");
-                    // Continue startup
-                }
-            }
-            else
-            {
-                Helper.Log.Write(Helper.eLogType.Info, "DIAGNOSTIC MODE: Skipping DiagnosticCapture tests");
-            }
-
-            // STEP 6: Continue normal startup
+            // Continue startup immediately. Firmware/native capture diagnostics
+            // are explicit research operations and must never block OnCreate().
             Display.StateChanged += Display_StateChanged;
             client = new HyperionClient();
 
@@ -97,7 +85,7 @@ namespace HyperTizen
             if (e.State == DisplayState.Off)
             {
                 Task.Run(() => client.Stop());
-            } else if (e.State == DisplayState.Normal)
+            } else if (e.State == DisplayState.Normal && Globals.Instance.Enabled)
             {
                 Task.Run(() => client.Start());
             }

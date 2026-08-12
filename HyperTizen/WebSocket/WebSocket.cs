@@ -407,6 +407,17 @@ namespace HyperTizen.WebSocket
                             return;
                         }
 
+                        if (value && !Globals.EXPERIMENTAL_TV_CAPTURE_ENABLED)
+                        {
+                            const string message = "On-TV capture is disabled; start the Plex source bridge on Linux";
+                            App.Configuration.Enabled = false;
+                            Globals.Instance.Enabled = false;
+                            Preference.Set("enabled", "false");
+                            Helper.Log.Write(Helper.eLogType.Warning, message);
+                            await BroadcastStatusUpdate("stopped", message);
+                            return;
+                        }
+
                         // Synchronize state changes with lock to prevent race conditions
                         bool stateChanged = false;
                         bool newState = false;

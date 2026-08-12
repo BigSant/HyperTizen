@@ -19,6 +19,11 @@ namespace HyperTizen
         // Set to false for production builds
         public const bool DIAGNOSTIC_MODE_ENABLED = false;
 
+        // Full-frame capture candidates on recent Tizen TV firmware are still
+        // experimental.  Keep them opt-in so merely launching the service does
+        // not enter a native probe which can block the service control sockets.
+        public static readonly bool EXPERIMENTAL_TV_CAPTURE_ENABLED = false;
+
         private static readonly Globals instance = new Globals();
 
         // Explicit static constructor to tell C# compiler

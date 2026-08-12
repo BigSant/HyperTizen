@@ -70,6 +70,14 @@ The bridge uses a generic source-adapter boundary so other applications can be
 added without changing its decoder or HyperHDR transport. See
 `docs/SOURCE_ADAPTERS.md` for setup and limitations.
 
+The current TV package intentionally starts in control-only mode. Experimental
+on-TV capture probes are disabled in normal builds because restricted native
+methods can block the service on Tizen 9. The TizenBrew UI is a different
+package and cannot launch the `.NET` service directly on Tizen 2.4+; start the
+service with Tizen/SDB, then use the UI or `controls.html` through ports 45677
+and 45678. This avoids the misleading `NotSupportedError: required function`
+message emitted by `tizen.application.launch()` for cross-package services.
+
 This fork is focused on implementing screen capture functionality for **Tizen 8.0+ TVs**.
 
 **✅ Pixel Sampling Capture Method**: Now **IMPLEMENTED** using `libvideoenhance.so`

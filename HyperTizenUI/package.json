@@ -1,7 +1,7 @@
 {
   "name": "hypertizen-ui",
   "appName": "HyperTizen Control Center",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "HyperTizen Control Center - Advanced UI for Hyperion/HyperHDR screen capture on Tizen 8+ TVs with remote control, live logs, and SSDP device management.",
   "packageType": "app",
   "appPath": "index.html",
