@@ -41,10 +41,13 @@ the Plex bridge process through the supervisor. If the control panel is opened
 on another device, run the supervisor with `--listen 0.0.0.0` and enter the
 Linux host's LAN address instead of `127.0.0.1`.
 
-The default `--sync-lead 2.8` compensates for Plex session reporting, decoder
-startup and the measured TV-to-HyperHDR path latency on the QE77S95F. If the
-preview leads or trails on another setup, adjust this value when starting the
-supervisor.
+Plex reports `viewOffset` in roughly 10-second steps. The adapter detects those
+updates at 5 Hz and interpolates the playback position with a monotonic clock,
+then resynchronizes if the corrected timeline differs by more than 750 ms.
+The default `--sync-lead 1.0` compensates for measured FFmpeg startup and the
+short FlatBuffers/preview path. For frame-accurate calibration, play a video
+with a per-frame timecode and record the TV and HyperHDR preview together with
+a 120 FPS camera; the timecode difference is the remaining display constant.
 
 The adapter follows pause, resume, seek and media changes. It only handles
 sources that the owner can read from the local Plex server. It does not bypass

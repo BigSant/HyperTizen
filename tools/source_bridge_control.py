@@ -158,7 +158,7 @@ def main() -> None:
     parser.add_argument("--tv-model", default="QE77S95FATXXH")
     parser.add_argument("--hyperhdr-host", default="192.168.10.10")
     parser.add_argument("--hyperhdr-port", type=int, default=19400)
-    parser.add_argument("--sync-lead", type=float, default=2.8)
+    parser.add_argument("--sync-lead", type=float, default=1.0)
     parser.add_argument("--log", default="/tmp/hypertizen-source-bridge.log")
     args = parser.parse_args()
 

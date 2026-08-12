@@ -48,6 +48,12 @@ class PlexSessionAdapter(MediaSourceAdapter):
         self.base_url = base_url.rstrip("/")
         self.tv_model = tv_model
         self.timeout = timeout
+        self._timeline_identity: Optional[str] = None
+        self._timeline_state: Optional[str] = None
+        self._reported_position = 0.0
+        self._position_anchor = 0.0
+        self._anchor_time = 0.0
+        self._stream_urls: dict[str, str] = {}
 
     def _xml(self, path: str) -> ET.Element:
         request = urllib.request.Request(
@@ -69,19 +75,40 @@ class PlexSessionAdapter(MediaSourceAdapter):
             metadata_key = video.get("key")
             if not metadata_key:
                 continue
-            metadata = self._xml(metadata_key)
-            part = metadata.find("./Video/Media/Part")
-            if part is None or not part.get("key"):
-                continue
+            stream_url = self._stream_urls.get(metadata_key)
+            if stream_url is None:
+                metadata = self._xml(metadata_key)
+                part = metadata.find("./Video/Media/Part")
+                if part is None or not part.get("key"):
+                    continue
+                stream_url = self.base_url + part.get("key")
+                self._stream_urls[metadata_key] = stream_url
+
+            identity = (video.get("playbackSessionId")
+                        or player.get("playbackSessionId")
+                        or video.get("sessionKey", metadata_key))
+            state = player.get("state", "unknown")
+            reported_position = float(video.get("viewOffset", "0")) / 1000.0
+            observed_at = time.monotonic()
+            report_changed = abs(reported_position - self._reported_position) > 0.001
+            state_changed = state != self._timeline_state
+            if identity != self._timeline_identity or report_changed or state_changed:
+                self._timeline_identity = identity
+                self._timeline_state = state
+                self._reported_position = reported_position
+                self._position_anchor = reported_position
+                self._anchor_time = observed_at
+
+            position = self._position_anchor
+            if state == "playing":
+                position += max(0.0, observed_at - self._anchor_time)
 
             return SourceSession(
-                identity=video.get("playbackSessionId")
-                or player.get("playbackSessionId")
-                or video.get("sessionKey", metadata_key),
+                identity=identity,
                 title=video.get("title", "Plex video"),
-                state=player.get("state", "unknown"),
-                position_seconds=float(video.get("viewOffset", "0")) / 1000.0,
-                stream_url=self.base_url + part.get("key"),
+                state=state,
+                position_seconds=position,
+                stream_url=stream_url,
             )
         return None
 
@@ -235,7 +262,7 @@ class SourceBridge:
         process = subprocess.Popen(command, stdout=subprocess.PIPE,
                                    stderr=subprocess.DEVNULL)
         started = time.monotonic()
-        next_sync = started + 1
+        next_sync = started + 0.2
         last_server_position = session.position_seconds
         frames = 0
         first_frame_at = None
@@ -262,14 +289,14 @@ class SourceBridge:
                                     and abs(current.position_seconds
                                             - last_server_position) > 0.2)
                 seeked = (changed_position
-                          and abs(current.position_seconds - expected) > 10.0)
+                          and abs(current.position_seconds - expected) > 0.75)
                 if (current is None or current.state != "playing"
                         or current.identity != session.identity or seeked):
                     print("Playback changed; resynchronizing", flush=True)
                     return
                 if changed_position:
                     last_server_position = current.position_seconds
-                next_sync = now + 1
+                next_sync = now + 0.2
         finally:
             process.terminate()
             try:
@@ -296,7 +323,7 @@ def main() -> None:
     parser.add_argument("--width", type=int, default=320)
     parser.add_argument("--height", type=int, default=180)
     parser.add_argument("--fps", type=int, default=24)
-    parser.add_argument("--sync-lead", type=float, default=2.8,
+    parser.add_argument("--sync-lead", type=float, default=1.0,
                         help="Seek this many seconds ahead to offset decoder startup")
     parser.add_argument("--run-seconds", type=float, default=0,
                         help="Stop after N seconds; zero runs continuously")
