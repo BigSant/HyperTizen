@@ -53,3 +53,9 @@ The adapter follows pause, resume, seek and media changes. It only handles
 sources that the owner can read from the local Plex server. It does not bypass
 DRM or HDCP. Other TV applications require their own legitimate source adapter
 or a working TV capture backend.
+
+On NVIDIA-equipped Linux/WSL hosts, `--hardware-decoder auto` uses CUVID to
+decode HEVC/H.264 and resize the source directly on the GPU. The QE77S95F HDR
+test reduced FFmpeg from about 118% of one CPU core to roughly 8% CPU time.
+Use `--hardware-decoder off` only for troubleshooting; a failed GPU decoder
+automatically falls back to software.

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import select
+import os
 import socket
 import struct
 import subprocess
@@ -32,6 +33,8 @@ class SourceSession:
     state: str
     position_seconds: float
     stream_url: str
+    video_codec: str = ""
+    timeline_calibrated: bool = False
 
 
 class MediaSourceAdapter:
@@ -53,7 +56,8 @@ class PlexSessionAdapter(MediaSourceAdapter):
         self._reported_position = 0.0
         self._position_anchor = 0.0
         self._anchor_time = 0.0
-        self._stream_urls: dict[str, str] = {}
+        self._timeline_calibrated = False
+        self._stream_details: dict[str, tuple[str, str]] = {}
 
     def _xml(self, path: str) -> ET.Element:
         request = urllib.request.Request(
@@ -75,14 +79,18 @@ class PlexSessionAdapter(MediaSourceAdapter):
             metadata_key = video.get("key")
             if not metadata_key:
                 continue
-            stream_url = self._stream_urls.get(metadata_key)
-            if stream_url is None:
+            stream_details = self._stream_details.get(metadata_key)
+            if stream_details is None:
                 metadata = self._xml(metadata_key)
+                media = metadata.find("./Video/Media")
                 part = metadata.find("./Video/Media/Part")
                 if part is None or not part.get("key"):
                     continue
                 stream_url = self.base_url + part.get("key")
-                self._stream_urls[metadata_key] = stream_url
+                video_codec = media.get("videoCodec", "") if media is not None else ""
+                stream_details = (stream_url, video_codec)
+                self._stream_details[metadata_key] = stream_details
+            stream_url, video_codec = stream_details
 
             identity = (video.get("playbackSessionId")
                         or player.get("playbackSessionId")
@@ -92,7 +100,12 @@ class PlexSessionAdapter(MediaSourceAdapter):
             observed_at = time.monotonic()
             report_changed = abs(reported_position - self._reported_position) > 0.001
             state_changed = state != self._timeline_state
-            if identity != self._timeline_identity or report_changed or state_changed:
+            identity_changed = identity != self._timeline_identity
+            if identity_changed:
+                self._timeline_calibrated = False
+            elif report_changed:
+                self._timeline_calibrated = True
+            if identity_changed or report_changed or state_changed:
                 self._timeline_identity = identity
                 self._timeline_state = state
                 self._reported_position = reported_position
@@ -109,6 +122,8 @@ class PlexSessionAdapter(MediaSourceAdapter):
                 state=state,
                 position_seconds=position,
                 stream_url=stream_url,
+                video_codec=video_codec,
+                timeline_calibrated=self._timeline_calibrated,
             )
         return None
 
@@ -220,13 +235,29 @@ def read_exact(stream: BinaryIO, size: int) -> bytes:
 
 class SourceBridge:
     def __init__(self, adapter: MediaSourceAdapter, sink: HyperHdrFlatBufferSink,
-                 width: int, height: int, fps: int, sync_lead: float):
+                 width: int, height: int, fps: int, sync_lead: float,
+                 hardware_decoder: str):
         self.adapter = adapter
         self.sink = sink
         self.width = width
         self.height = height
         self.fps = fps
         self.sync_lead = sync_lead
+        self.hardware_decoder = hardware_decoder
+        self._disabled_hardware_codecs: set[str] = set()
+
+    def _cuda_decoder(self, codec: str) -> Optional[str]:
+        codec = codec.lower()
+        decoder = {"hevc": "hevc_cuvid", "h265": "hevc_cuvid",
+                   "h264": "h264_cuvid", "avc": "h264_cuvid"}.get(codec)
+        if not decoder or codec in self._disabled_hardware_codecs:
+            return None
+        if self.hardware_decoder == "off":
+            return None
+        has_cuda_device = os.path.exists("/dev/dxg") or os.path.exists("/dev/nvidia0")
+        if self.hardware_decoder == "auto" and not has_cuda_device:
+            return None
+        return decoder
 
     def run(self, run_seconds: float = 0) -> None:
         deadline = time.monotonic() + run_seconds if run_seconds else None
@@ -250,15 +281,23 @@ class SourceBridge:
 
     def _mirror_session(self, session: SourceSession,
                         deadline: Optional[float]) -> None:
+        cuda_decoder = self._cuda_decoder(session.video_codec)
         command = [
-            "ffmpeg", "-hide_banner", "-loglevel", "error", "-re",
+            "ffmpeg", "-hide_banner", "-loglevel", "error", "-re"
+        ]
+        if cuda_decoder:
+            command += ["-c:v", cuda_decoder,
+                        "-resize", f"{self.width}x{self.height}"]
+        command += [
             "-ss", f"{session.position_seconds + self.sync_lead:.3f}",
-            "-i", session.stream_url,
-            "-an", "-vf", f"scale={self.width}:{self.height},fps={self.fps}",
+            "-i", session.stream_url, "-an", "-vf",
+            (f"fps={self.fps},format=nv12" if cuda_decoder
+             else f"scale={self.width}:{self.height},fps={self.fps}"),
             "-pix_fmt", "nv12", "-f", "rawvideo", "pipe:1",
         ]
         print(f"Mirroring {session.title!r} at {session.position_seconds:.3f}s "
-              f"({self.width}x{self.height}@{self.fps})", flush=True)
+              f"({self.width}x{self.height}@{self.fps}, "
+              f"decoder={cuda_decoder or 'software'})", flush=True)
         process = subprocess.Popen(command, stdout=subprocess.PIPE,
                                    stderr=subprocess.DEVNULL)
         started = time.monotonic()
@@ -289,9 +328,13 @@ class SourceBridge:
                                     and abs(current.position_seconds
                                             - last_server_position) > 0.2)
                 seeked = (changed_position
-                          and abs(current.position_seconds - expected) > 0.75)
+                          and abs(current.position_seconds - expected) > 3.0)
+                became_calibrated = (current is not None
+                                     and current.timeline_calibrated
+                                     and not session.timeline_calibrated)
                 if (current is None or current.state != "playing"
-                        or current.identity != session.identity or seeked):
+                        or current.identity != session.identity or seeked
+                        or became_calibrated):
                     print("Playback changed; resynchronizing", flush=True)
                     return
                 if changed_position:
@@ -309,6 +352,10 @@ class SourceBridge:
                          else 0, 0.001)
             steady_fps = (frames - 1) / active if frames > 1 else 0
             startup = (first_frame_at - started) if first_frame_at else elapsed
+            if frames == 0 and cuda_decoder:
+                self._disabled_hardware_codecs.add(session.video_codec.lower())
+                print(f"Hardware decoder {cuda_decoder} failed; falling back to software",
+                      file=sys.stderr, flush=True)
             print(f"Session pass: {frames} frames, steady {steady_fps:.2f} FPS, "
                   f"startup {startup:.3f}s", flush=True)
 
@@ -325,6 +372,8 @@ def main() -> None:
     parser.add_argument("--fps", type=int, default=24)
     parser.add_argument("--sync-lead", type=float, default=1.0,
                         help="Seek this many seconds ahead to offset decoder startup")
+    parser.add_argument("--hardware-decoder", choices=("auto", "cuda", "off"),
+                        default="auto")
     parser.add_argument("--run-seconds", type=float, default=0,
                         help="Stop after N seconds; zero runs continuously")
     args = parser.parse_args()
@@ -333,7 +382,7 @@ def main() -> None:
     sink = HyperHdrFlatBufferSink(args.hyperhdr_host, args.hyperhdr_port,
                                   args.priority)
     SourceBridge(adapter, sink, args.width, args.height, args.fps,
-                 args.sync_lead).run(
+                 args.sync_lead, args.hardware_decoder).run(
         args.run_seconds)
 
 
