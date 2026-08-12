@@ -334,7 +334,7 @@ class SourceBridge:
             # decoded surface and do only the inexpensive 320x180 scale on CPU.
             download_format = ("p010le" if "10" in session.video_profile
                                else "nv12")
-            command += [(f"hwdownload,format={download_format},"
+            command += [(f"hwdownload,format={download_format},vflip,"
                          f"{centered_scale},"
                          f"format=nv12,fps={self.fps}")]
         else:
